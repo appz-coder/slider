@@ -1,42 +1,43 @@
-.page{
+.hom_card{
+      width: 100%;
+    height: 100%;
+   min-height: 1000px;
+
     background: #f1efe4;
 }
-.home{
-    text-align: center;
-    margin-top: 40%;
-    margin-bottom: 10%;
-}
-.home div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.home img{
-width:60px;
-height:50px;
-margin-right: 2%;
-}
-.home p{
-    margin-top: 5%;
-}
+
 .twitt-log{
-    width: 25px;
+    width: 40px;
     margin-left: 5%;
     background: transparent;
 }
+
 .button-twitt{
-    margin-bottom: 200px;
-}
-.button-twitt a{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
     background: #499deb;
     color: #f1efe4;
     border-radius: 10px;
-    width: 65%;
-    margin-left: 20%;
-    margin-top: 10%;
-    margin-bottom: 5%;
+    width: 25%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 2%;
 }
-.button-twitt small{
-   margin-left: 18%;
-
+.button-twitt span{
+    margin-left: 10%;
+}
+@media screen and (max-width:700px) {
+    .button-twitt{
+        margin-top: 25px;
+        width: 90%;
+    }
+    #root{
+        line-height: 40px;
+    }
+}
+.hom_foot{
+    margin-top: 35%;
 }

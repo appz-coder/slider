@@ -2,35 +2,28 @@ import React from "react";
 import "./Home.css"
 import Twitter from "../../icon/twitter.png"
 import Hand from "../../icon/Hands.webp"
+import {Button, Card, Image} from "react-bootstrap";
 
 const Home = () => {
-    return (<div className="page">
-        <div className="container center_div">
-            <div className="row justify-content-center">
-                <div className="form-group col-md-5 col-md-offset-5 align-center ">
-                    <div className="home">
-                        <div>
-                            <img src={Hand}/>
-                            <h1>Slider Club</h1>
+    return (<Card className="text-center hom_card">
 
-                        </div>
-                        <p>
-                            Sign up to share your presenntation on Slider App.<br/>
-                            We can't wait for you to join!
-                        </p>
-                    </div>
-                    <div className="button-twitt">
-                        <a href="/about" className="btn btn-lg  btn-block" role="button">
-                            Sign in with Twitter
-                            <img src={Twitter} className="twitt-log"/>
-                        </a>
-                        <small>Preview existing presentation? Click here to enter code</small>
-                    </div>
-                    <p className="mt-5 mb-3 text-muted text-center">Privacy | Terms of Use</p>
-                </div>
-            </div>
-        </div>
-    </div>)
+            <Card.Body  >
+                <Card.Title style={{fontSize: "45px" ,paddingTop:"10%"}}>
+                    <Image style={{ width:"60px",marginRight:"2%"}} src={Hand}/>
+                    Slider Club
+                </Card.Title>
+                <Card.Text style={{margin:"3%", fontSize:"22px",color:" #4a4a4a"}}>
+                    Sign up to share your presenntation on Slider App.<br/>
+                    We can't wait for you to join!
+                </Card.Text>
+                <Button className={"button-twitt"}>
+                    <span>Sign in with Twitter</span>
+                    <Image className={"twitt-log"} src={Twitter} />
+                </Button>
+                <Card.Text>Preview existing presentation? Click here to enter code</Card.Text>
+                <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
+            </Card.Body>
+        </Card>)
 }
 
 export default Home;
