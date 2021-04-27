@@ -1,0 +1,42 @@
+.page{
+    background: #f1efe4;
+}
+.home{
+    text-align: center;
+    margin-top: 40%;
+    margin-bottom: 10%;
+}
+.home div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home img{
+width:60px;
+height:50px;
+margin-right: 2%;
+}
+.home p{
+    margin-top: 5%;
+}
+.twitt-log{
+    width: 25px;
+    margin-left: 5%;
+    background: transparent;
+}
+.button-twitt{
+    margin-bottom: 200px;
+}
+.button-twitt a{
+    background: #499deb;
+    color: #f1efe4;
+    border-radius: 10px;
+    width: 65%;
+    margin-left: 20%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+.button-twitt small{
+   margin-left: 18%;
+
+}
