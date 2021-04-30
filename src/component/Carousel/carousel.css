@@ -1,0 +1,56 @@
+.scroll_min{
+    background: #f1efe4;
+    height: 700px;
+    overflow-y: scroll;
+}
+.scroll_min div{
+    margin-top: 10%;
+}
+/* width */
+.scroll_min::-webkit-scrollbar {
+    border-radius: 5px;
+    width:0px;
+}
+.slide_card{
+    height: 700px;
+}
+.car_img{
+    height: 550px;
+    margin-left: 5%;
+    display: block;
+    width: 90%;
+
+}
+
+.custom-chevron-right{
+    height: 30px;
+    width: 35px;
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 40% 100%, 90% 50%, 40% 0);
+    background-color:#427cff;
+}
+.custom-chevron-left{
+    height: 30px;
+    width: 35px;
+    clip-path: polygon(50% 0, 0 50%, 50% 100%, 60% 100%, 10% 50%, 60% 0);
+    background-color: #427cff;
+}
+.carousel-control-next, .carousel-control-prev{
+    width: 4%!important;
+}
+.camera_btn{
+    float: right;
+    margin-right: 5%;
+    color:slategrey;
+    font-size: 22px;
+}
+.active_scroll{
+border: 4px solid slategrey ;
+    box-shadow: 5px 10px 8px 10px #888888;
+}
+.carousel-indicators{
+    display: none;
+}
+
+.private_pop{
+    background: rgba(239,237,227, 0.8);
+}

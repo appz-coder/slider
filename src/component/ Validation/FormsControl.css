@@ -1,0 +1,19 @@
+.input_title{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #d0d6e3;
+    outline: none;
+    margin-top: 0;
+    padding-top: 0;
+}
+.title{
+    border-bottom: 2px solid #ef5d7d;
+}
+.div_warning{
+    margin-top: 2%;
+    border-radius: 5px;
+    color:#ef5d7d;
+    padding:3px;
+}
+

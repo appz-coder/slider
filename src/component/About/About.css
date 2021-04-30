@@ -1,0 +1,14 @@
+.popbtn{
+
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10%;
+    margin-bottom: 5%;
+
+}
+.popbtn button{
+    position: fixed;
+    bottom: 20px;
+
+    border-radius: 50%;
+}
