@@ -15,7 +15,7 @@
 .button-twitt{
     display: flex;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 22px;
     background: #499deb;
     color: #f1efe4;
     border-radius: 10px;
@@ -28,6 +28,9 @@
 }
 .button-twitt span{
     margin-left: 10%;
+}
+.button-twitt i{
+    font-size: 40px;
 }
 @media screen and (max-width:700px) {
     .button-twitt{

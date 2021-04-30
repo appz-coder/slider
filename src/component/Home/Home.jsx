@@ -8,7 +8,7 @@ const Home = () => {
     return (<Card className="text-center hom_card">
 
             <Card.Body  >
-                <Card.Title style={{fontSize: "45px" ,paddingTop:"10%"}}>
+                <Card.Title style={{fontSize: "45px" ,paddingTop:"15%" }}>
                     <Image style={{ width:"60px",marginRight:"2%"}} src={Hand}/>
                     Slider Club
                 </Card.Title>
@@ -18,7 +18,8 @@ const Home = () => {
                 </Card.Text>
                 <Button className={"button-twitt"}>
                     <span>Sign in with Twitter</span>
-                    <Image className={"twitt-log"} src={Twitter} />
+                    <i className="fab fa-twitter"></i>
+                    {/*<Image className={"twitt-log"} src={Twitter} />*/}
                 </Button>
                 <Card.Text>Preview existing presentation? Click here to enter code</Card.Text>
                 <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
