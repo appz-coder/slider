@@ -76,8 +76,8 @@ const Slider = () => {
 
             <Presentation show={modalShow} presentItem={sliders} index={index} setIndex={setIndex}
                           onHide={() => setModalShow(false)}/>
-                          {/*<Private  show={privateShow}*/}
-                          {/*          onHide={() => setPrivateShow(false)}/>*/}
+                          <Private  show={privateShow}
+                                    onHide={() => setPrivateShow(false)}/>
 
         </Container>)
 }
