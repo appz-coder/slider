@@ -5,11 +5,13 @@ import Popup from "./Popup/Popup";
 import lock from "../../icon/lock.png"
 import {Button, Image, Table} from "react-bootstrap";
 import { useSelector } from 'react-redux'
+import SharePresentation from "./Share/SharePresentation";
 
 const About = (props) => {
     const {Presentation} = useSelector((state) => state.presentation);
     const [popupActive, setPopupActive] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
+    const [modalShare, setModalShare] = React.useState(false);
 
     return (<div>
 
@@ -45,7 +47,8 @@ const About = (props) => {
                                         { e.private ?
                                            <> <Button className={"ml-5 h-25 pt-1 pb-1  mr-2"}
                                                       variant="outline-dark">View</Button>
-                                            <Button   className={"pt-1 pb-1  h-25"} variant="outline-dark">Share</Button></>:""
+                                            <Button   className={"pt-1 pb-1  h-25"} variant="outline-dark"
+                                                      onClick={() => setModalShare(true)}>Share</Button></>:""
                                         }
                                     </td>
                                 </tr>
@@ -83,8 +86,10 @@ const About = (props) => {
         </main>
         <Popup
             show={modalShow}
-            onHide={() => setModalShow(false)}
-        />
+            onHide={() => setModalShow(false)}/>
+            <SharePresentation
+                show={modalShare}
+                onHide={() => setModalShare(false)}/>
 
     </div>)
 }
