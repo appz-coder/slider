@@ -1,8 +1,9 @@
 import React from "react";
-import {combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import { reducer as formReducer } from 'redux-form'
-import presentationReducer from "./presentation_reducer";
-import sliderReducer from "./slider_reducer";
+import presentationReducer from "./reducer/presentation_reducer";
+import sliderReducer from "./reducer/slider_reducer";
+import thunk from "redux-thunk";
 
 const reducer = combineReducers({
     presentation:presentationReducer,
@@ -11,6 +12,6 @@ const reducer = combineReducers({
 })
 
 
- const store = createStore(reducer);
+ const store = createStore(reducer, applyMiddleware(thunk));
 export default store;
 window.store =store;

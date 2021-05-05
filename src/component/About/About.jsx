@@ -4,14 +4,28 @@ import Pop from "../../icon/pop.png"
 import Popup from "./Popup/Popup";
 import lock from "../../icon/lock.png"
 import {Button, Image, Table} from "react-bootstrap";
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import SharePresentation from "./Share/SharePresentation";
+import {getPresentation} from "../../redux/store/action_creator/presentationAC";
 
 const About = (props) => {
-    const {Presentation} = useSelector((state) => state.presentation);
+    const {Presentation,error,loading} = useSelector((state) => state.presentation);
     const [popupActive, setPopupActive] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
+
+    const dispatch = useDispatch();
+
+    React.useEffect(()=>{
+        dispatch(getPresentation())
+    },[]);
+
+    if(loading){
+        return <h1>loading progress...</h1>
+    }
+    if(error){
+        return <h1>{error}</h1>
+    }
 
     return (<div>
 
