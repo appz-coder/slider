@@ -16,7 +16,8 @@ export const Input =  ({input,  meta: { touched, error, warning }, ...props})=>{
         </div>
     );
 }
-const adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
+
+const adaptFileEventToValue = delegate => e => delegate(Object.values(e.target.files));
 export const InputFile = ({
                               input: { value: omitValue, onChange, onBlur, ...inputProps },
                               meta: { touched, error, warning },

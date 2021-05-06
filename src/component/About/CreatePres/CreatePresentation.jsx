@@ -1,14 +1,14 @@
 import React from "react";
-import "./Popup.css"
+import "./CreatePresentation.css"
 import {Button, Modal} from "react-bootstrap";
 import out from "../../../icon/out.ico"
 import {Field, reduxForm} from "redux-form";
 import {Input, InputFile} from "../../ Validation/ FormsControl";
 import {required, validate} from "../../ Validation/ValidationForm";
 
-const PopupForm =(props)=>{
+const PresentationForm =(props)=>{
     return(
-        <form  className="form-signin" onSubmit={props.handleSubmit}>
+        <form  className="form-signin" onSubmit={props.handleSubmit} encType="multipart/form-data">
             <Field
                 name="title"
                 component={Input}
@@ -25,8 +25,11 @@ const PopupForm =(props)=>{
             <Field
                 component={InputFile}
                 validate={validate}
+                multiple
+                name="file"
+                type='file'
 
-                name="file"/>
+            />
 
             <Button onClick={props.onHide} type="submit" className="btn popBtn">
                 Create
@@ -36,9 +39,9 @@ const PopupForm =(props)=>{
         </form>
     )
 }
-const ReduxPopupForm = reduxForm({form: 'popup'})(PopupForm)
+const ReduxPresentationForm = reduxForm({form: 'popup'})(PresentationForm)
 
-const Popup = (props) => {
+const CreatePresentation = (props) => {
     const onSubmit =(data)=>{
         console.log(data);
     }
@@ -54,7 +57,7 @@ const Popup = (props) => {
                 <Modal.Title id="contained-modal-title-vcenter" className={"pop_title  h4 "}>
                     Create    Presentation
                 </Modal.Title>
-                <ReduxPopupForm onSubmit={onSubmit}/>
+                <ReduxPresentationForm onSubmit={onSubmit}/>
             </Modal.Body>
 
         </Modal>
@@ -62,4 +65,4 @@ const Popup = (props) => {
     )
 }
 
-export default Popup;
+export default CreatePresentation;

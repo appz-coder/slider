@@ -19,15 +19,16 @@ export const validate =values =>{
     if (!values) {
         errors = 'Required';
     } else {
-
-        let file = values;
-        if (!file.name.endsWith('.png') && !file.name.endsWith('.jpg') && !file.name.endsWith('.svg') && !file.name.endsWith('.gif')) {
+debugger
+        values.map(file =>{
+        if (!file.name.endsWith('.png') && !file.name.endsWith('.jpg') && !file.name.endsWith('.svg') && !file.name.endsWith('.gif')&& !file.name.endsWith('.zip')) {
             errors = 'Wrong file format';
         }else if (file.size < fileMinSize) {
-            errors = 'Scan file must be atleast 1KB';
+            errors = 'Scan file must be at least 1KB';
         } else if (file.size > fileMaxSize) {
             errors = 'File cannot exceed 2MB size';
         }
+        })
     }
 
     // console.log(errors);

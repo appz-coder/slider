@@ -12,3 +12,19 @@
 
     border-radius: 50%;
 }
+.error_load{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.spr{
+    background: initial;
+    width: 85px;
+    height: 85px;
+    box-shadow: 3px 2px 3px #f9e06a;
+    border-top: 4px dotted #eea200;
+    border-right: 5px dotted #ff9407;
+    border-left: 1px dotted #ff9407;
+}

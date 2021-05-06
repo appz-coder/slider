@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import "./About.css"
 import Pop from "../../icon/pop.png"
-import Popup from "./Popup/Popup";
+import CreatePresentation from "./CreatePres/CreatePresentation";
 import lock from "../../icon/lock.png"
-import {Button, Image, Table} from "react-bootstrap";
+import {Button, Image, Spinner, Table} from "react-bootstrap";
 import { useSelector,useDispatch } from 'react-redux'
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
@@ -21,10 +21,18 @@ const About = (props) => {
     },[]);
 
     if(loading){
-        return <h1>loading progress...</h1>
+        return <div className={"error_load"}>
+            <p>please wait...</p>
+            <Spinner className={"spr"} animation="border" variant="warning" />
+        </div>
+
+
     }
     if(error){
-        return <h1>{error}</h1>
+        return <div className={"error_load"}>
+            <p>{error}</p>
+            <Spinner className={"spr"} animation="border" variant="warning" />
+        </div>
     }
 
     return (<div>
@@ -98,7 +106,7 @@ const About = (props) => {
             </div>
 
         </main>
-        <Popup
+        <CreatePresentation
             show={modalShow}
             onHide={() => setModalShow(false)}/>
             <SharePresentation

@@ -9,14 +9,13 @@ const getPresentationSuccessAC = (payload)=>({type:GET_PRESENTATION_SUCCESS, pay
 const getPresentationErrorAC = (payload)=>({type:GET_PRESENTATION_ERROR, payload});
 
 export const getPresentation = () =>{
-    debugger
     return async (dispatch)=>{
         try{
             dispatch(getPresentationAC())
             const response = await axios.get('http://localhost:4000/api/presentations');
             dispatch(getPresentationSuccessAC(response.data))
         }catch (e){
-            dispatch(getPresentationErrorAC("happened error"))
+            dispatch(getPresentationErrorAC("An error occurred..."))
         }
     }
 }
