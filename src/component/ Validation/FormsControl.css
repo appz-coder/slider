@@ -11,9 +11,31 @@
     border-bottom: 2px solid #ef5d7d;
 }
 .div_warning{
-    margin-top: 2%;
+    position: absolute;
+    font-size: 12px;
     border-radius: 5px;
     color:#ef5d7d;
     padding:3px;
 }
+.div_warning_file{
+    background: #ef5d7d;
+    color: white;
+    padding: 3%;
+    margin-top:2% ;
+    border-radius: 5px;
+    position: absolute;
+   width: 92%;
 
+}
+.custom-file-upload input[type=file]{
+    display: none;
+}
+.div_success{
+    background: #eaf6ff;
+    color: #4777f2;
+    padding: 3%;
+    margin-top: 2%;
+    border-radius: 5px;
+    position: absolute;
+    width: 92%;
+}

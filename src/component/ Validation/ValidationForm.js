@@ -1,12 +1,12 @@
 import React from "react";
 
 export const required = value =>
-    (value || typeof value === 'number' ? undefined : 'Required');
+    (value || typeof value === 'number' ? undefined : 'Required field !');
 
 const maxLength = max => value =>
     value && value.length > max ? `Must be ${max} characters or less` : undefined
 
-export  const maxLength15 = maxLength(15)
+export  const maxLength30 = maxLength(30)
 
 
 
@@ -16,10 +16,11 @@ const fileMaxSize =  2 * 1000 * 1000; // 2MB
 export const validate =values =>{
     let errors = null;
     // console.log(values);
-    if (!values) {
-        errors = 'Required';
+    if (!values ||values.length === 0) {
+
+        errors = 'Please select a file before uploading!';
     } else {
-debugger
+
         values.map(file =>{
         if (!file.name.endsWith('.png') && !file.name.endsWith('.jpg') && !file.name.endsWith('.svg') && !file.name.endsWith('.gif')&& !file.name.endsWith('.zip')) {
             errors = 'Wrong file format';

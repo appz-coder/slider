@@ -1,10 +1,9 @@
 import React from "react";
 import "./CreatePresentation.css"
 import {Button, Modal} from "react-bootstrap";
-import out from "../../../icon/out.ico"
 import {Field, reduxForm} from "redux-form";
-import {Input, InputFile} from "../../ Validation/ FormsControl";
-import {required, validate} from "../../ Validation/ValidationForm";
+import {Input, InputFile, InputFile1} from "../../ Validation/ FormsControl";
+import { maxLength30, required, validate} from "../../ Validation/ValidationForm";
 
 const PresentationForm =(props)=>{
     return(
@@ -12,9 +11,9 @@ const PresentationForm =(props)=>{
             <Field
                 name="title"
                 component={Input}
-                validate={[required]}
+                validate={[required,maxLength30]}
             />
-            <div className="custom-control  mt-2 mb-4 form-control-lg custom-checkbox">
+            <div className="custom-control  mt-4 mb-4 form-control-lg custom-checkbox">
                 <Field component="input"
                        type="checkbox"
                        name="private"
@@ -36,6 +35,7 @@ const PresentationForm =(props)=>{
                 <i className="fas ml-2 fa-arrow-right"></i>
                 {/*<img  style={{width:"25px", color:"white"}} src={out}/>*/}
             </Button>
+
         </form>
     )
 }
