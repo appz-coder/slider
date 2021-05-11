@@ -4,34 +4,34 @@ import Pop from "../../icon/pop.png"
 import CreatePresentation from "./CreatePres/CreatePresentation";
 import lock from "../../icon/lock.png"
 import {Button, Image, Spinner, Table} from "react-bootstrap";
-import { useSelector,useDispatch } from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
 
 const About = (props) => {
-    const {Presentation,error,loading} = useSelector((state) => state.presentation);
+    const {Presentation, error, loading} = useSelector((state) => state.presentation);
     const [popupActive, setPopupActive] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
 
     const dispatch = useDispatch();
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         dispatch(getPresentation())
-    },[]);
+    }, []);
 
-    if(loading){
+    if (loading) {
         return <div className={"error_load"}>
             <p>please wait...</p>
-            <Spinner className={"spr"} animation="border" variant="warning" />
+            <Spinner className={"spr"} animation="border" variant="warning"/>
         </div>
 
 
     }
-    if(error){
+    if (error) {
         return <div className={"error_load"}>
             <p>{error}</p>
-            <Spinner className={"spr"} animation="border" variant="warning" />
+            <Spinner className={"spr"} animation="border" variant="warning"/>
         </div>
     }
 
@@ -40,37 +40,38 @@ const About = (props) => {
         <main role="main" className="container">
             <h5 className={"mt-5"}>All Presentations</h5>
             <div className="my-3 p-3 bg-light rounded box-shadow">
-                <Table  hover responsive="xl">
+                <Table hover responsive="xl">
                     <thead>
                     <tr>
                         <th></th>
-                        <td >NAME</td>
+                        <td>NAME</td>
                         <td className={"w-25"}>OPENED</td>
                         <td className={"w-25"}>SIZE</td>
                     </tr>
                     </thead>
                     <tbody>
                     {
-                        Presentation.map((e,i) =>{
-                            return(
+                        Presentation.map((e, i) => {
+                            return (
                                 <tr key={e.id}>
                                     <th>
-                                        <Image className="mr-2 rounded" width="32px" height="32px" src={e.presentationImg} />
+                                        <Image className="mr-2 rounded" width="32px" height="32px"
+                                               src={e.presentationImg}/>
                                     </th>
                                     <td>{e.presentationName}
                                         {e.private ?
-                                            <Image width={"40px"} src={lock}/>:""
+                                            <Image width={"40px"} src={lock}/> : ""
                                         }
-                                     <div><small>  {e.formatFile}</small></div>
+                                        <div><small>  {e.formatFile}</small></div>
                                     </td>
                                     <td>{e.presentationDate}</td>
                                     <td className={"d-flex"}>
                                         {e.presentationSize}
-                                        { e.private ?
-                                           <> <Button className={"ml-5 h-25 pt-1 pb-1  mr-2"}
-                                                      variant="outline-dark">View</Button>
-                                            <Button   className={"pt-1 pb-1  h-25"} variant="outline-dark"
-                                                      onClick={() => setModalShare(true)}>Share</Button></>:""
+                                        {e.private ?
+                                            <> <Button className={"ml-5 h-25 pt-1 pb-1  mr-2"}
+                                                       variant="outline-dark">View</Button>
+                                                <Button className={"pt-1 pb-1  h-25"} variant="outline-dark"
+                                                        onClick={() => setModalShare(true)}>Share</Button></> : ""
                                         }
                                     </td>
                                 </tr>
@@ -100,7 +101,7 @@ const About = (props) => {
                 </ul>
             </nav>
             <div className="popbtn">
-                <Button variant="primary"  onClick={() => setModalShow(true)}>
+                <Button variant="primary" onClick={() => setModalShow(true)}>
                     <Image src={Pop} width={"50px"}/>
                 </Button>
             </div>
@@ -109,9 +110,9 @@ const About = (props) => {
         <CreatePresentation
             show={modalShow}
             onHide={() => setModalShow(false)}/>
-            <SharePresentation
-                show={modalShare}
-                onHide={() => setModalShare(false)}/>
+        <SharePresentation
+            show={modalShare}
+            onHide={() => setModalShare(false)}/>
 
     </div>)
 }

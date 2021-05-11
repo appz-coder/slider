@@ -31,11 +31,17 @@
     display: none;
 }
 .div_success{
-    background: #eaf6ff;
-    color: #4777f2;
+    background:linear-gradient(45deg, #79d953 ,#c5fba9);
+    color:white;
     padding: 3%;
     margin-top: 2%;
     border-radius: 5px;
     position: absolute;
     width: 92%;
+}
+.upload_icon_form{
+    font-size: 90px;
+    margin-top: 25%;
+    margin-bottom: 7%;
+    color:#79c5ff;
 }

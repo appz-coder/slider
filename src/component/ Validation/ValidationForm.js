@@ -6,35 +6,28 @@ export const required = value =>
 const maxLength = max => value =>
     value && value.length > max ? `Must be ${max} characters or less` : undefined
 
-export  const maxLength30 = maxLength(30)
-
+export const maxLength30 = maxLength(30)
 
 
 const fileMinSize = 1 * 1000;//1KB
-const fileMaxSize =  2 * 1000 * 1000; // 2MB
+const fileMaxSize = 2 * 1000 * 1000; // 2MB
 
-export const validate =values =>{
+export const validate = values => {
     let errors = null;
-    // console.log(values);
-    if (!values ||values.length === 0) {
-
+    if (!values || values.length === 0) {
         errors = 'Please select a file before uploading!';
     } else {
 
-        values.map(file =>{
-        if (!file.name.endsWith('.png') && !file.name.endsWith('.jpg') && !file.name.endsWith('.svg') && !file.name.endsWith('.gif')&& !file.name.endsWith('.zip')) {
-            errors = 'Wrong file format';
-        }else if (file.size < fileMinSize) {
-            errors = 'Scan file must be at least 1KB';
-        } else if (file.size > fileMaxSize) {
-            errors = 'File cannot exceed 2MB size';
-        }
+        values.map(file => {
+            if (!file.name.endsWith('.png') && !file.name.endsWith('.pdf') && !file.name.endsWith('.zip')) {
+                errors = 'Wrong file format';
+            } else if (file.size < fileMinSize) {
+                errors = 'Scan file must be at least 1KB';
+            } else if (file.size > fileMaxSize) {
+                errors = 'File cannot exceed 2MB size';
+            }
         })
     }
-
-    // console.log(errors);
-    // Object {file: "Required"}
-
     return errors;
 }
 

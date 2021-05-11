@@ -1,6 +1,7 @@
 import React from "react";
 import "./FormsControl.css"
-import {ProgressBar} from "react-bootstrap";
+import {useSelector} from "react-redux";
+
 
 export const Input = ({input, meta: {touched, error, warning}, ...props}) => {
     return (
@@ -24,29 +25,18 @@ export const InputFile = ({
 
                               ...props
                           }) => {
-
-    const [progress, setProgress] = React.useState(100)
-    const loader = () =>{
-        if(progress===100){
-            setProgress("0")
-            setTimeout(()=>setProgress(100),2000)
-        }
-    }
+    const {loading, errors, messages} = useSelector((state) => state.newPresentation)
     return (
 
         <div>
             <label className="custom-file-upload">
-
-                <img className={"mt-5"}
-                     src={"https://img2.pngio.com/upload-icons-free-download-png-and-svg-upload-icon-png-256_256.png"}
-                     width={"100px"}/>
+                <i className="fas upload_icon_form  fa-file-upload"></i>
                 Upload Presentation
                 <small className={"mt-5 mb-5"}>PNG, JPG, SVG, GIF max file size 2 Mb.<br/>
                     White or transparent background.</small>
                 <input
                     onChange={adaptFileEventToValue(onChange)}
                     onBlur={adaptFileEventToValue(onBlur)}
-                    onClick={loader}
                     type="file"
                     {...props.input}
                     {...props}
@@ -54,9 +44,17 @@ export const InputFile = ({
 
             </label>
 
-            {!error && progress && (<div className={"div_success"} >
-                    <p className={"m-0"}>{omitValue ? omitValue.length : ''} files uploaded successfully</p>
-                    <ProgressBar now={progress} label={`${progress}%`}/>
+            {!error && (<div className={errors ? "div_warning_file" : "div_success"}>
+                    {messages ? <p className={"m-0"}>
+                            {errors ? <i className="fas mr-2 fa-exclamation-circle"></i>
+                                : <i className="fas mr-2 fa-check-circle"></i>}
+                            {messages}</p> :
+                        <p className={"m-0"}>
+                            <i className="fas  mr-2 fa-check"></i>
+                            {omitValue ? omitValue.length : ''} files selected
+                        </p>
+                    }
+
                 </div>
             )}
 
