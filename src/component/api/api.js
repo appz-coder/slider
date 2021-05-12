@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:4000/api/',
+    baseURL: process.env.REACT_APP_UNSPLASH_URL,
     headers: {
         "Content-Type": "multipart/form-data;" +
             "boundary=<calculated when request is sent>",
@@ -12,6 +12,9 @@ const instance = axios.create({
 export const presentationApi = {
 
     createPresentation(formData) {
-        return instance.post('presentations/store', formData)
+        return instance.post('api/presentations/store', formData)
+    },
+    getPresentation() {
+        return instance.get('api/presentations')
     },
 }

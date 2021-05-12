@@ -7,6 +7,10 @@
     margin-top: 0;
     padding-top: 0;
 }
+.input_title::placeholder {
+font-size: 12px;
+    opacity: 0.5; /* Firefox */
+}
 .title{
     border-bottom: 2px solid #ef5d7d;
 }

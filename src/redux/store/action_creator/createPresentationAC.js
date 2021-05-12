@@ -17,7 +17,6 @@ export const presentationCreated = (formData) =>{
         try {
             dispatch(addPresentationAC());
             let resp = await presentationApi.createPresentation(formData)
-            console.log(resp)
             if(resp)
                 dispatch(addPresentationSuccessAC(resp))
 

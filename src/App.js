@@ -20,7 +20,6 @@ function App(props) {
                 props.location.pathname!=="/" && props.location.pathname!=="/slider" ?  <Header/>:""
             }
 
-            <Route  path={'/home'}  render={() => <Home/>}/>
             <Route path={'/about'}  render={() =><About/>}/>
             <Route path={'/slider'}  render={() =><Slider/>}/>
         </div>

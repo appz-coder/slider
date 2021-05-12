@@ -13,10 +13,12 @@ const About = (props) => {
     const [popupActive, setPopupActive] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
-
     const dispatch = useDispatch();
 
+
+
     React.useEffect(() => {
+        console.log(process.env)
         dispatch(getPresentation())
     }, []);
 
@@ -56,18 +58,18 @@ const About = (props) => {
                                 <tr key={e.id}>
                                     <th>
                                         <Image className="mr-2 rounded" width="32px" height="32px"
-                                               src={e.presentationImg}/>
+                                               src={`${process.env.REACT_APP_UNSPLASH_URL}${e.presentation_file[0].path}`}/>
                                     </th>
-                                    <td>{e.presentationName}
-                                        {e.private ?
+                                    <td>{e.title}
+                                        {e.is_private ?
                                             <Image width={"40px"} src={lock}/> : ""
                                         }
-                                        <div><small>  {e.formatFile}</small></div>
+                                        <div><small>  {e.presentation_file[0].mime}</small></div>
                                     </td>
-                                    <td>{e.presentationDate}</td>
+                                    <td>{e.createdAt}</td>
                                     <td className={"d-flex"}>
-                                        {e.presentationSize}
-                                        {e.private ?
+                                        {Math.round(e.presentation_file[0].size/1000)+''+ 'KB'}
+                                        {e.is_private ?
                                             <> <Button className={"ml-5 h-25 pt-1 pb-1  mr-2"}
                                                        variant="outline-dark">View</Button>
                                                 <Button className={"pt-1 pb-1  h-25"} variant="outline-dark"

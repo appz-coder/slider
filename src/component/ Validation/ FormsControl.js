@@ -9,7 +9,7 @@ export const Input = ({input, meta: {touched, error, warning}, ...props}) => {
             <label htmlFor="fname" style={{color: "#949db0"}}>Title</label>
             <input {...input} {...props} className={touched && error ? "title input_title" : "input_title"}
                    type="text"
-                   placeholder={"Presentation 1"}/>
+                   placeholder={"presentation title"}/>
 
             {touched && error && <div className={"div_warning"}>
                 <i className="fas mr-2 fa-exclamation-circle"></i>

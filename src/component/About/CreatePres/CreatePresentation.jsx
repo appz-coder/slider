@@ -26,7 +26,7 @@ const PresentationForm = (props) => {
                     <Field component="input"
                            type="checkbox"
                            name="is_private"
-                           className="custom-control-input"
+                           className="custom-control-input "
                            id="customCheck1"/>
                     <label className="custom-control-label" htmlFor="customCheck1">mark it as private</label>
                 </div>
