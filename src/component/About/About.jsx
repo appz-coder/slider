@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./About.css"
-import Pop from "../../icon/pop.png"
+import Pop from "../../icon/pop.png";
+import PDF from "../../icon/PDF.jpg"
 import CreatePresentation from "./CreatePres/CreatePresentation";
 import lock from "../../icon/lock.png"
 import {Button, Image, Spinner, Table} from "react-bootstrap";
@@ -16,10 +17,8 @@ const About = (props) => {
     const [modalShare, setModalShare] = React.useState(false);
     const dispatch = useDispatch();
 
-
-
+debugger
     React.useEffect(() => {
-        console.log(process.env)
         dispatch(getPresentation())
     }, []);
 
@@ -57,23 +56,28 @@ const About = (props) => {
                         Presentation.map((e, i) => {
                             return (
                                 <tr key={e.id} className={"control_hover"}>
-                                    <th>
-                                        <Image className="mr-2 rounded" width="32px" height="32px"
-                                               src={`${process.env.REACT_APP_API_URL}${e.presentation_file[0].path}`}/>
+                                    <th>{
+                                        e.presentation_file[0].path.endsWith('.pdf')?<Image className="mr-2 rounded" width="32px" height="32px"
+                                        src={PDF}/>
+                                        :<Image className="mr-2 rounded" width="32px" height="32px"
+                                                src={`${process.env.REACT_APP_API_URL}${e.presentation_file[0].path}`}/>
+                                    }
+
                                     </th>
                                     <td>{e.title}
                                         {e.is_private ?
                                             <Image width={"40px"} src={lock}/> : ""
                                         }
-                                        <div><small>  {e.presentation_file[0].mime}</small></div>
+                                        <div><small>  {e.presentation_file[0].mime.split('/')[1]}</small></div>
                                     </td>
                                     <td>{
                                         new Date(e.createdAt).toLocaleString('en-us', { month: 'short',day: "2-digit"})
                                     }</td>
                                     <td className={"d-flex"}>
                                         {Math.round(e.presentation_file[0].size/1000)+''+ 'KB'}
-                                            <NavLink to={"/slider"} className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2 btn btn-outline-secondary">
-                                                View</NavLink>
+                                        <Button variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
+                                            <NavLink to={"/slider"}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>
+                                        </Button>
                                         <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
                                                 onClick={() => setModalShare(true)}>Share</Button>
                                     </td>

@@ -10,11 +10,11 @@ const getPresentationSuccessAC = (payload)=>({type:GET_PRESENTATION_SUCCESS, pay
 const getPresentationErrorAC = (payload)=>({type:GET_PRESENTATION_ERROR, payload});
 
 export const getPresentation = () =>{
-
     return async (dispatch)=>{
         try{
             dispatch(getPresentationAC())
             const response = await presentationApi.getPresentation();
+            console.log(response)
             dispatch(getPresentationSuccessAC(response.data))
         }catch (e){
             dispatch(getPresentationErrorAC("An error occurred..."))
