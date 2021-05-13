@@ -10,7 +10,7 @@ export const maxLength30 = maxLength(30)
 
 
 const fileMinSize = 1 * 1000;//1KB
-const fileMaxSize = 2 * 1000 * 1000; // 2MB
+const fileMaxSize = 20 * 1000 * 1000; // 2MB
 
 export const validate = values => {
     let errors = null;
@@ -24,7 +24,7 @@ export const validate = values => {
             } else if (file.size < fileMinSize) {
                 errors = 'Scan file must be at least 1KB';
             } else if (file.size > fileMaxSize) {
-                errors = 'File cannot exceed 2MB size';
+                errors = 'File cannot exceed 20MB size';
             }
         })
     }

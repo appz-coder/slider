@@ -14,7 +14,7 @@ export const presentationApi = {
     createPresentation(formData) {
         return instance.post('api/presentations/store', formData)
     },
-    getPresentation() {
-        return instance.get('api/presentations')
+    getPresentation(currentPage) {
+        return instance.get(`api/presentations/pages/${currentPage}`)
     },
 }

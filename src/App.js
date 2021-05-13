@@ -7,6 +7,7 @@ import {Route, withRouter} from "react-router-dom";
 import About from "./component/About/About";
 import Header from "./component/NavBar/Navbar";
 import Slider from "./component/Carousel/carousel";
+import Login from "./component/Login/Login";
 
 
 
@@ -17,11 +18,12 @@ function App(props) {
                 props.location.pathname==="/" ? <Home/>:""
             }
             {
-                props.location.pathname!=="/" && props.location.pathname!=="/slider" ?  <Header/>:""
+                props.location.pathname!=="/" && props.location.pathname!=="/slider" && props.location.pathname!=="/login"?  <Header/>:""
             }
 
-            <Route path={'/about'}  render={() =><About/>}/>
+            <Route path={'/about/:Id?'}  render={() =><About/>}/>
             <Route path={'/slider'}  render={() =><Slider/>}/>
+            <Route path={'/login'}  render={() =><Login/>}/>
         </div>
     );
 }

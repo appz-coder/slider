@@ -9,15 +9,18 @@ const getPresentationAC = ()=>({type: GET_PRESENTATION});
 const getPresentationSuccessAC = (payload)=>({type:GET_PRESENTATION_SUCCESS, payload });
 const getPresentationErrorAC = (payload)=>({type:GET_PRESENTATION_ERROR, payload});
 
-export const getPresentation = () =>{
+export const getPresentation = (currentPage) =>{
     return async (dispatch)=>{
         try{
             dispatch(getPresentationAC())
-            const response = await presentationApi.getPresentation();
-            console.log(response)
+            const response = await presentationApi.getPresentation(currentPage);
             dispatch(getPresentationSuccessAC(response.data))
-        }catch (e){
-            dispatch(getPresentationErrorAC("An error occurred..."))
+        }catch (error){
+            if (error.response) {
+                dispatch(getPresentationErrorAC(error.response))
+
+            }
+
         }
     }
 }

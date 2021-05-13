@@ -16,7 +16,8 @@ const Home = () => {
                     Sign up to share your presenntation on Slider App.<br/>
                     We can't wait for you to join!
                 </Card.Text>
-                <Button className={"button-twitt"} href={`${process.env.REACT_APP_API_URL}api/auth/google`}>
+                {/*<Button className={"button-twitt"} href={`${process.env.REACT_APP_API_URL}api/auth/google`}>*/}
+                <Button className={"button-twitt"} href={'/login'}>
                     <span>Sign in with Twitter</span>
                     <i className="fab fa-twitter"></i>
                     {/*<Image className={"twitt-log"} src={Twitter} />*/}
