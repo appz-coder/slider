@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux'
 import {Carousel, Col, Card, Container, Row, Button} from "react-bootstrap";
 import Presentation from "./Presents/Presents";
 import Private from "./Presents/Private/Private";
+import {NavLink} from "react-router-dom";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
@@ -49,6 +50,7 @@ const Slider = () => {
                         <Card.Body>
                             <Card.Title className={" ml-5"}>
                                 Presentation 1
+                                <NavLink to={"/about"} style={{color:"#e2d27b"}} className="fas fa-exchange-alt ml-4"></NavLink>
                                 <Button className={"camera_btn "} variant="link" onClick={() => setModalShow(true)}>
                                     <i className="fas  fa-camera"></i>
                                 </Button>

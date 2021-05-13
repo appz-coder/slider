@@ -7,6 +7,7 @@ import {Button, Image, Spinner, Table} from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux'
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
+import {NavLink} from "react-router-dom";
 
 const About = (props) => {
     const {Presentation, error, loading} = useSelector((state) => state.presentation);
@@ -55,10 +56,10 @@ const About = (props) => {
                     {
                         Presentation.map((e, i) => {
                             return (
-                                <tr key={e.id}>
+                                <tr key={e.id} className={"control_hover"}>
                                     <th>
                                         <Image className="mr-2 rounded" width="32px" height="32px"
-                                               src={`${process.env.REACT_APP_UNSPLASH_URL}${e.presentation_file[0].path}`}/>
+                                               src={`${process.env.REACT_APP_API_URL}${e.presentation_file[0].path}`}/>
                                     </th>
                                     <td>{e.title}
                                         {e.is_private ?
@@ -66,15 +67,15 @@ const About = (props) => {
                                         }
                                         <div><small>  {e.presentation_file[0].mime}</small></div>
                                     </td>
-                                    <td>{e.createdAt}</td>
+                                    <td>{
+                                        new Date(e.createdAt).toLocaleString('en-us', { month: 'short',day: "2-digit"})
+                                    }</td>
                                     <td className={"d-flex"}>
                                         {Math.round(e.presentation_file[0].size/1000)+''+ 'KB'}
-                                        {e.is_private ?
-                                            <> <Button className={"ml-5 h-25 pt-1 pb-1  mr-2"}
-                                                       variant="outline-dark">View</Button>
-                                                <Button className={"pt-1 pb-1  h-25"} variant="outline-dark"
-                                                        onClick={() => setModalShare(true)}>Share</Button></> : ""
-                                        }
+                                            <NavLink to={"/slider"} className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2 btn btn-outline-secondary">
+                                                View</NavLink>
+                                        <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
+                                                onClick={() => setModalShare(true)}>Share</Button>
                                     </td>
                                 </tr>
                             )

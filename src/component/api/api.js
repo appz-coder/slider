@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_UNSPLASH_URL,
+    baseURL: process.env.REACT_APP_API_URL,
     headers: {
         "Content-Type": "multipart/form-data;" +
             "boundary=<calculated when request is sent>",

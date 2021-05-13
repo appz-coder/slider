@@ -28,3 +28,10 @@
     border-right: 5px dotted #ff9407;
     border-left: 1px dotted #ff9407;
 }
+.control_buttons{
+   opacity: 0;
+    display: flex;
+}
+.control_hover:hover .control_buttons{
+    opacity: 1;
+}

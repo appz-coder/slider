@@ -14,7 +14,6 @@ export const getPresentation = () =>{
     return async (dispatch)=>{
         try{
             dispatch(getPresentationAC())
-            debugger
             const response = await presentationApi.getPresentation();
             dispatch(getPresentationSuccessAC(response.data))
         }catch (e){
