@@ -35,3 +35,11 @@
 .control_hover:hover .control_buttons{
     opacity: 1;
 }
+.pres_table{
+    height: 70vh;
+    overflow-y: scroll;
+}
+.pres_table::-webkit-scrollbar{
+    border-radius: 5px;
+    width:4px;
+}

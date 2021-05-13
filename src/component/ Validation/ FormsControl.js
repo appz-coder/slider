@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 export const Input = ({input, meta: {touched, error, warning}, ...props}) => {
     return (
         <div>
-            <label htmlFor="fname" style={{color: "#949db0"}}>Title</label>
+            <label htmlFor="fname" style={{color: "#4a4f5a", fontSize:'12px'}}>Title</label>
             <input {...input} {...props} className={touched && error ? "title input_title" : "input_title"}
                    type="text"
                    placeholder={"presentation title"}/>
@@ -32,7 +32,7 @@ export const InputFile = ({
             <label className="custom-file-upload">
                 <i className="fas upload_icon_form  fa-file-upload"></i>
                 Upload Presentation
-                <small className={"mt-5 mb-5"}>PNG, JPG, SVG, GIF max file size 2 Mb.<br/>
+                <small className={"mt-3 mb-3"}>PNG, PDF, ZIP max file size 20 Mb.<br/>
                     White or transparent background.</small>
                 <input
                     onChange={adaptFileEventToValue(onChange)}
@@ -67,3 +67,16 @@ export const InputFile = ({
 
     );
 };
+export const InputName = ({input, meta: {touched, error, warning}, ...props}) => {
+    return (
+        <div>
+            <input {...input} {...props}
+                   type="text"/>
+
+            {touched && error && <div style={{color:'red', marginTop:'-5%', fontSize:'12px'}}>
+                <i className="fas mr-2 fa-exclamation-circle"></i>
+                {error}</div>}
+
+        </div>
+    );
+}

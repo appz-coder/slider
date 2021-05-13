@@ -17,4 +17,7 @@ export const presentationApi = {
     getPresentation(currentPage) {
         return instance.get(`api/presentations/pages/${currentPage}`)
     },
+    login(data){
+        return instance.post('api/login',data)
+    }
 }

@@ -26,7 +26,8 @@ const presentationReducer = (state = initialState, action) =>{
                 loading:false,
                 error:action.payload.error,
                 totalUsersCount:action.payload.data.presentationsCount,
-                Presentation:action.payload.data.presentations};
+                // Presentation:action.payload.data.presentations
+                Presentation:action.payload.data};
         case GET_PRESENTATION_ERROR:
             return {
                 ...state,

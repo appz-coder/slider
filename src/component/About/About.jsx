@@ -8,18 +8,17 @@ import {Button, Image, Spinner, Table} from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux'
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
-import {NavLink,withRouter} from "react-router-dom";
+import {NavLink, Redirect, withRouter} from "react-router-dom";
 
 const About = (props) => {
-    debugger
+
     const {Presentation, error, loading,totalUsersCount,pageSize} = useSelector((state) => state.presentation);
+    const {isAuth} = useSelector((state) => state.auth)
     const [popupActive, setPopupActive] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
     const dispatch = useDispatch();
-let currentPage = props.match.params.Id
     React.useEffect(() => {
-        debugger
         dispatch(getPresentation(1))
     }, []);
     let pagesCount = Math.ceil(totalUsersCount /pageSize);
@@ -39,12 +38,12 @@ let currentPage = props.match.params.Id
             <Spinner className={"spr"} animation="border" variant="warning"/>
         </div>
     }
-
+    if( !isAuth) return <Redirect to={'/'}/>
     return (<div>
 
         <main role="main" className="container">
             <h5 className={"mt-5"}>All Presentations</h5>
-            <div className="my-3 p-3 bg-light rounded box-shadow">
+            <div className="my-3 p-3 bg-light pres_table rounded box-shadow">
                 <Table hover responsive="xl">
                     <thead>
                     <tr>

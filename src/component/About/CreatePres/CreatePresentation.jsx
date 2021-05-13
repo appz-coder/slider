@@ -16,13 +16,13 @@ const PresentationForm = (props) => {
         props.onHide()
     }
     return (<div>
-            <form className="form-signin" onSubmit={props.handleSubmit} encType="multipart/form-data">
+            <form className="form-signin" style={{width:'130%',marginLeft:'-13%'}} onSubmit={props.handleSubmit} encType="multipart/form-data">
                 <Field
                     name="title"
                     component={Input}
                     validate={[required, maxLength30]}
                 />
-                <div className="custom-control  mt-4 mb-4 form-control-lg custom-checkbox">
+                <div className="custom-control  mt-3 form-control-lg custom-checkbox">
                     <Field component="input"
                            type="checkbox"
                            name="is_private"
@@ -82,7 +82,7 @@ const CreatePresentation = (props) => {
     }
     return (
         <Modal
-            size="lg"
+
             {...props}
             aria-labelledby="contained-modal-title-vcenter"
             centered

@@ -28,7 +28,7 @@ font-size: 12px;
     margin-top:2% ;
     border-radius: 5px;
     position: absolute;
-   width: 92%;
+   width: 114%;
 
 }
 .custom-file-upload input[type=file]{
@@ -41,7 +41,7 @@ font-size: 12px;
     margin-top: 2%;
     border-radius: 5px;
     position: absolute;
-    width: 92%;
+    width: 114%;
 }
 .upload_icon_form{
     font-size: 90px;
