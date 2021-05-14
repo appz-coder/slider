@@ -10,6 +10,7 @@ const getPresentationSuccessAC = (payload)=>({type:GET_PRESENTATION_SUCCESS, pay
 const getPresentationErrorAC = (payload)=>({type:GET_PRESENTATION_ERROR, payload});
 
 export const getPresentation = (currentPage) =>{
+
     return async (dispatch)=>{
         try{
             dispatch(getPresentationAC())

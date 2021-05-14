@@ -5,7 +5,9 @@ import Hand from "../../icon/Hands.webp"
 import {Button, Card, Image} from "react-bootstrap";
 
 const Home = () => {
-    return (<Card className="text-center hom_card">
+    return (
+        <div className={"hom_card"}>
+            <Card className="text-center border-0 hom_card ">
 
             <Card.Body  >
                 <Card.Title style={{fontSize: "40px" ,paddingTop:"12%" }}>
@@ -23,9 +25,11 @@ const Home = () => {
                     {/*<Image className={"twitt-log"} src={Twitter} />*/}
                 </Button>
                 <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? Click here to enter code</Card.Text>
-                <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
             </Card.Body>
-        </Card>)
+                <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
+        </Card>
+
+        </div>)
 }
 
 export default Home;

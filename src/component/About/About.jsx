@@ -93,7 +93,7 @@ const About = (props) => {
             <nav aria-label="Page navigation example">
                 <ul className="pagination">
                     {
-                        pages.map(p=> <li className="page-item" onClick={()=>{dispatch(getPresentation(p))}}
+                        pages.map(p=> <li className="page-item" onClick={()=>{dispatch(getPresentation(p``))}}
                         ><NavLink to={`/about/${p}`} className="page-link ">{p}</NavLink></li>)
                     }
                 </ul>

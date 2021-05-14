@@ -9,7 +9,6 @@
 .popbtn button{
     position: fixed;
     bottom: 20px;
-
     border-radius: 50%;
 }
 .error_load{
