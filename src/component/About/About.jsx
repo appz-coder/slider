@@ -42,9 +42,9 @@ const About = (props) => {
     return (<div>
 
         <main role="main" className="container">
-            <h5 className={"mt-5"}>All Presentations</h5>
+            {totalUsersCount?  <div> <h5 className={"mt-5"}>All Presentations</h5>
             <div className="my-3 p-3 bg-light pres_table rounded box-shadow">
-                <Table hover responsive="xl">
+              <Table hover responsive="xl">
                     <thead>
                     <tr>
                         <th></th>
@@ -90,14 +90,15 @@ const About = (props) => {
                     </tbody>
                 </Table>
             </div>
-            <nav aria-label="Page navigation example">
+                </div>:<h5 className={"mt-5"}>You do not have any presentations yet</h5>}
+            {totalUsersCount>10 &&(<nav aria-label="Page navigation example">
                 <ul className="pagination">
                     {
-                        pages.map(p=> <li className="page-item" onClick={()=>{dispatch(getPresentation(p``))}}
+                        pages.map(p=> <li className="page-item" onClick={()=>{dispatch(getPresentation(p))}}
                         ><NavLink to={`/about/${p}`} className="page-link ">{p}</NavLink></li>)
                     }
                 </ul>
-            </nav>
+            </nav>)}
             <div className="popbtn">
                 <Button variant="primary" onClick={() => setModalShow(true)}>
                     <Image src={Pop} width={"50px"}/>

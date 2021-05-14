@@ -7,7 +7,7 @@ const initialState = {
     loading:false,
     error:null,
     pageSize: 10,
-    totalUsersCount: 0,
+    totalUsersCount:null,
     currentPage:0,
 
 
@@ -25,7 +25,7 @@ const presentationReducer = (state = initialState, action) =>{
                 ...state,
                 loading:false,
                 error:action.payload.error,
-                totalUsersCount:action.payload.data.presentationsCount,
+                 totalUsersCount:action.payload.data.presentationsCount,
                Presentation:action.payload.data.presentations
                };
         case GET_PRESENTATION_ERROR:

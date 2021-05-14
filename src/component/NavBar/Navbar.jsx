@@ -27,9 +27,6 @@ const Header = () => {
                 <Image roundedCircle width={"50"}  src={"https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/512x512/shadow/user_edit.png"}/>
                 <NavDropdown  className={"nav-drop nav-link"} title={`Hello ${username}`} id="basic-nav-dropdown">
                     <NavDropdown.Item  onClick={()=>{dispatch(logoutUserData())}}>Logout</NavDropdown.Item>
-
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">...</NavDropdown.Item>
                 </NavDropdown>
             </Navbar.Collapse>
         </Navbar>

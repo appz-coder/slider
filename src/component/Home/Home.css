@@ -12,30 +12,16 @@
     background: transparent;
 }
 
-.button-twitt{
-    display: flex;
-    justify-content: space-between;
-    font-size: 22px;
-    background: #499deb;
-    color: #f1efe4;
-    border-radius: 10px;
-    width: 330px;
+.button_google{
+    width: 330px!important;
     margin: 0 auto;
-
-    padding-bottom: 10px;
-    text-align: center;
     margin-bottom: 2%;
 }
-.button-twitt span{
-    margin-left: 10%;
-}
-.button-twitt i{
-    font-size: 40px;
-}
-@media screen and (max-width:700px) {
-    .button-twitt{
-        margin-top: 25px;
-        width: 90%;
+
+@media screen and (max-width:330px) {
+    .button_google{
+        margin-top: 25px!important;
+        width: 90%!important;
     }
     #root{
         line-height: 40px;
