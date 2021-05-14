@@ -22,7 +22,7 @@ function App(props) {
             }
 
             <Route path={'/about/:Id?'}  render={() =><About/>}/>
-            <Route path={'/slider'}  render={() =><Slider/>}/>
+            <Route path={'/slider/:Id?'}  render={() =><Slider/>}/>
             <Route path={'/login'}  render={() =><Login/>}/>
         </div>
     );

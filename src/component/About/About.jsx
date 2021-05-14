@@ -43,7 +43,7 @@ const About = (props) => {
 
         <main role="main" className="container">
             {totalUsersCount?  <div> <h5 className={"mt-5"}>All Presentations</h5>
-            <div className="my-3 p-3 bg-light pres_table rounded box-shadow">
+            <div className="my-3 p-3  pres_table rounded box-shadow">
               <Table hover responsive="xl">
                     <thead>
                     <tr>
@@ -66,7 +66,7 @@ const About = (props) => {
                                     }
 
                                     </th>
-                                    <td>{e.title}
+                                    <td >{e.title}
                                         {e.is_private ?
                                             <Image width={"40px"} src={lock}/> : ""
                                         }
@@ -78,7 +78,7 @@ const About = (props) => {
                                     <td className={"d-flex"}>
                                         {Math.round(e.presentation_file[0].size/1000)+''+ 'KB'}
                                         <Button variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
-                                            <NavLink to={"/slider"}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>
+                                            <NavLink to={"/slider/"+e.id}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>
                                         </Button>
                                         <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
                                                 onClick={() => setModalShare(true)}>Share</Button>
@@ -113,6 +113,6 @@ const About = (props) => {
             show={modalShare}
             onHide={() => setModalShare(false)}/>
 
-    </div>)
+    </div>);
 }
 export default  withRouter(About);
