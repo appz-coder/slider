@@ -11,6 +11,7 @@
 .nav-drop .nav-link{
     color:#4b4a4a;
 }
+
 @media only screen and (max-width: 990px) {
     .navbar-collapse{
         position: fixed;

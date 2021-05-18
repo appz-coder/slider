@@ -1,12 +1,33 @@
 import React from "react";
 import "./Home.css"
-import Twitter from "../../icon/twitter.png"
 import Hand from "../../icon/Hands.webp";
 import GoogleButton from 'react-google-button';
-import {Button, Card, Image} from "react-bootstrap";
+import {Button, Card, Container, Image} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import Private from "./PrivateKey/Private";
+import GoogleLogin from 'react-google-login';
+import {presentationApi} from "../api/api";
+import {authentificationGoogle} from "../../redux/store/reducer/auth_reducer";
+import axios from "axios";
+
 
 const Home = () => {
+    const [privateShow, setPrivateShow] = React.useState(false);
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+   const resGoogleApi = async () =>{
+        debugger
+      try {
+           axios.get(`${process.env.REACT_APP_API_URL}api/auth/google`).then(res => {
+              debugger
+          })
+      }
+      catch(e) {
+          console.log(e)
+       }
+   }
     return (
         <div className={"hom_card"}>
             <Card className="text-center border-0 hom_card ">
@@ -20,17 +41,19 @@ const Home = () => {
                     Sign up to share your presenntation on Slider App.<br/>
                     We can't wait for you to join!
                 </Card.Text>
-                {/*href={`${process.env.REACT_APP_API_URL}api/auth/google`}*/}
-                <Link to="/about" style={{textDecoration:'none'}}>
-                <GoogleButton className={'button_google'}
-                              // onClick={() => { alert('Google button clicked') }}
+                <GoogleLogin style={{backgroundColor:"#4285f4"}}
+                    clientId="255985455061-c7sk1fgpfd6hp91fq9kk09siefdo1i32.apps.googleusercontent.com"
+                    buttonText="Sign in with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
                 />
-                </Link>
-                <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? Click here to enter code</Card.Text>
+                <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? <a style={{color:'#212529'}} className={"nav-item"} onClick={()=>setPrivateShow(true)}>Click here to enter code</a></Card.Text>
             </Card.Body>
                 <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
         </Card>
-
+            <Private  show={privateShow}
+                      onHide={() => setPrivateShow(false)}/>
         </div>)
 }
 
