@@ -18,10 +18,10 @@ const Header = () => {
                 Slider Club
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Collapse className={"col_div"} id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <NavLink to={"/about"} className="nav-link">About</NavLink>
-                    <NavLink to={"/slider"} className="nav-link">Slider</NavLink>
+                    <NavLink to={"/w/"} className="nav-link">Slider</NavLink>
 
                 </Nav>
                 <Image roundedCircle width={"50"}  src={"https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/512x512/shadow/user_edit.png"}/>

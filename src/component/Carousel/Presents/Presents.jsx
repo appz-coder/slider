@@ -5,7 +5,6 @@ const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <i className="custom-chevron-left"></i>;
 
 const Presentation =(props)=>{
-
     const handleSelect = (selectedIndex, e) => {
         props.setIndex(selectedIndex);
         console.log(selectedIndex)
@@ -28,7 +27,7 @@ const Presentation =(props)=>{
                                 <Carousel.Item key={e.id}>
                                     <img
                                         className="pres_carousel"
-                                        src={e.img}
+                                        src={`${process.env.REACT_APP_API_URL}${e.path}`}
                                         alt="First slide"
                                     />
                                 </Carousel.Item>

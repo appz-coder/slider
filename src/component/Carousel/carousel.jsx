@@ -1,20 +1,28 @@
 import React from "react";
 import "./carousel.css";
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import {Carousel, Col, Card, Container, Row, Button} from "react-bootstrap";
 import Presentation from "./Presents/Presents";
-import Private from "./Presents/Private/Private";
 import {NavLink} from "react-router-dom";
+import {returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
+import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
 
 
 const Slider = () => {
-    const {sliders} = useSelector((state) => state.slidersList);
+    const {showPresentation,title} = useSelector((state) => state.showPresentation);
     const [modalShow, setModalShow] = React.useState(false);
-    const [privateShow, setPrivateShow] = React.useState(false);
     const [index, setIndex] = React.useState(0);
+    const dispatch = useDispatch();
+
+    const [numPages, setNumPages] = React.useState(null);
+    const [pageNumber, setPageNumber] = React.useState(1);
+
+    function onDocumentLoadSuccess({ numPages }) {
+        setNumPages(numPages);
+    }
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -22,8 +30,11 @@ const Slider = () => {
 
     const indexSelect = (i, e) => {
         setIndex(i);
-        setPrivateShow(true)
     };
+    const stateReturn = async () => {
+        await dispatch(returnFetchPresentationStateAC())
+        setModalShow(true)
+    }
     return (
         <Container fluid>
             <Row>
@@ -31,12 +42,12 @@ const Slider = () => {
                     <Card className={"scroll_min "}>
                         <div>
                             {
-                                sliders.map((e, i) => {
+                                showPresentation.map((e, i) => {
                                     return (
                                         <div className={index === i ? "m-4 active_scroll" : "m-4"} key={e.id}
                                              onClick={(e) => {indexSelect(i)}}>
 
-                                            <img className={"w-100 h-100"} src={e.img}
+                                            <img className={"w-100 "}  src={`${process.env.REACT_APP_API_URL}${e.path}`}
                                             />
                                         </div>
                                     )
@@ -49,8 +60,10 @@ const Slider = () => {
                     <Card className={"slide_card"}>
                         <Card.Body>
                             <Card.Title className={" ml-5"}>
-                                Presentation 1
-                                <NavLink to={"/about"} style={{color:"#e2d27b"}} className="fas fa-exchange-alt ml-4"></NavLink>
+                                {title}
+                                <NavLink to={"/about"} style={{color:"#e2d27b"}} >
+                                    <i className="fas fa-exchange-alt ml-4" onClick={stateReturn}></i>
+                                </NavLink>
                                 <Button className={"camera_btn "} variant="link" onClick={() => setModalShow(true)}>
                                     <i className="fas  fa-camera"></i>
                                 </Button>
@@ -58,14 +71,25 @@ const Slider = () => {
                             <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
                                       onSelect={handleSelect}>
                                 {
-                                    sliders.map((e, i) => {
+                                    showPresentation.map((e, i) => {
+
                                         return (
                                             <Carousel.Item key={e.id}>
-                                                <img
-                                                    className="car_img"
-                                                    src={e.img}
-                                                    alt="First slide"
-                                                />
+                                                {/*<img*/}
+                                                {/*    className="car_img"*/}
+                                                {/*    src={`${process.env.REACT_APP_API_URL}${e.path}`}*/}
+                                                {/*    alt="First slide"*/}
+                                                {/*/>*/}
+                                                <div>
+                                                    <Document className={"pgf_sld"}
+                                                        file={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                        options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
+                                                        onLoadSuccess={onDocumentLoadSuccess}
+                                                    >
+                                                        <Page pageNumber={pageNumber} />
+                                                    </Document>
+                                                    <p>Page {pageNumber} of {numPages}</p>
+                                                </div>
                                             </Carousel.Item>
                                         )
                                     })
@@ -76,10 +100,9 @@ const Slider = () => {
                 </Col>
             </Row>
 
-            <Presentation show={modalShow} presentItem={sliders} index={index} setIndex={setIndex}
+            <Presentation show={modalShow} presentItem={showPresentation} index={index} setIndex={setIndex}
                           onHide={() => setModalShow(false)}/>
-                          <Private  show={privateShow}
-                                    onHide={() => setPrivateShow(false)}/>
+
 
         </Container>)
 }

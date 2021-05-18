@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Image, Modal} from "react-bootstrap";
 import "./Private.css"
-import hands from "../../../../icon/Hands.webp"
+import hands from "../../../icon/Hands.webp"
 import ReactCodeInput from "react-code-input";
 const styles = {
     className:"input_style",

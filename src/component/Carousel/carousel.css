@@ -54,3 +54,9 @@ border: 4px solid slategrey ;
 .private_pop{
     background: rgba(239,237,227, 0.8);
 }
+
+.react-pdf__Page__canvas{
+    width: 90% !important;
+    height: 80vh !important;
+    margin-left: 5% !important;
+}

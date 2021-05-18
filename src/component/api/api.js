@@ -17,7 +17,14 @@ export const presentationApi = {
     getPresentation(currentPage) {
         return instance.get(`api/presentations/pages/${currentPage}`)
     },
+    fetchPresentation(secret_key) {
+        return instance.get(`api/presentations/slug/${secret_key}`)
+    },
     login(data){
         return instance.post('api/login',data)
-    }
+    },
+authGoogle(){
+        debugger
+        return instance.get('api/auth/protected')
+}
 }

@@ -9,6 +9,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
 import {NavLink, Redirect, withRouter} from "react-router-dom";
+import Header from "../NavBar/Navbar";
+import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
 
 const About = (props) => {
 
@@ -38,9 +40,9 @@ const About = (props) => {
             <Spinner className={"spr"} animation="border" variant="warning"/>
         </div>
     }
-    if( !isAuth) return <Redirect to={'/'}/>
+    // if( !isAuth) return <Redirect to={'/'}/>
     return (<div>
-
+        <Header/>
         <main role="main" className="container">
             {totalUsersCount?  <div> <h5 className={"mt-5"}>All Presentations</h5>
             <div className="my-3 p-3  pres_table rounded box-shadow">
@@ -77,8 +79,8 @@ const About = (props) => {
                                     }</td>
                                     <td className={"d-flex"}>
                                         {Math.round(e.presentation_file[0].size/1000)+''+ 'KB'}
-                                        <Button variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
-                                            <NavLink to={"/slider/"+e.id}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>
+                                        <Button onClick={()=>{dispatch(fetchPresentation(e.secret_key))}} variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
+                                             <NavLink to={"/w/"+e.secret_key}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>
                                         </Button>
                                         <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
                                                 onClick={() => setModalShare(true)}>Share</Button>
@@ -113,6 +115,6 @@ const About = (props) => {
             show={modalShare}
             onHide={() => setModalShare(false)}/>
 
-    </div>);
+    </div>)
 }
 export default  withRouter(About);
