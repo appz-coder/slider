@@ -75,21 +75,22 @@ const Slider = () => {
 
                                         return (
                                             <Carousel.Item key={e.id}>
-                                                {/*<img*/}
-                                                {/*    className="car_img"*/}
-                                                {/*    src={`${process.env.REACT_APP_API_URL}${e.path}`}*/}
-                                                {/*    alt="First slide"*/}
-                                                {/*/>*/}
-                                                <div>
-                                                    <Document className={"pgf_sld"}
-                                                        file={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                                        options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
-                                                        onLoadSuccess={onDocumentLoadSuccess}
-                                                    >
-                                                        <Page pageNumber={pageNumber} />
-                                                    </Document>
-                                                    <p>Page {pageNumber} of {numPages}</p>
-                                                </div>
+                                                {
+                                                    e.mime.endsWith('/pdf')?(<div>
+                                                        <Document className={"pdf_sld"}
+                                                                  file={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                                  options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
+                                                                  onLoadSuccess={onDocumentLoadSuccess}
+                                                        >
+                                                            <Page pageNumber={pageNumber} />
+                                                        </Document>
+                                                        <p>Page {pageNumber} of {numPages}</p>
+                                                    </div>):( <img className="car_img"
+                                                        src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                        alt="First slide"/>)
+                                                }
+
+
                                             </Carousel.Item>
                                         )
                                     })

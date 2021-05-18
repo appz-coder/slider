@@ -5,7 +5,7 @@ import FILE from "../../icon/file.webp"
 import CreatePresentation from "./CreatePres/CreatePresentation";
 import lock from "../../icon/lock.png"
 import {Button, Image, Spinner, Table} from "react-bootstrap";
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux';
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
 import {NavLink, Redirect, withRouter} from "react-router-dom";
@@ -41,7 +41,7 @@ const About = (props) => {
         </div>
     }
 
-    //if( !isAuth) return <Redirect to={'/'}/>
+    if( !isAuth) return <Redirect to={'/'}/>
 
     return (<div>
         <Header/>

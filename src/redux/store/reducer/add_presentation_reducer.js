@@ -11,7 +11,6 @@ const initialState = {
 
 }
 
-
 const addPresentationReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PRESENTATION:

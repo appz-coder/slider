@@ -1,33 +1,34 @@
 import React from "react";
 import "./Home.css"
 import Hand from "../../icon/Hands.webp";
-import GoogleButton from 'react-google-button';
 import {Button, Card, Container, Image} from "react-bootstrap";
-import {Link} from "react-router-dom";
 import Private from "./PrivateKey/Private";
 import GoogleLogin from 'react-google-login';
+import {useSelector, useDispatch} from 'react-redux'
+import {loginUserData, setUsersData} from "../../redux/store/reducer/auth_reducer";
 import {presentationApi} from "../api/api";
-import {authentificationGoogle} from "../../redux/store/reducer/auth_reducer";
-import axios from "axios";
+import {Redirect} from "react-router-dom";
+
 
 
 const Home = () => {
     const [privateShow, setPrivateShow] = React.useState(false);
-
-    const responseGoogle = (response) => {
-        console.log(response);
+    const {isAuth} = useSelector((state) => state.auth)
+    const dispatch = useDispatch();
+    const responseGoogle =  (response) => {
+         dispatch(loginUserData(response));
+        let {email, familyName, givenName, googleId, imageUrl, name} = response.profileObj
+        const formData = new FormData;
+        formData.append('email', email);
+        formData.append('familyName', familyName);
+        formData.append('givenName', givenName);
+        formData.append('googleId', googleId);
+        formData.append('imageUrl', imageUrl);
+        formData.append('name', name);
+        dispatch(setUsersData(formData))
+        console.log(isAuth, 4444444444444)
     }
-   const resGoogleApi = async () =>{
-        debugger
-      try {
-           axios.get(`${process.env.REACT_APP_API_URL}api/auth/google`).then(res => {
-              debugger
-          })
-      }
-      catch(e) {
-          console.log(e)
-       }
-   }
+     if(isAuth) return <Redirect to={'/about'}/>
     return (
         <div className={"hom_card"}>
             <Card className="text-center border-0 hom_card ">

@@ -1,55 +1,80 @@
 import React from "react";
-import {presentationApi} from "../../../component/api/api";
+import {presentationApi, setAuthHeader} from "../../../component/api/api";
 
-
+const SET_USERS_GOOGLE_DATA = 'SET_USERS_GOOGLE_DATA';
 const SET_USERS_DATA = 'SET_USERS_DATA';
-const SET_USERS_LOGIN_DATA = 'SET_USERS_LOGIN_DATA';
 const LOG_OUT_USERS_LOGIN_DATA = 'LOG_OUT_USERS_LOGIN_DATA';
 
 let initialState = {
-    error:null,
-    msg: "",
-    username:"",
+    error: null,
+    googleToken: "",
+    accessToken: "",
+    googleId: "",
+    imageUrl: "",
+    givenName: "",
+    familyName: "",
+    name: "",
+    email: "",
     isAuth: false
-
 }
-const  authReducer =(state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
+
     switch (action.type) {
-        case SET_USERS_DATA: {
+        case SET_USERS_GOOGLE_DATA: {
             return {
                 ...state,
-                error:action.payload.error,
-                msg:action.payload.msg,
-                username:action.payload.data.username,
-                isAuth:true
+                error: false,
+                googleToken: action.payload.accessToken,
+                googleId: action.payload.profileObj.googleId,
+                imageUrl: action.payload.profileObj.imageUrl,
+                givenName: action.payload.profileObj.givenName,
+                familyName: action.payload.profileObj.familyName,
+                name: action.payload.profileObj.name,
+                email: action.payload.profileObj.email
             }
         }
         case LOG_OUT_USERS_LOGIN_DATA: {
             return initialState
         }
+        case SET_USERS_DATA: {
+            return {
+                ...state,
+                accessToken: action.payload.data.token,
+                isAuth: true
+            }
+        }
 
-        default:  return state;
+        default:
+            return state;
 
     }
 
 }
 
-export default  authReducer;
+export default authReducer;
 
 
-export const loginUserData = (payload) => ({type: SET_USERS_DATA,  payload});
+export const loginUserData = (payload) => {
+    return {type: SET_USERS_GOOGLE_DATA, payload}
+};
 
-export const logoutUserData = () => ({type: LOG_OUT_USERS_LOGIN_DATA});
+export const logoutUserData = () => {
+    localStorage.removeItem('jwt_token');
+    return {type: LOG_OUT_USERS_LOGIN_DATA}
+};
 
-export const authentificationGoogle = (currentPage) =>{
-    return async (dispatch)=>{
-        try{
+export const setUsersDataAC = (payload) => ({type: SET_USERS_DATA, payload});
 
-            const response = await presentationApi.authGoogle();
-            console.log(response)
-        }catch (error){
+export const setUsersData = (formData) => {
+    return async (dispatch) => {
+        try {
+            const response = await presentationApi.authGoogle(formData);
+            await localStorage.setItem('jwt_token', response.data.data.token)
+            setAuthHeader(response.data.data.token)
+            dispatch(setUsersDataAC(response.data))
+        } catch (error) {
             if (error.response) {
-               console.log(error.response)
+
 
             }
 
