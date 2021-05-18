@@ -21,7 +21,7 @@ const Home = () => {
                     We can't wait for you to join!
                 </Card.Text>
                 {/*href={`${process.env.REACT_APP_API_URL}api/auth/google`}*/}
-                <Link to="/login" style={{textDecoration:'none'}}>
+                <Link to="/about" style={{textDecoration:'none'}}>
                 <GoogleButton className={'button_google'}
                               // onClick={() => { alert('Google button clicked') }}
                 />

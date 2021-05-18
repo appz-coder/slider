@@ -38,7 +38,7 @@ const About = (props) => {
             <Spinner className={"spr"} animation="border" variant="warning"/>
         </div>
     }
-    if( !isAuth) return <Redirect to={'/'}/>
+    //if( !isAuth) return <Redirect to={'/'}/>
     return (<div>
 
         <main role="main" className="container">
