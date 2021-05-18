@@ -41,12 +41,14 @@ const Home = () => {
                     Sign up to share your presenntation on Slider App.<br/>
                     We can't wait for you to join!
                 </Card.Text>
-                <GoogleLogin style={{backgroundColor:"#4285f4"}}
-                    clientId="255985455061-c7sk1fgpfd6hp91fq9kk09siefdo1i32.apps.googleusercontent.com"
+                <GoogleLogin
+                    className={"button_google"}
+                    clientId="866786936272-esin8gl1160fodp0s9bhglm1u3m6ueoh.apps.googleusercontent.com"
                     buttonText="Sign in with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
+
                 />
                 <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? <a style={{color:'#212529'}} className={"nav-item"} onClick={()=>setPrivateShow(true)}>Click here to enter code</a></Card.Text>
             </Card.Body>

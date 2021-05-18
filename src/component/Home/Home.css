@@ -14,8 +14,19 @@
 
 .button_google{
     width: 330px!important;
+    background-color:#4285f4!important;
+    color:white!important;
     margin: 0 auto;
     margin-bottom: 2%;
+}
+
+.button_google span{
+    margin: auto;
+    font-size:17px;
+}
+
+.button_google div{
+    padding: 15px!important;
 }
 
 @media screen and (max-width:330px) {
