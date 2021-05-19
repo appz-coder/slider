@@ -19,11 +19,6 @@ const Header = () => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className={"col_div"} id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                    <NavLink to={"/about"} className="nav-link">About</NavLink>
-                    <NavLink to={"/w/"} className="nav-link">Slider</NavLink>
-
-                </Nav>
                 <Image roundedCircle width={"50"}  src={imageUrl}/>
                 <NavDropdown  className={"nav-drop  nav-link"} title={`Hello ${givenName}`} id="basic-nav-dropdown">
                     <NavDropdown.Item  onClick={()=>{dispatch(logoutUserData())}}>Logout</NavDropdown.Item>

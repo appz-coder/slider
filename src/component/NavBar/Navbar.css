@@ -1,32 +1,40 @@
 .header{
     background: #f1efe4;
-
-
+    display:flex;
 }
 .nav_img{
     margin-right: 10%;
     width: 30px;
-
 }
 .nav-drop .nav-link{
     color:#4b4a4a;
 }
-
+#basic-navbar-nav{
+    justify-content:flex-end;
+}
 @media only screen and (max-width: 990px) {
     .navbar-collapse{
         position: fixed;
         top: 65px;
         background: #f1f1f1;
         right: -100%;
-        width: 50%;
+        width: 80%;
         height: 100vh;
         opacity: 1;
         transition: right 0.3s ease;
     }
-
     .navbar-collapse.show{
         right: 0;
     }
-
+    .nav-img{
+        text-align: center;
+        margin-top:70px;
+    }
+    .nav-link{
+        text-align: center;
+        font-size: 25px;
+    }
+    .dropdown-menu{
+        text-align: center;
+    }
 }
-

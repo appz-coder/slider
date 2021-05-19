@@ -17,7 +17,6 @@ const Slider = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [index, setIndex] = React.useState(0);
     const dispatch = useDispatch();
-debugger
     const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
     function onDocumentLoadSuccess({ numPages }) {
@@ -45,7 +44,7 @@ debugger
                         <div>
                             {
                                 showPresentation.map((e, i) => {
-debugger
+
                                     return (
                                         <div>
                                             {

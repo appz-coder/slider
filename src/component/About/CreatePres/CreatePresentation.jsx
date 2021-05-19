@@ -6,6 +6,7 @@ import {Input, InputFile} from "../../ Validation/ FormsControl";
 import {maxLength30, required, validate} from "../../ Validation/ValidationForm";
 import {useSelector, useDispatch} from 'react-redux'
 import {presentationCreated, returnPresentationStateAC} from "../../../redux/store/action_creator/createPresentationAC";
+import Load from "../../Load/loading";
 
 
 const PresentationForm = (props) => {
@@ -47,7 +48,7 @@ const PresentationForm = (props) => {
                     </div> :
                     (<div>
                         {loading ? <Button className={'popBtn'} variant="primary" disabled>
-                                <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true"/>
+                                <Load as="span" role="status" aria-hidden="true"/>
                                 Loading...
                             </Button> :
                             <Button type="submit" className="btn popBtn">

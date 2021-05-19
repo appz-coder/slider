@@ -11,6 +11,7 @@ import {getPresentation} from "../../redux/store/action_creator/presentationAC";
 import {NavLink, Redirect, withRouter} from "react-router-dom";
 import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
+import Load from "../Load/loading";
 
 const About = (props) => {
 
@@ -31,13 +32,13 @@ const About = (props) => {
     if (loading) {
         return <div className={"error_load"}>
             <p>please wait...</p>
-            <Spinner className={"spr"} animation="border" variant="warning"/>
+            <Load />
         </div>
     }
     if (error) {
         return <div className={"error_load"}>
             <p>{error}</p>
-            <Spinner className={"spr"} animation="border" variant="warning"/>
+            <Load />
         </div>
     }
 
