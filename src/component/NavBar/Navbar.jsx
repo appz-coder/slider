@@ -25,7 +25,7 @@ const Header = () => {
 
                 </Nav>
                 <Image roundedCircle width={"50"}  src={imageUrl}/>
-                <NavDropdown  className={"nav-drop nav-link"} title={`Hello ${givenName}`} id="basic-nav-dropdown">
+                <NavDropdown  className={"nav-drop  nav-link"} title={`Hello ${givenName}`} id="basic-nav-dropdown">
                     <NavDropdown.Item  onClick={()=>{dispatch(logoutUserData())}}>Logout</NavDropdown.Item>
                 </NavDropdown>
             </Navbar.Collapse>

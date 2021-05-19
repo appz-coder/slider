@@ -6,6 +6,7 @@ import Presentation from "./Presents/Presents";
 import {NavLink} from "react-router-dom";
 import {returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
 import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
@@ -16,16 +17,17 @@ const Slider = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [index, setIndex] = React.useState(0);
     const dispatch = useDispatch();
-
-    const [numPages, setNumPages] = React.useState(null);
+debugger
+    const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
-
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
+        setPageNumber(selectedIndex%numPages+1);
+        console.log(selectedIndex)
     };
 
     const indexSelect = (i, e) => {
@@ -43,15 +45,42 @@ const Slider = () => {
                         <div>
                             {
                                 showPresentation.map((e, i) => {
+debugger
                                     return (
-                                        <div className={index === i ? "m-4 active_scroll" : "m-4"} key={e.id}
-                                             onClick={(e) => {indexSelect(i)}}>
+                                        <div>
+                                            {
+                                                e.mime.endsWith('/pdf')?(<div>
+                                                    <Document className={"pdf_sld"}
+                                                              file={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                              options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
+                                                              onLoadSuccess={onDocumentLoadSuccess}
+                                                    >
+                                                        {
+                                                            Array.from(
+                                                                new Array(numPages),
+                                                                (el, index) => (
+                                                                    <Page
+                                                                        key={`page_${index + 1}`}
+                                                                        pageNumber={index + 1}
+                                                                    />
+                                                                ),
+                                                            )
+                                                        }
+                                                    </Document>
+                                                    <p>Page {pageNumber} of {numPages}</p>
+                                                </div>):( <div className={index === i ? "m-4 active_scroll" : "m-4"} key={e.id}
+                                                               onClick={(e) => {indexSelect(i)}}>
 
-                                            <img className={"w-100 "}  src={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                            />
+                                                    <img className={"w-100 "}  src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                    />
+                                                </div>)
+                                            }
+
+
                                         </div>
                                     )
-                                })}
+                                })
+                            }
                         </div>
                     </Card>
 
@@ -68,34 +97,55 @@ const Slider = () => {
                                     <i className="fas  fa-camera"></i>
                                 </Button>
                             </Card.Title>
-                            <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
-                                      onSelect={handleSelect}>
-                                {
-                                    showPresentation.map((e, i) => {
+                                <div>
 
-                                        return (
-                                            <Carousel.Item key={e.id}>
-                                                {
-                                                    e.mime.endsWith('/pdf')?(<div>
-                                                        <Document className={"pdf_sld"}
-                                                                  file={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                                                  options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
+                            {
+                                showPresentation[0].mime.endsWith('pdf')?
+                                <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
+                                      onSelect={handleSelect}>
+
+                                {
+
+                                    Array.from(
+                                        new Array(numPages),
+                                        (el, index) => (
+                                            <Carousel.Item key={index}></Carousel.Item>
+                                        ),
+                                    )
+                                }
+                                                        <Document
+                                                                  file={`${process.env.REACT_APP_API_URL}${showPresentation[0].path}`}
+                                                                  options={{ cMapUrl: 'cmaps/', cMapPacked: true}}
                                                                   onLoadSuccess={onDocumentLoadSuccess}
                                                         >
+
                                                             <Page pageNumber={pageNumber} />
                                                         </Document>
+
                                                         <p>Page {pageNumber} of {numPages}</p>
-                                                    </div>):( <img className="car_img"
-                                                        src={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                                        alt="First slide"/>)
-                                                }
 
 
-                                            </Carousel.Item>
-                                        )
-                                    })
-                                }
+
                             </Carousel>
+                               :<Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
+                                onSelect={handleSelect}>
+                            {
+                                showPresentation.map((e, i) => {
+
+                                return (
+                                <Carousel.Item key={e.id}>
+
+                                <img className="car_img"
+                                src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                alt="First slide"/>
+
+                                </Carousel.Item>
+                                )
+                            })
+                            }
+                                </Carousel>
+                            }
+                                </div>
                         </Card.Body>
                     </Card>
                 </Col>

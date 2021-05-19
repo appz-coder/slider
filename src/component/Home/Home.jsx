@@ -26,7 +26,6 @@ const Home = () => {
         formData.append('imageUrl', imageUrl);
         formData.append('name', name);
         dispatch(setUsersData(formData))
-        console.log(isAuth, 4444444444444)
     }
      if(isAuth) return <Redirect to={'/about'}/>
     return (
@@ -44,7 +43,7 @@ const Home = () => {
                 </Card.Text>
                 <GoogleLogin
                     className={"button_google"}
-                    clientId="866786936272-esin8gl1160fodp0s9bhglm1u3m6ueoh.apps.googleusercontent.com"
+                    clientId={`${process.env.REACT_APP_CLIENT_ID}`}
                     buttonText="Sign in with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
