@@ -100,7 +100,7 @@ const About = (props) => {
                 <ul className="pagination">
                     {
                         pages.map(p=> <li className="page-item" onClick={()=>{dispatch(getPresentation(p))}}
-                        ><NavLink to={`/about/${p}`} className="page-link ">{p}</NavLink></li>)
+                        ><NavLink activeClassName={'active_li'} to={`/about/${p}`} className="page-link">{p}</NavLink></li>)
                     }
                 </ul>
             </nav>)}

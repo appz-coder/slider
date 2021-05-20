@@ -160,7 +160,11 @@ const Slider = () => {
                 </Col>
             </Row>
 
-            <Presentation show={modalShow} presentItem={showPresentation} index={index} setIndex={setIndex}
+            <Presentation show={modalShow} presentItem={showPresentation}
+                          index={index} setIndex={setIndex} pageNumber={pageNumber}
+                          numPages={numPages}
+                          mime={ showPresentation[0].mime.endsWith('pdf')}
+                          onDocumentLoadSuccess={onDocumentLoadSuccess}
                           onHide={() => setModalShow(false)}/>
 
 

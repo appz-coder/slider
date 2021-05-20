@@ -1,7 +1,9 @@
 .popbtn{
-    display: flex;
-    justify-content: flex-end;
+    margin-top: 10%;
     margin-bottom: 5%;
+    position: fixed;
+    bottom:-60px;
+    right:0px;
 }
 .error_load{
     display: flex;
@@ -27,10 +29,17 @@
     opacity: 1;
 }
 .pres_table{
-    height: 70vh;
+    height: 75vh;
     overflow-y: scroll;
 }
 .pres_table::-webkit-scrollbar{
     border-radius: 5px;
     width:4px;
+}
+
+.active_li{
+    color: white;
+    background-color: #427cff;
+    transform: scale(1.1);
+    z-index: 100;
 }
