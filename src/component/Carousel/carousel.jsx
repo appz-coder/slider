@@ -7,18 +7,28 @@ import {NavLink} from "react-router-dom";
 import {returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
 import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import {getPresentation} from "../../redux/store/action_creator/presentationAC";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
 
 
 const Slider = () => {
-    const {showPresentation,title} = useSelector((state) => state.showPresentation);
+    let {showPresentation,title} = useSelector((state) => state.showPresentation);
     const [modalShow, setModalShow] = React.useState(false);
     const [index, setIndex] = React.useState(0);
     const dispatch = useDispatch();
     const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
+
+        if(showPresentation.length===0){
+        showPresentation = JSON.parse(localStorage.getItem('showPresentation'))
+    }
+
+
+    debugger
+
+
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
@@ -48,7 +58,7 @@ const Slider = () => {
                                     return (
                                         <div>
                                             {
-                                                e.mime.endsWith('/pdf')?(<div>
+                                                e.mime.endsWith('pdf')?(<div>
                                                     <Document className={"pdf_sld"}
                                                               file={`${process.env.REACT_APP_API_URL}${e.path}`}
                                                               options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
@@ -96,7 +106,7 @@ const Slider = () => {
                                     <i className="fas  fa-camera"></i>
                                 </Button>
                             </Card.Title>
-                                <div>
+
 
                             {
                                 showPresentation[0].mime.endsWith('pdf')?
@@ -144,7 +154,7 @@ const Slider = () => {
                             }
                                 </Carousel>
                             }
-                                </div>
+
                         </Card.Body>
                     </Card>
                 </Col>

@@ -34,6 +34,7 @@ const showPresentationReducer = (state = initialState, action) =>{
                     ...state,
                     loading:true, error:null,showPresentation:[]};
         case FETCH_PRESENTATION_SUCCESS:
+            localStorage.setItem('showPresentation',JSON.stringify(action.payload.data.presentation_file))
             return {
                 ...state,
                 loading:false,
