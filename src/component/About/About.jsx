@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./About.css"
-import Pop from "../../icon/pop.png";
+import Pop from "../../icon/floating button@2x.svg";
 import FILE from "../../icon/file.webp"
 import CreatePresentation from "./CreatePres/CreatePresentation";
 import lock from "../../icon/lock.png"
@@ -104,10 +104,8 @@ const About = (props) => {
                     }
                 </ul>
             </nav>)}
-            <div className="popbtn">
-                <Button variant="primary" onClick={() => setModalShow(true)}>
-                    <Image src={Pop} width={"50px"}/>
-                </Button>
+            <div className="popbtn" onClick={() => setModalShow(true)}>
+                    <Image src={Pop}/>
             </div>
 
         </main>
