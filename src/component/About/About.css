@@ -4,7 +4,9 @@
     position: fixed;
     bottom:-60px;
     right:0px;
+    cursor: pointer;
 }
+
 .error_load{
     display: flex;
     align-items: center;

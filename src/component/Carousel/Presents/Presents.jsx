@@ -9,7 +9,8 @@ const Presentation =(props)=>{
     debugger
     const handleSelect = (selectedIndex, e) => {
         props.setIndex(selectedIndex);
-        console.log(selectedIndex)
+        props.setPageNumber(selectedIndex%props.numPages+1);
+
     };
 
     return(      <Modal

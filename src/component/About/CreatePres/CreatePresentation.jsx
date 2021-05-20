@@ -47,14 +47,23 @@ const PresentationForm = (props) => {
                         </button>
                     </div> :
                     (<div>
-                        {loading ? <Button className={'popBtn'} variant="primary" disabled>
-                                <Load as="span" role="status" aria-hidden="true"/>
+                        {loading ?  <Button className={"popBtn"} variant="primary" disabled>
+                                <Spinner
+                                    as="span"
+                                    animation="grow"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
                                 Loading...
-                            </Button> :
+                            </Button>:
+                            <div>
+
                             <Button type="submit" className="btn popBtn">
                                 Create
                                 <i className="fas ml-2 fa-arrow-right"></i>
                             </Button>
+                            </div>
                         }
                     </div>)
                 }

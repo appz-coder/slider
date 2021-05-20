@@ -36,7 +36,6 @@ const Slider = () => {
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
         setPageNumber(selectedIndex%numPages+1);
-        console.log(selectedIndex)
     };
 
     const indexSelect = (i, e) => {
@@ -163,6 +162,7 @@ const Slider = () => {
             <Presentation show={modalShow} presentItem={showPresentation}
                           index={index} setIndex={setIndex} pageNumber={pageNumber}
                           numPages={numPages}
+                          setPageNumber={setPageNumber}
                           mime={ showPresentation[0].mime.endsWith('pdf')}
                           onDocumentLoadSuccess={onDocumentLoadSuccess}
                           onHide={() => setModalShow(false)}/>

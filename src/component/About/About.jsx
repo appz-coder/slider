@@ -29,12 +29,8 @@ const About = (props) => {
     for (let i = 1; i <= pagesCount; i ++) {
         pages.push(i);
     }
-    if (loading) {
-        return <div className={"error_load"}>
-            <p>please wait...</p>
-            <Load />
-        </div>
-    }
+    if (loading) return <Load/>
+
     if (error) {
         return <div className={"error_load"}>
             <p>{error}</p>
