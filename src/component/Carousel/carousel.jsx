@@ -60,6 +60,7 @@ const Slider = () => {
                                                               file={`${process.env.REACT_APP_API_URL}${e.path}`}
                                                               options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
                                                               onLoadSuccess={onDocumentLoadSuccess}
+                                                              onLoadError={(error) => console.log('Error while loading document! ' + error.message, error)}
                                                     >
                                                         {
                                                             Array.from(
