@@ -3,6 +3,8 @@ import {Button, Image, Modal} from "react-bootstrap";
 import "./Private.css"
 import hands from "../../../icon/Hands.webp"
 import ReactCodeInput from "react-code-input";
+import {fetchPresentation} from "../../../redux/store/action_creator/sliderAC";
+import {useDispatch} from "react-redux";
 const styles = {
     className:"input_style",
     inputStyle: {
@@ -30,8 +32,10 @@ const styles = {
 }
 
 const Private = (props) => {
+    const dispatch = useDispatch();
     const [value, setValue] = React.useState()
  const sendValue = () =>{
+     // dispatch(fetchPresentation(value))
      console.log(value)
  }
 

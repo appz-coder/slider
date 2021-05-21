@@ -2,18 +2,18 @@ import React from "react";
 import "./Presents.css"
 import {Card, Carousel, Image, Modal} from "react-bootstrap";
 import {Document, Page} from "react-pdf/dist/umd/entry.webpack";
+
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <i className="custom-chevron-left"></i>;
 
-const Presentation =(props)=>{
-    debugger
+const Presentation = (props) => {
     const handleSelect = (selectedIndex, e) => {
         props.setIndex(selectedIndex);
-        props.setPageNumber(selectedIndex%props.numPages+1);
+        props.setPageNumber(selectedIndex % props.numPages + 1);
 
     };
 
-    return(      <Modal
+    return (<Modal
             className={"PRES"}
             {...props}
             size="lg"
@@ -24,7 +24,7 @@ const Presentation =(props)=>{
             </Modal.Header>
             <Modal.Body className={"w-100 "}>
                 {
-                    props.mime?
+                    props.mime ?
                         <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={props.index}
                                   onSelect={handleSelect}>
 
@@ -39,33 +39,33 @@ const Presentation =(props)=>{
                             }
                             <Document
                                 file={`${process.env.REACT_APP_API_URL}${props.presentItem[0].path}`}
-                                options={{ cMapUrl: 'cmaps/', cMapPacked: true}}
+                                options={{cMapUrl: 'cmaps/', cMapPacked: true}}
                                 onLoadSuccess={props.onDocumentLoadSuccess}
                             >
 
-                                <Page pageNumber={props.pageNumber} />
+                                <Page pageNumber={props.pageNumber}/>
                             </Document>
 
                             <p>Page {props.pageNumber} of {props.numPages}</p>
 
 
-
                         </Carousel>
-                        : <Carousel  interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={props.index} onSelect={handleSelect}>
-                    {
-                        props.presentItem.map((e,i)=>{
-                            return(
-                                <Carousel.Item key={e.id}>
-                                    <img
-                                        className="pres_carousel"
-                                        src={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                        alt="Your presentation"
-                                    />
-                                </Carousel.Item>
-                            )
-                        })
-                    }
-                </Carousel>
+                        : <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={props.index}
+                                    onSelect={handleSelect}>
+                            {
+                                props.presentItem.map((e, i) => {
+                                    return (
+                                        <Carousel.Item key={e.id}>
+                                            <img
+                                                className="pres_carousel"
+                                                src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                alt="Your presentation"
+                                            />
+                                        </Carousel.Item>
+                                    )
+                                })
+                            }
+                        </Carousel>
                 }
 
             </Modal.Body>

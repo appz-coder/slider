@@ -6,7 +6,7 @@ import {Button, Modal} from "react-bootstrap";
 
 const SharePresentation = (props) => {
     const [copyVal = {
-        value: 'file:///C:/Users/Kiwi-science/Downloads/sliderclubv2%20(1).pdf',
+        value: `${process.env.REACT_APP_API_URL}${props.path}`,
         copied: false,
     },setCopyVal] = React.useState()
 

@@ -21,12 +21,10 @@ const Slider = () => {
     const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
 
-        if(showPresentation.length===0){
-        showPresentation = JSON.parse(localStorage.getItem('showPresentation'))
-    }
 
 
-    debugger
+
+
 
 
     function onDocumentLoadSuccess({ numPages }) {

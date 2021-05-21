@@ -15,7 +15,7 @@ const fileMaxSize = 20 * 1000 * 1000; // 2MB
 export const validate = values => {
     let errors = null;
     if (!values || values.length === 0) {
-        errors = 'Please select a file before uploading!';
+        errors = 'Please select a file!';
     } else {
 
         values.map(file => {

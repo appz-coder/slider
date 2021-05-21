@@ -6,7 +6,7 @@ import {Input, InputFile} from "../../ Validation/ FormsControl";
 import {maxLength30, required, validate} from "../../ Validation/ValidationForm";
 import {useSelector, useDispatch} from 'react-redux'
 import {presentationCreated, returnPresentationStateAC} from "../../../redux/store/action_creator/createPresentationAC";
-import Load from "../../Load/loading";
+import Load from "../../ Validation/Include/loading";
 import {getPresentation} from "../../../redux/store/action_creator/presentationAC";
 
 

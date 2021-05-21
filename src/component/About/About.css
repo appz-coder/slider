@@ -6,14 +6,6 @@
     right:0px;
     cursor: pointer;
 }
-
-.error_load{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 80px;
-}
 .spr{
     background: initial;
     width: 85px;

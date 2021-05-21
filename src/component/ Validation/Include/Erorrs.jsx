@@ -1,14 +1,16 @@
-import React from 'react'
+import React from "react"
+import "./incstyles.css"
 import {Spinner} from "react-bootstrap";
 
 
-const Load = () =>{
+
+const Errors = (props) =>{
     return (
         <div className={"error_load"}>
-            <p>please wait...</p>
+            <p>{props.error}</p>
             <Spinner  animation="grow" variant="primary"/>
         </div>
 
     )
 }
-export default Load
+export default Errors;

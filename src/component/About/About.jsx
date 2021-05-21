@@ -8,18 +8,21 @@ import {Button, Image, Spinner, Table} from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux';
 import SharePresentation from "./Share/SharePresentation";
 import {getPresentation} from "../../redux/store/action_creator/presentationAC";
-import {NavLink, Redirect, withRouter} from "react-router-dom";
+import {NavLink, Redirect, useHistory, withRouter} from "react-router-dom";
 import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
-import Load from "../Load/loading";
+import Load from "../ Validation/Include/loading";
+import Errors from "../ Validation/Include/Erorrs";
 
 const About = (props) => {
-
+debugger
+    const history = useHistory();
     const {Presentation, error, loading,totalUsersCount,pageSize} = useSelector((state) => state.presentation);
     const {isAuth} = useSelector((state) => state.auth)
     const [popupActive, setPopupActive] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
+    const [path, setPath] = React.useState('');
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(getPresentation(1))
@@ -27,22 +30,22 @@ const About = (props) => {
     const onHide = () =>{
         setModalShow(false)
         dispatch(getPresentation(1))
-
+    }
+    const ModalShow = (path) =>{
+        setModalShare(true)
+        setPath(path)
     }
     let pagesCount = Math.ceil(totalUsersCount /pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i ++) {
         pages.push(i);
     }
-    if (loading) return <Load/>
-
-    if (error) {
-        return <div className={"error_load"}>
-            <p>{error}</p>
-            <Load />
-        </div>
+    const loadPresentation = async (presentationUuid) => {
+       await dispatch(fetchPresentation(presentationUuid))
+       history.push("/w/" + presentationUuid)
     }
-
+    if (loading) return <Load/>
+    if (error) return <Errors error={error}/>
     if( !isAuth) return <Redirect to={'/'}/>
 
     return (<div>
@@ -76,18 +79,19 @@ const About = (props) => {
                                         {e.is_private ?
                                             <Image width={"40px"} src={lock}/> : ""
                                         }
-                                        <div><small>  {e.presentation_file[0].mime.split('/')[1]}</small></div>
+                                        <div><small>  {e.presentation_file[0].mime}</small></div>
                                     </td>
                                     <td>{
                                         new Date(e.createdAt).toLocaleString('en-us', { month: 'short',day: "2-digit"})
                                     }</td>
                                     <td className={"d-flex"}>
                                         {Math.round(e.presentation_file[0].size/1000)+''+ 'KB'}
-                                        <Button onClick={()=>{dispatch(fetchPresentation(e.secret_key))}} variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
-                                             <NavLink to={"/w/"+e.secret_key}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>
+                                        <Button onClick={() => loadPresentation(e.secret_key)} variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
+                                             {/*<NavLink to={"/w/"+e.secret_key}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>*/}
+                                            View
                                         </Button>
                                         <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
-                                                onClick={() => setModalShare(true)}>Share</Button>
+                                                onClick={()=>{ModalShow(e.presentation_file[0].path)}}>Share</Button>
                                     </td>
                                 </tr>
                             )
@@ -114,7 +118,7 @@ const About = (props) => {
             show={modalShow}
             onHide={onHide}/>
         <SharePresentation
-            show={modalShare}
+            show={modalShare} path={path}
             onHide={() => setModalShare(false)}/>
 
     </div>)
