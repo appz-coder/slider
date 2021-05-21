@@ -7,6 +7,7 @@ import {maxLength30, required, validate} from "../../ Validation/ValidationForm"
 import {useSelector, useDispatch} from 'react-redux'
 import {presentationCreated, returnPresentationStateAC} from "../../../redux/store/action_creator/createPresentationAC";
 import Load from "../../Load/loading";
+import {getPresentation} from "../../../redux/store/action_creator/presentationAC";
 
 
 const PresentationForm = (props) => {
@@ -14,6 +15,7 @@ const PresentationForm = (props) => {
     const dispatch = useDispatch();
     const stateReturn = async () => {
         await dispatch(returnPresentationStateAC())
+        dispatch(getPresentation(1))
         props.onHide()
     }
     return (<div>
