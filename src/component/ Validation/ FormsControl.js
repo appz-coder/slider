@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 export const Input = ({input, meta: {touched, error, warning}, ...props}) => {
     return (
         <div>
-            <label htmlFor="fname" style={{color: "#4a4f5a", fontSize:'12px'}}>Title</label>
+            <label htmlFor="fname" style={{color: "#4a4f5a", fontSize: '12px'}}>Title</label>
             <input {...input} {...props} className={touched && error ? "title input_title" : "input_title"}
                    type="text"
                    placeholder={"presentation title"}/>
@@ -21,11 +21,11 @@ export const Input = ({input, meta: {touched, error, warning}, ...props}) => {
 const adaptFileEventToValue = delegate => e => delegate(Object.values(e.target.files));
 export const InputFile = ({
                               input: {value: omitValue, onChange, onBlur, ...inputProps},
-                              meta: {touched, error, warning},
+                              meta: {touched, error},
 
                               ...props
                           }) => {
-    const {loading, errors, messages} = useSelector((state) => state.newPresentation)
+    const {errors, messages} = useSelector((state) => state.newPresentation)
     return (
 
         <div>
@@ -73,7 +73,7 @@ export const InputName = ({input, meta: {touched, error, warning}, ...props}) =>
             <input {...input} {...props}
                    type="text"/>
 
-            {touched && error && <div style={{color:'red', marginTop:'-5%', fontSize:'12px'}}>
+            {touched && error && <div style={{color: 'red', marginTop: '-5%', fontSize: '12px'}}>
                 <i className="fas mr-2 fa-exclamation-circle"></i>
                 {error}</div>}
 

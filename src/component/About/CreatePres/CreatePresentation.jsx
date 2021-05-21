@@ -1,17 +1,15 @@
 import React from "react";
 import "./CreatePresentation.css"
-import {Button, Modal, ProgressBar, Spinner} from "react-bootstrap";
+import {Button, Modal, Spinner} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
 import {Input, InputFile} from "../../ Validation/ FormsControl";
 import {maxLength30, required, validate} from "../../ Validation/ValidationForm";
 import {useSelector, useDispatch} from 'react-redux'
 import {presentationCreated, returnPresentationStateAC} from "../../../redux/store/action_creator/createPresentationAC";
-import Load from "../../ Validation/Include/loading";
 import {getPresentation} from "../../../redux/store/action_creator/presentationAC";
 
-
 const PresentationForm = (props) => {
-    const {loading, isProcessed, messages, statusText} = useSelector((state) => state.newPresentation);
+    const {loading, isProcessed} = useSelector((state) => state.newPresentation);
     const dispatch = useDispatch();
     const stateReturn = async () => {
         await dispatch(returnPresentationStateAC())

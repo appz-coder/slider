@@ -1,6 +1,6 @@
 import React from "react";
 import "./Presents.css"
-import {Card, Carousel, Image, Modal} from "react-bootstrap";
+import {Carousel, Modal} from "react-bootstrap";
 import {Document, Page} from "react-pdf/dist/umd/entry.webpack";
 
 const nextIcon = <div className="custom-chevron-right"></div>;

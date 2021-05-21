@@ -1,5 +1,3 @@
-import React from "react";
-
 export const required = value =>
     (value || typeof value === 'number' ? undefined : 'Required field !');
 
@@ -18,7 +16,7 @@ export const validate = values => {
         errors = 'Please select a file!';
     } else {
 
-        values.map(file => {
+        values.forEach(file => {
             if (!file.name.endsWith('.png') && !file.name.endsWith('.pdf') && !file.name.endsWith('.zip')) {
                 errors = 'Wrong file format';
             } else if (file.size < fileMinSize) {

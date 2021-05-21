@@ -25,6 +25,7 @@ const addPresentationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
+                errors: false,
                 isProcessed: true,
                 messages: action.payload.data.msg,
                 statusText: action.payload.statusText
@@ -33,7 +34,7 @@ const addPresentationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                errors: action.payload.data.error,
+                errors: true,
                 messages: 'Something went wrong',
                 statusText: action.payload.statusText
             };

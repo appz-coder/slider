@@ -28,7 +28,7 @@ const SharePresentation = (props) => {
                 <Modal.Title id="contained-modal-title-vcenter" className={"share_title"}>
                     Share your Presentation
                     <p>Your Key for presentation</p>
-                    <small>344 - 344</small>
+                    <strong className={"mt-2"}>{props.secretKey}</strong>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body style={{width:"90%"}}>
