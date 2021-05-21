@@ -11,7 +11,7 @@ import {getPresentation} from "../../../redux/store/action_creator/presentationA
 
 
 const PresentationForm = (props) => {
-    const {loading, errors, messages, statusText} = useSelector((state) => state.newPresentation);
+    const {loading, isProcessed, messages, statusText} = useSelector((state) => state.newPresentation);
     const dispatch = useDispatch();
     const stateReturn = async () => {
         await dispatch(returnPresentationStateAC())
@@ -42,7 +42,7 @@ const PresentationForm = (props) => {
                     progress={props.progress}
 
                 />
-                {statusText === "OK" ? <div>
+                {isProcessed ? <div>
                         <button onClick={stateReturn} type="button" className="btn btn-primary popBtn">
                             Close
                             <i className="fas ml-3 fa-times-circle"></i>

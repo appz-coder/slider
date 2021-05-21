@@ -15,7 +15,6 @@ import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
 
 const About = (props) => {
-debugger
     const history = useHistory();
     const {Presentation, error, loading,totalUsersCount,pageSize} = useSelector((state) => state.presentation);
     const {isAuth} = useSelector((state) => state.auth)

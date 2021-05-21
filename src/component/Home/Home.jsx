@@ -16,6 +16,7 @@ const Home = () => {
     const {isAuth} = useSelector((state) => state.auth)
     const dispatch = useDispatch();
     const responseGoogle =  (response) => {
+        console.log(response)
          dispatch(loginUserData(response));
         let {email, familyName, givenName, googleId, imageUrl, name} = response.profileObj
         const formData = new FormData;

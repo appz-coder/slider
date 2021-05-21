@@ -17,15 +17,11 @@ export const presentationCreated = (formData) =>{
         try {
             dispatch(addPresentationAC());
             let resp = await presentationApi.createPresentation(formData)
-            if(resp)
-                dispatch(addPresentationSuccessAC(resp))
-
+            dispatch(addPresentationSuccessAC(resp))
         }catch (error){
             if (error.response) {
                 dispatch(addPresentationErrorAC(error.response))
-
             }
-
         }
     }
 }

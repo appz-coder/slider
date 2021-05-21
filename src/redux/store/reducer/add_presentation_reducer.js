@@ -7,8 +7,8 @@ const initialState = {
     statusText: "",
     messages: "",
     loading: false,
-    errors: null
-
+    errors: null,
+    isProcessed: false
 }
 
 const addPresentationReducer = (state = initialState, action) => {
@@ -16,13 +16,16 @@ const addPresentationReducer = (state = initialState, action) => {
         case ADD_PRESENTATION:
             return {
                 ...state,
-                loading: true, errors: null, messages: ""
+                loading: true,
+                errors: null,
+                messages: "",
+                isProcessed: false
             };
         case ADD_PRESENTATION_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                errors: action.payload.data.error,
+                isProcessed: true,
                 messages: action.payload.data.msg,
                 statusText: action.payload.statusText
             };
@@ -31,13 +34,13 @@ const addPresentationReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 errors: action.payload.data.error,
-                messages: action.payload.data.msg,
+                messages: 'Something went wrong',
                 statusText: action.payload.statusText
             };
         case RETURN_PRESENTATION_STATE:
             return {
                 ...state,
-                statusText: "", messages: "", loading: false, errors: null
+                statusText: "", messages: "", loading: false, errors: null, isProcessed: false
             };
         default:
             return state
