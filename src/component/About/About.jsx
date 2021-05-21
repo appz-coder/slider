@@ -93,7 +93,6 @@ const About = (props) => {
                                             <Button onClick={() => loadPresentation(e.secret_key)}
                                                     variant="outline-dark"
                                                     className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
-                                                {/*<NavLink to={"/w/"+e.secret_key}  style={{textDecoration: 'none',color:'grey'}} > View</NavLink>*/}
                                                 View
                                             </Button>
                                             <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
@@ -131,7 +130,6 @@ const About = (props) => {
         <SharePresentation
             show={modalShare} path={path} secretKey={secretKey}
             onHide={() => setModalShare(false)}/>
-
     </div>)
 }
 export default withRouter(About);

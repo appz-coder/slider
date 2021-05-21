@@ -23,7 +23,7 @@
     opacity: 1;
 }
 .pres_table{
-    height: 75vh;
+    height: 70vh;
     overflow-y: scroll;
 }
 .pres_table::-webkit-scrollbar{

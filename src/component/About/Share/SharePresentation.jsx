@@ -1,14 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./SharePresentation.css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Button, Modal} from "react-bootstrap";
 
 
 const SharePresentation = (props) => {
-    const [copyVal = {
-        value: `${process.env.REACT_APP_API_URL}${props.path}`,
-        copied: false,
-    },setCopyVal] = React.useState()
+
+    const [copyVal ,setCopyVal] = React.useState({})
+
+    useEffect(() => {
+        setCopyVal({
+            value: `${process.env.REACT_APP_URL}w/${props.secretKey}`,
+            copied: false,
+        })
+    }, [props.show])
 
     const setTimer=()=>{
        setCopyVal({copied: true});

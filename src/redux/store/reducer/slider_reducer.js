@@ -10,10 +10,8 @@ const initialState = {
     is_private:null,
     title:'',
     error:null,
-    loading:false,
-
+    loading:true
 }
-
 
 const showPresentationReducer = (state = initialState, action) =>{
     switch (action.type) {
@@ -33,7 +31,9 @@ const showPresentationReducer = (state = initialState, action) =>{
         case FETCH_PRESENTATION_ERROR:
                 return {
                     ...state,
-                    loading:false,  error:action.payload.error,showPresentation:[]
+                    loading:false,
+                    error: 'Something went wrong',
+                    showPresentation:[]
                 };
         case RETURN_FETCH_PRESENTATION:{
             return initialState

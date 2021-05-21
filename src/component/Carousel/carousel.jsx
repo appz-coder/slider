@@ -1,31 +1,38 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./carousel.css";
 import {useSelector,useDispatch} from 'react-redux'
 import {Carousel, Col, Card, Container, Row, Button} from "react-bootstrap";
 import Presentation from "./Presents/Presents";
-import {NavLink} from "react-router-dom";
-import {returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
-import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
+import {NavLink, withRouter} from "react-router-dom";
+import {fetchPresentation, returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
+import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import {getPresentation} from "../../redux/store/action_creator/presentationAC";
+import Load from "../ Validation/Include/loading";
+import Errors from "../ Validation/Include/Erorrs";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
 
 
-const Slider = () => {
-    let {showPresentation,title} = useSelector((state) => state.showPresentation);
+const Slider = ({ match }) => {
+    let {showPresentation,title, loading, error} = useSelector((state) => state.showPresentation);
+
     const [modalShow, setModalShow] = React.useState(false);
     const [index, setIndex] = React.useState(0);
     const dispatch = useDispatch();
     const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
 
+    const secretKey = match.params.secret_key;
 
+    useEffect(() => {
+        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+      loadPresentation()
+    }, [])
 
-
-
-
+    const loadPresentation = async () => {
+        await dispatch(fetchPresentation(secretKey))
+    }
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -43,6 +50,10 @@ const Slider = () => {
         await dispatch(returnFetchPresentationStateAC())
         setModalShow(true)
     }
+
+    if (loading) return <Load/>
+    if (error) return <Errors error={error}/>
+
     return (
         <Container fluid>
             <Row>
@@ -107,6 +118,7 @@ const Slider = () => {
 
 
                             {
+                                showPresentation.length &&
                                 showPresentation[0].mime.endsWith('pdf')?
                                 <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
                                       onSelect={handleSelect}>
@@ -162,7 +174,7 @@ const Slider = () => {
                           index={index} setIndex={setIndex} pageNumber={pageNumber}
                           numPages={numPages}
                           setPageNumber={setPageNumber}
-                          mime={ showPresentation[0].mime.endsWith('pdf')}
+                          mime={ showPresentation || showPresentation[0].mime.endsWith('pdf')}
                           onDocumentLoadSuccess={onDocumentLoadSuccess}
                           onHide={() => setModalShow(false)}/>
 
@@ -170,4 +182,4 @@ const Slider = () => {
         </Container>)
 }
 
-export default Slider;
+export default withRouter(Slider);
