@@ -24,6 +24,11 @@ const About = (props) => {
     React.useEffect(() => {
         dispatch(getPresentation(1))
     }, []);
+    const onHide = () =>{
+        setModalShow(false)
+        dispatch(getPresentation(1))
+
+    }
     let pagesCount = Math.ceil(totalUsersCount /pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i ++) {
@@ -107,7 +112,7 @@ const About = (props) => {
         </main>
         <CreatePresentation
             show={modalShow}
-            onHide={() => setModalShow(false)}/>
+            onHide={onHide}/>
         <SharePresentation
             show={modalShare}
             onHide={() => setModalShare(false)}/>
