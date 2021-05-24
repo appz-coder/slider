@@ -3,8 +3,9 @@ import {Button, Image, Modal} from "react-bootstrap";
 import "./Private.css"
 import hands from "../../../icon/Hands.webp"
 import ReactCodeInput from "react-code-input";
-import {fetchPresentation} from "../../../redux/store/action_creator/sliderAC";
+import { useHistory } from "react-router-dom";
 import {useDispatch} from "react-redux";
+import {fetchPublicPresentation} from "../../../redux/store/action_creator/publicSliderAC";
 const styles = {
     className:"input_style",
     inputStyle: {
@@ -32,11 +33,12 @@ const styles = {
 }
 
 const Private = (props) => {
+    let history = useHistory();
     const dispatch = useDispatch();
     const [value, setValue] = React.useState()
- const sendValue = () =>{
-     // dispatch(fetchPresentation(value))
-     console.log(value)
+ const sendValue = async () =>{
+     await dispatch(fetchPublicPresentation(value))
+     history.push(`/w/${value}`);
  }
 
     return (<div>
@@ -46,10 +48,10 @@ const Private = (props) => {
                aria-labelledby="contained-modal-title-vcenter"
                centered
         >
-            <Modal.Header className={"private_header border-0"} closeButton>
+            <Modal.Header className={"private_header border-0"} closeButton >
                 <Modal.Title id="contained-modal-title-vcenter">
                     <Image width={"35px"} src={hands}/>
-                   <strong className={"ml-3"}> Slider Club</strong>
+                   <strong className={"ml-3 "}> Slider Club</strong>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className={"private_body"} >

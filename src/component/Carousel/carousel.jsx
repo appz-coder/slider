@@ -16,7 +16,7 @@ const prevIcon = <div className="custom-chevron-left"></div>;
 
 const Slider = ({ match }) => {
     let {showPresentation,title, loading, error} = useSelector((state) => state.showPresentation);
-
+    const {isAuth} = useSelector((state) => state.auth)
     const [modalShow, setModalShow] = React.useState(false);
     const [index, setIndex] = React.useState(0);
     const dispatch = useDispatch();
@@ -31,7 +31,9 @@ const Slider = ({ match }) => {
     }, [])
 
     const loadPresentation = async () => {
-        await dispatch(fetchPresentation(secretKey))
+        if(isAuth) {
+            await dispatch(fetchPresentation(secretKey))
+        }
     }
 
     function onDocumentLoadSuccess({ numPages }) {
@@ -108,7 +110,7 @@ const Slider = ({ match }) => {
                         <Card.Body>
                             <Card.Title className={" ml-5"}>
                                 {title}
-                                <NavLink to={"/about"} style={{color:"#e2d27b"}} >
+                                <NavLink to={"/home"} style={{color:"#e2d27b"}} >
                                     <i className="fas fa-exchange-alt ml-4" onClick={stateReturn}></i>
                                 </NavLink>
                                 <Button className={"camera_btn "} variant="link" onClick={() => setModalShow(true)}>

@@ -45,3 +45,11 @@
     margin-top: 10%;
     margin-bottom: 5%;
 }
+.a_hov{
+    cursor: pointer;
+    font-weight: 600;
+}
+.a_hov:hover{
+    opacity: 1;
+    color: #4285f4!important;
+}

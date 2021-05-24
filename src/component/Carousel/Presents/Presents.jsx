@@ -12,7 +12,6 @@ const Presentation = (props) => {
         props.setPageNumber(selectedIndex % props.numPages + 1);
 
     };
-debugger
     return (<Modal
             className={"PRES"}
             {...props}

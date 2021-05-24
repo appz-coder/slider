@@ -31,3 +31,8 @@ export const presentationApi = {
         return instance.post('api/auth/user', data)
     }
 }
+export const PublicApi = {
+    getPublicPresentation(key) {
+        return instance.get(`api/public-presentations/public-slug/${key}`)
+    }
+}

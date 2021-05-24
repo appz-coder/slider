@@ -12,7 +12,7 @@ const Header = () => {
     const {imageUrl, givenName} = useSelector((state) => state.auth)
     return (
         <Navbar className="header" expand="lg">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/home">
                 <img src={Hands} className="nav_img" alt=""/>
                 Slider Club
             </Navbar.Brand>

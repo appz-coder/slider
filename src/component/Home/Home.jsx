@@ -28,7 +28,7 @@ const Home = () => {
         formData.append('name', name);
         dispatch(setUsersData(formData))
     }
-     if(isAuth) return <Redirect to={'/about'}/>
+     if(isAuth) return <Redirect to={'/home'}/>
     return (
         <div className={"hom_card"}>
             <Card className="text-center border-0 hom_card ">
@@ -51,7 +51,7 @@ const Home = () => {
                     cookiePolicy={'single_host_origin'}
 
                 />
-                <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? <a style={{color:'#212529'}} className={"nav-item"} onClick={()=>setPrivateShow(true)}>Click here to enter code</a></Card.Text>
+                <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? <a style={{color:'#212529'}} className={"nav-item a_hov"} onClick={()=>setPrivateShow(true)}>Click here to enter code</a></Card.Text>
             </Card.Body>
                 <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
         </Card>

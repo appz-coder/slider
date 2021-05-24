@@ -15,7 +15,7 @@ function App(props) {
             {
                 props.location.pathname==="/" ? <Home/>:""
             }
-            <Route path={'/about/:Id?'}  render={() =><About/>}/>
+            <Route path={'/home/:Id?'}  render={() =><About/>}/>
             <Route path={'/w/:secret_key?'}  render={() =><Slider/>}/>
         </div>
     );

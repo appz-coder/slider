@@ -1,7 +1,7 @@
 import React from "react";
 import "./About.css"
 import Pop from "../../icon/floating button@2x.svg";
-import FILE from "../../icon/file.webp"
+import PDF from "../../icon/PDF.jpg"
 import CreatePresentation from "./CreatePres/CreatePresentation";
 import lock from "../../icon/lock.png"
 import {Button, Image, Table} from "react-bootstrap";
@@ -18,6 +18,7 @@ const About = (props) => {
     const history = useHistory();
     const {Presentation, error, loading, totalUsersCount, pageSize} = useSelector((state) => state.presentation);
     const {isAuth} = useSelector((state) => state.auth)
+    const {isProcessed} = useSelector((state) => state.newPresentation);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
     const [path, setPath] = React.useState('');
@@ -28,7 +29,9 @@ const About = (props) => {
     }, []);
     const onHide = () => {
         setModalShow(false)
-        dispatch(getPresentation(1))
+        if(isProcessed) {
+            dispatch(getPresentation(1))
+        }
     }
     const ModalShow = (path,secKey) => {
         setModalShare(true)
@@ -73,7 +76,7 @@ const About = (props) => {
                                         <th>{
                                             e.presentation_file[0].path.endsWith('.png')
                                                 ? <Image className="mr-2 rounded" width="45px" src={`${process.env.REACT_APP_API_URL}${e.presentation_file[0].path}`}/>
-                                                : <Image className="mr-2 rounded" width="45px" src={FILE}/>
+                                                : <Image className="mr-2 rounded" width="45px" src={PDF}/>
                                         }
                                         </th>
                                         <td>{e.title}
@@ -91,8 +94,7 @@ const About = (props) => {
                                         <td className={"d-flex"}>
                                             {Math.round(e.presentation_file[0].size / 1000) + '' + 'KB'}
                                             <Button onClick={() => loadPresentation(e.secret_key)}
-                                                    variant="outline-dark"
-                                                    className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
+                                                    variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
                                                 View
                                             </Button>
                                             <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
@@ -114,7 +116,7 @@ const About = (props) => {
                         pages.map((p, i) =>
                             <li className="page-item" key={i} onClick={() => {dispatch(getPresentation(p))}}
                         >
-                                <NavLink activeClassName={'active_li'} to={`/about/${p}`} className="page-link">{p}</NavLink>
+                                <NavLink activeClassName={'active_li'} to={`/home/${p}`} className="page-link">{p}</NavLink>
                         </li>)
                     }
                 </ul>

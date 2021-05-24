@@ -1,5 +1,5 @@
 import React from "react";
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import { reducer as formReducer } from 'redux-form'
 import presentationReducer from "./reducer/presentation_reducer";
 import thunk from "redux-thunk";
@@ -37,8 +37,10 @@ function loadFromLocalStorage() {
         return undefined;
     }
 }
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
- const store = createStore(reducer,loadFromLocalStorage(), applyMiddleware(thunk));
+
+ const store = createStore(reducer,loadFromLocalStorage(),composeEnhancers( applyMiddleware(thunk)));
 store.subscribe(() => saveToLocalStorage({auth: store.getState().auth,showPresentation: store.getState().showPresentation,}));
 export default store;
 window.store =store;
