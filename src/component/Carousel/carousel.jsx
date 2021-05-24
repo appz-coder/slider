@@ -174,7 +174,6 @@ const Slider = ({ match }) => {
                           index={index} setIndex={setIndex} pageNumber={pageNumber}
                           numPages={numPages}
                           setPageNumber={setPageNumber}
-                          mime={ showPresentation || showPresentation[0].mime.endsWith('pdf')}
                           onDocumentLoadSuccess={onDocumentLoadSuccess}
                           onHide={() => setModalShow(false)}/>
 

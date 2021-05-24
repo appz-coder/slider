@@ -12,7 +12,7 @@ const Presentation = (props) => {
         props.setPageNumber(selectedIndex % props.numPages + 1);
 
     };
-
+debugger
     return (<Modal
             className={"PRES"}
             {...props}
@@ -24,7 +24,7 @@ const Presentation = (props) => {
             </Modal.Header>
             <Modal.Body className={"w-100 "}>
                 {
-                    props.mime ?
+                    props.presentItem[0].mime.endsWith('pdf') ?
                         <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={props.index}
                                   onSelect={handleSelect}>
 
