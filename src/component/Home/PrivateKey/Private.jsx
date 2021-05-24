@@ -1,11 +1,12 @@
-import React from "react";
-import {Button, Image, Modal} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import { Button, Image, Modal} from "react-bootstrap";
 import "./Private.css"
 import hands from "../../../icon/Hands.webp"
 import ReactCodeInput from "react-code-input";
 import { useHistory } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchPublicPresentation} from "../../../redux/store/action_creator/publicSliderAC";
+import {AlertDismissible} from "../../ Validation/Include/alert";
 const styles = {
     className:"input_style",
     inputStyle: {
@@ -17,8 +18,7 @@ const styles = {
         border: '1px solid #e0e1e4',
         textAlign:'center',
         outlineColor:'#c0d9ee',
-    }
-    ,
+    },
     inputStyleInvalid: {
         MozAppearance: 'textfield',
         textAlign:'center',
@@ -33,12 +33,19 @@ const styles = {
 }
 
 const Private = (props) => {
+    let {error} =  useSelector((state) => state.showPresentation)
     let history = useHistory();
+    const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const [value, setValue] = React.useState()
+
  const sendValue = async () =>{
      await dispatch(fetchPublicPresentation(value))
-     history.push(`/w/${value}`);
+     if(error) {
+        setShow(true)
+     }else {
+         history.push(`/w/${value}`);
+     }
  }
 
     return (<div>
@@ -46,9 +53,10 @@ const Private = (props) => {
                {...props}
 
                aria-labelledby="contained-modal-title-vcenter"
-               centered
-        >
-            <Modal.Header className={"private_header border-0"} closeButton >
+               centered >
+            <AlertDismissible setShow={setShow} show={show} error={error}/>
+
+            <Modal.Header className={"private_header border-0"} closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     <Image width={"35px"} src={hands}/>
                    <strong className={"ml-3 "}> Slider Club</strong>

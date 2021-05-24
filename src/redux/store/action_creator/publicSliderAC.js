@@ -4,7 +4,6 @@ import { PublicApi} from "../../../component/api/api";
 const FETCH_PRESENTATION = "FETCH-PRESENTATION";
 const FETCH_PRESENTATION_SUCCESS = "FETCH-PRESENTATION-SUCCESS";
 const FETCH_PRESENTATION_ERROR = "FETCH-PRESENTATION-ERROR";
-const RETURN_FETCH_PRESENTATION = "RETURN-FETCH-PRESENTATION";
 
 const fetchPresentationAC = ()=>({type: FETCH_PRESENTATION});
 const fetchPresentationSuccessAC = (payload)=>({type:FETCH_PRESENTATION_SUCCESS, payload });

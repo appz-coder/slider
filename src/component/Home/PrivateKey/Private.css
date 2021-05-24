@@ -44,3 +44,16 @@
 .private_pop .modal-content{
     border-radius: 25px;
 }
+.private_header .close{
+ color: #61dafb;
+    float: right!important;
+}
+.alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    margin:0 auto;
+    top: 0;
+}

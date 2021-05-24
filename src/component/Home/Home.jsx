@@ -1,12 +1,11 @@
 import React from "react";
 import "./Home.css"
 import Hand from "../../icon/Hands.webp";
-import {Button, Card, Container, Image} from "react-bootstrap";
+import {Card, Image} from "react-bootstrap";
 import Private from "./PrivateKey/Private";
 import GoogleLogin from 'react-google-login';
 import {useSelector, useDispatch} from 'react-redux'
 import {loginUserData, setUsersData} from "../../redux/store/reducer/auth_reducer";
-import {presentationApi} from "../api/api";
 import {Redirect} from "react-router-dom";
 
 
@@ -16,7 +15,6 @@ const Home = () => {
     const {isAuth} = useSelector((state) => state.auth)
     const dispatch = useDispatch();
     const responseGoogle =  (response) => {
-        console.log(response)
          dispatch(loginUserData(response));
         let {email, familyName, givenName, googleId, imageUrl, name} = response.profileObj
         const formData = new FormData;
