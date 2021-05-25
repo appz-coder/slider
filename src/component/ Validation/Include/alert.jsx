@@ -7,7 +7,7 @@ export const AlertDismissible = (props) => {
     const dispatch = useDispatch();
 const closeAlert = () =>{
     props.setShow(false)
-    // dispatch(returnFetchPresentationStateAC())
+     // dispatch(returnFetchPresentationStateAC())
     localStorage.removeItem("persistantState");
 }
     return (

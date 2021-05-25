@@ -44,9 +44,9 @@
 .private_pop .modal-content{
     border-radius: 25px;
 }
-.private_header .close{
- color: #61dafb;
-    float: right!important;
+.private_header{
+    padding: 2% !important;
+    margin-left: 85% !important;
 }
 .alert{
     display: flex;

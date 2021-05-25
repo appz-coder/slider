@@ -56,12 +56,12 @@ const Private = (props) => {
                centered >
             <AlertDismissible setShow={setShow} show={show} error={error}/>
 
-            <Modal.Header className={"private_header border-0"} closeButton>
+            <Modal.Header className={"private_header border-0"} closeButton> </Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
                     <Image width={"35px"} src={hands}/>
                    <strong className={"ml-3 "}> Slider Club</strong>
                 </Modal.Title>
-            </Modal.Header>
+
             <Modal.Body className={"private_body"} >
                 <h6>Enter the 6 digits code to unlock presentation</h6>
                   <ReactCodeInput onChange={val => setValue(val) } isValid={true} fields={6} name={"private"} type="text" {...styles}/>

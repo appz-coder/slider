@@ -9,6 +9,7 @@ import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
+import {fetchPublicPresentation} from "../../redux/store/action_creator/publicSliderAC";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
@@ -33,6 +34,9 @@ const Slider = ({ match }) => {
     const loadPresentation = async () => {
         if(isAuth) {
             await dispatch(fetchPresentation(secretKey))
+        }
+        if(!isAuth){
+            await dispatch(fetchPublicPresentation(secretKey))
         }
     }
 
