@@ -26,3 +26,7 @@
 .PRES  .modal-content{
     border: none;
 }
+.large_slider{
+    min-height: 300px;
+    text-align: center;
+}

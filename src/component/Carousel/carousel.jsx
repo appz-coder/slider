@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import "./carousel.css";
 import {useSelector,useDispatch} from 'react-redux'
 import {Carousel, Col, Card, Container, Row, Button} from "react-bootstrap";
@@ -30,7 +30,6 @@ const Slider = ({ match }) => {
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
       loadPresentation()
     }, [])
-
     const loadPresentation = async () => {
         if(isAuth) {
             await dispatch(fetchPresentation(secretKey))
@@ -39,7 +38,6 @@ const Slider = ({ match }) => {
             await dispatch(fetchPublicPresentation(secretKey))
         }
     }
-
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
@@ -51,6 +49,7 @@ const Slider = ({ match }) => {
 
     const indexSelect = (i, e) => {
         setIndex(i);
+        console.log(i)
     };
     const stateReturn = async () => {
         await dispatch(returnFetchPresentationStateAC())
@@ -83,10 +82,13 @@ const Slider = ({ match }) => {
                                                             Array.from(
                                                                 new Array(numPages),
                                                                 (el, index) => (
+                                                                    <div className={pageNumber === index+1 ? "m-4 active_scroll" : "m-4"}
+                                                                         onClick={(e)=>{indexSelect(index + 1)}}>
                                                                     <Page
                                                                         key={`page_${index + 1}`}
                                                                         pageNumber={index + 1}
                                                                     />
+                                                                    </div>
                                                                 ),
                                                             )
                                                         }
@@ -95,7 +97,7 @@ const Slider = ({ match }) => {
                                                 </div>):( <div className={index === i ? "m-4 active_scroll" : "m-4"} key={e.id}
                                                                onClick={(e) => {indexSelect(i)}}>
 
-                                                    <img className={"w-100 "}  src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                    <img width={"100%"} height={"250px"}  src={`${process.env.REACT_APP_API_URL}${e.path}`}
                                                     />
                                                 </div>)
                                             }
@@ -138,7 +140,7 @@ const Slider = ({ match }) => {
                                         ),
                                     )
                                 }
-                                                        <Document
+                                                        <Document className={"large_slider"}
                                                                   file={`${process.env.REACT_APP_API_URL}${showPresentation[0].path}`}
                                                                   options={{ cMapUrl: 'cmaps/', cMapPacked: true}}
                                                                   onLoadSuccess={onDocumentLoadSuccess}
@@ -188,3 +190,13 @@ const Slider = ({ match }) => {
 }
 
 export default withRouter(Slider);
+
+//
+// let pdfPages = document.getElementsByClassName('react-pdf__Page');
+// for (let i = 0 ; i <pdfPages.length; ++i )
+// {
+//     pdfPages[i].addEventListener('click',(e)=>{
+//         func(e.data-page-number);
+//     })
+//
+// }

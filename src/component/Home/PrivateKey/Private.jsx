@@ -34,6 +34,10 @@ const styles = {
 
 const Private = (props) => {
     let {error} =  useSelector((state) => state.showPresentation)
+    useEffect(()=>{
+        console.log(error)
+    },[error])
+
     let history = useHistory();
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
@@ -41,7 +45,8 @@ const Private = (props) => {
 
  const sendValue = async () =>{
      await dispatch(fetchPublicPresentation(value))
-     if(error) {
+     let err = await error
+     if(err) {
         setShow(true)
      }else {
          history.push(`/w/${value}`);

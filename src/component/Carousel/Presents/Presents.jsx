@@ -36,7 +36,7 @@ const Presentation = (props) => {
                                     ),
                                 )
                             }
-                            <Document
+                            <Document className={"large_slider"}
                                 file={`${process.env.REACT_APP_API_URL}${props.presentItem[0].path}`}
                                 options={{cMapUrl: 'cmaps/', cMapPacked: true}}
                                 onLoadSuccess={props.onDocumentLoadSuccess}

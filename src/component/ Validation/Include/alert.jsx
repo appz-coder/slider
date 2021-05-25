@@ -1,13 +1,9 @@
 
 import {Alert, Button} from "react-bootstrap";
-import {useDispatch} from "react-redux";
-import {returnFetchPresentationStateAC} from "../../../redux/store/action_creator/sliderAC";
 
 export const AlertDismissible = (props) => {
-    const dispatch = useDispatch();
 const closeAlert = () =>{
     props.setShow(false)
-     // dispatch(returnFetchPresentationStateAC())
     localStorage.removeItem("persistantState");
 }
     return (

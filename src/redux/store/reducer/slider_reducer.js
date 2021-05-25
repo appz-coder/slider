@@ -29,7 +29,6 @@ const showPresentationReducer = (state = initialState, action) =>{
                 title:action.payload.data.title
             };
         case FETCH_PRESENTATION_ERROR:
-            console.log("FETCH_PRESENTATION_ERROR")
                 return {
                     ...state,
                     loading:false,
