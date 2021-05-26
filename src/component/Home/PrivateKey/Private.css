@@ -48,3 +48,7 @@
     padding: 3% !important;
     margin-left: 85% !important;
 }
+.Toastify__toast-body{
+    margin-left: 7% !important;
+    font-size: 20px;
+}
