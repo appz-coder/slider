@@ -22,7 +22,9 @@ export const presentationApi = {
     },
     getPresentation(currentPage) {
 
-        return instance.get(`api/presentations/pages/${currentPage}`)
+        return instance.get(`api/presentations/pages/${currentPage}`).then(res => console.log(res))
+        // return instance.get(`api/presentations/pages/${currentPage}`)
+
     },
     fetchPresentation(secret_key) {
         return instance.get(`api/presentations/slug/${secret_key}`)
@@ -34,5 +36,8 @@ export const presentationApi = {
 export const PublicApi = {
     getPublicPresentation(key) {
         return instance.get(`api/public-presentations/public-slug/${key}`)
+    },
+    checkedPrivate(checked,key) {
+        return instance.get(`api/presentations/${key}/update/${checked}`)
     }
 }

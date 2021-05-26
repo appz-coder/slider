@@ -13,6 +13,7 @@ import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
 import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
+import {PublicApi} from "../api/api";
 
 const About = (props) => {
     const history = useHistory();
@@ -51,6 +52,17 @@ const About = (props) => {
     if (error) return <Errors error={error}/>
     if (!isAuth) return <Redirect to={'/'}/>
 
+
+    const PrivateChanged = ({ target: { checked } }, key) =>{
+        if(checked){
+            checked = 0
+        }else{
+            checked = 1
+        }
+        PublicApi.checkedPrivate(checked,key)
+    }
+
+
     return (<div>
         <Header/>
         <main role="main" className="container">
@@ -61,45 +73,54 @@ const About = (props) => {
                         <tr>
                             <th></th>
                             <td>NAME</td>
+                            <td>Private</td>
                             <td className={"w-25"}>OPENED</td>
                             <td className={"w-25"}>SIZE</td>
                         </tr>
                         </thead>
                         <tbody>
                         {
-                            Presentation.map((e, i) => {
-                                if (!e.presentation_file.length) {
+                            Presentation.map((pres, i) => {
+                                if (!pres.presentation_file.length) {
                                     return
                                 }
                                 return (
-                                    <tr key={e.id} className={"control_hover"}>
+                                    <tr key={i} className={"control_hover"}>
                                         <th>{
-                                            e.presentation_file[0].path.endsWith('.png')
-                                                ? <Image className="mr-2 rounded" width="45px" src={`${process.env.REACT_APP_API_URL}${e.presentation_file[0].path}`}/>
+                                            pres.presentation_file[0].path.endsWith('.png')
+                                                ? <Image className="mr-2 rounded" width="45px" src={`${process.env.REACT_APP_API_URL}${pres.presentation_file[0].path}`}/>
                                                 : <Image className="mr-2 rounded" width="45px" src={PDF}/>
                                         }
                                         </th>
-                                        <td>{e.title}
-                                            {e.is_private ?
+                                        <td>{pres.title}
+                                            {pres.is_private ?
                                                 <Image width={"40px"} src={lock}/> : ""
                                             }
-                                            <div><small>  {e.presentation_file[0].mime}</small></div>
+                                            <div><small>  {pres.presentation_file[0].mime}</small></div>
+                                        </td>
+                                        <td>
+                                            <input
+                                                name={"checked"}
+                                                type="checkbox"
+                                                checked={pres.is_private}
+                                                onChange={(event) => PrivateChanged(event,pres.secret_key)}
+                                            />
                                         </td>
                                         <td>{
-                                            new Date(e.createdAt).toLocaleString('en-us', {
+                                            new Date(pres.createdAt).toLocaleString('en-us', {
                                                 month: 'short',
                                                 day: "2-digit"
                                             })
                                         }</td>
                                         <td className={"d-flex"}>
-                                            {Math.round(e.presentation_file[0].size / 1000) + '' + 'KB'}
-                                            <Button onClick={() => loadPresentation(e.secret_key)}
+                                            {Math.round(pres.presentation_file[0].size / 1000) + '' + 'KB'}
+                                            <Button onClick={() => loadPresentation(pres.secret_key)}
                                                     variant="outline-dark" className="ml-5  h-25 pt-1 pb-1 control_buttons mr-2">
                                                 View
                                             </Button>
                                             <Button className={"pt-1 pb-1 control_buttons h-25"} variant="outline-dark"
                                                     onClick={() => {
-                                                        ModalShow(e.presentation_file[0].path,e.secret_key)
+                                                        ModalShow(pres.presentation_file[0].path,pres.secret_key)
                                                     }}>Share</Button>
                                         </td>
                                     </tr>
