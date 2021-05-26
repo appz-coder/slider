@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import "./carousel.css";
 import {useSelector,useDispatch} from 'react-redux'
 import {Carousel, Col, Card, Container, Row, Button} from "react-bootstrap";

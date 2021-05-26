@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { Button, Image, Modal} from "react-bootstrap";
-import "./Private.css"
-import hands from "../../../icon/Hands.webp"
+import { ToastContainer, toast } from 'react-toastify';
 import ReactCodeInput from "react-code-input";
 import { useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import 'react-toastify/dist/ReactToastify.css';
+import hands from "../../../icon/Hands.webp"
+import "./Private.css"
 import {fetchPublicPresentation} from "../../../redux/store/action_creator/publicSliderAC";
-import {AlertDismissible} from "../../ Validation/Include/alert";
 const styles = {
     className:"input_style",
     inputStyle: {
@@ -33,33 +34,31 @@ const styles = {
 }
 
 const Private = (props) => {
-    let {error} =  useSelector((state) => state.showPresentation)
-    useEffect(()=>{
-        console.log(error)
-    },[error])
-
+    let {error, isPublic} =  useSelector((state) => state.showPresentation)
     let history = useHistory();
-    const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const [value, setValue] = React.useState()
+    const notify = () => toast.error("presentation does not exist..");
 
+    useEffect(()=>{
+        if(error){
+            notify()
+        }
+        else if(isPublic){
+            history.push(`/w/${value}`);
+        }
+    },[error,isPublic])
  const sendValue = async () =>{
      await dispatch(fetchPublicPresentation(value))
-     let err = await error
-     if(err) {
-        setShow(true)
-     }else {
-         history.push(`/w/${value}`);
-     }
  }
-
     return (<div>
         <Modal className={"private_pop"}
                {...props}
 
                aria-labelledby="contained-modal-title-vcenter"
                centered >
-            <AlertDismissible setShow={setShow} show={show} error={error}/>
+            <ToastContainer position="top-right"
+                   autoClose={2000} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
 
             <Modal.Header className={"private_header border-0"} closeButton> </Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">

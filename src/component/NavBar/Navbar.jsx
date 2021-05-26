@@ -1,8 +1,8 @@
 import React from "react";
 import Hands from "../../icon/Hands.webp"
 import "./Navbar.css"
-import {NavLink} from "react-router-dom";
-import {Button, Image, Nav, Navbar, NavDropdown} from "react-bootstrap";
+
+import {Image,  Navbar, NavDropdown} from "react-bootstrap";
 import {useSelector, useDispatch} from "react-redux";
 import {logoutUserData} from "../../redux/store/reducer/auth_reducer";
 

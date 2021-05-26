@@ -1,4 +1,4 @@
-import React from "react";
+
 import axios from "axios";
 
 const jwt = localStorage.getItem('jwt_token') ? localStorage.getItem('jwt_token') : null
@@ -6,7 +6,7 @@ const jwt = localStorage.getItem('jwt_token') ? localStorage.getItem('jwt_token'
 const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
-        "Content-Type": "multipart/form-data;" + "boundary=<calculated when request is sent>",
+        "Content-Type": "multipart/form-data boundary=<calculated when request is sent>",
         'Authentication': `Bearer ${jwt}`
     },
 })

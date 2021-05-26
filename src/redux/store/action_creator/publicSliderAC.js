@@ -14,10 +14,10 @@ export const fetchPublicPresentation = (key) =>{
         try{
             dispatch(fetchPresentationAC())
             const response = await PublicApi.getPublicPresentation(key);
-            dispatch(fetchPresentationSuccessAC(response.data))
+            await dispatch(fetchPresentationSuccessAC(response.data))
         }catch (error){
             if (error.response) {
-                dispatch(fetchPresentationErrorAC(error.response))
+               await dispatch(fetchPresentationErrorAC(error.response))
 
             }
 

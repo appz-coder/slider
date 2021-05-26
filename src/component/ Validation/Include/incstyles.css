@@ -6,3 +6,16 @@
     flex-direction: column;
     margin-top: 80px;
 }
+
+.alert{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    z-index: 100;
+    margin:0 auto;
+    top: 0;
+}
+.alert button{
+    margin-left: 75%;
+}

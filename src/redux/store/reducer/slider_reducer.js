@@ -1,4 +1,4 @@
-import React from "react";
+
 const FETCH_PRESENTATION = "FETCH-PRESENTATION";
 const FETCH_PRESENTATION_SUCCESS = "FETCH-PRESENTATION-SUCCESS";
 const FETCH_PRESENTATION_ERROR = "FETCH-PRESENTATION-ERROR";
@@ -10,7 +10,8 @@ const initialState = {
     is_private:null,
     title:'',
     error:null,
-    loading:true
+    loading:true,
+    isPublic:false,
 }
 
 const showPresentationReducer = (state = initialState, action) =>{
@@ -22,6 +23,7 @@ const showPresentationReducer = (state = initialState, action) =>{
         case FETCH_PRESENTATION_SUCCESS:
             return {
                 ...state,
+                isPublic:true,
                 loading:false,
                 error:action.payload.error,
                 is_private:action.payload.data.is_private,
@@ -29,10 +31,12 @@ const showPresentationReducer = (state = initialState, action) =>{
                 title:action.payload.data.title
             };
         case FETCH_PRESENTATION_ERROR:
+
                 return {
                     ...state,
+                    isPublic:false,
                     loading:false,
-                    error: 'Something went wrong',
+                    error: 'Something went wrong!!!',
                     showPresentation:[]
                 };
         case RETURN_FETCH_PRESENTATION:{

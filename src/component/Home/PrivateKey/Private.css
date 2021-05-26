@@ -48,12 +48,3 @@
     padding: 3% !important;
     margin-left: 85% !important;
 }
-.alert{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 100;
-    margin:0 auto;
-    top: 0;
-}

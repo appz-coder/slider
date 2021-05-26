@@ -1,4 +1,4 @@
-import React from "react";
+
 import {presentationApi, setAuthHeader} from "../../../component/api/api";
 
 const SET_USERS_GOOGLE_DATA = 'SET_USERS_GOOGLE_DATA';
@@ -7,14 +7,9 @@ const LOG_OUT_USERS_LOGIN_DATA = 'LOG_OUT_USERS_LOGIN_DATA';
 
 let initialState = {
     error: null,
-    googleToken: "",
     accessToken: "",
-    googleId: "",
     imageUrl: "",
     givenName: "",
-    familyName: "",
-    name: "",
-    email: "",
     isAuth: false
 }
 const authReducer = (state = initialState, action) => {
@@ -24,13 +19,8 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: false,
-                googleToken: action.payload.accessToken,
-                googleId: action.payload.profileObj.googleId,
                 imageUrl: action.payload.profileObj.imageUrl,
                 givenName: action.payload.profileObj.givenName,
-                familyName: action.payload.profileObj.familyName,
-                name: action.payload.profileObj.name,
-                email: action.payload.profileObj.email
             }
         }
         case LOG_OUT_USERS_LOGIN_DATA: {

@@ -17,7 +17,7 @@ const Home = () => {
     const responseGoogle =  (response) => {
          dispatch(loginUserData(response));
         let {email, familyName, givenName, googleId, imageUrl, name} = response.profileObj
-        const formData = new FormData;
+        const formData = new FormData();
         formData.append('email', email);
         formData.append('familyName', familyName);
         formData.append('givenName', givenName);
