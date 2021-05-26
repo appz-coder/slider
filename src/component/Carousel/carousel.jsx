@@ -77,6 +77,13 @@ const Slider = ({ match }) => {
                                                               options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
                                                               onLoadSuccess={onDocumentLoadSuccess}
                                                               onLoadError={(error) => console.log('Error while loading document! ' + error.message, error)}
+                                                              loading={(
+                                                                  <div style={{ height: "90vh", display: "flex", alignItems: "center", flexDirection: "column"}}>
+                                                                      <div>
+                                                                          <Load />
+                                                                      </div>
+                                                                  </div>
+                                                              )}
                                                     >
                                                         {
                                                             Array.from(
@@ -144,6 +151,13 @@ const Slider = ({ match }) => {
                                                                   file={`${process.env.REACT_APP_API_URL}${showPresentation[0].path}`}
                                                                   options={{ cMapUrl: 'cmaps/', cMapPacked: true}}
                                                                   onLoadSuccess={onDocumentLoadSuccess}
+                                                                  loading={(
+                                                                      <div style={{ height: "90vh", display: "flex", alignItems: "center", flexDirection: "column"}}>
+                                                                          <div>
+                                                                              <Load />
+                                                                          </div>
+                                                                      </div>
+                                                                  )}
                                                         >
 
                                                             <Page pageNumber={pageNumber} />
