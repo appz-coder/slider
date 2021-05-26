@@ -7,7 +7,7 @@ import lock from "../../icon/lock.png"
 import {Button, Image, Table} from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux';
 import SharePresentation from "./Share/SharePresentation";
-import {getPresentation} from "../../redux/store/action_creator/presentationAC";
+import {getPresentation, presentationPrivateStateAC} from "../../redux/store/action_creator/presentationAC";
 import {NavLink, Redirect, useHistory, withRouter} from "react-router-dom";
 import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
@@ -59,8 +59,10 @@ const About = (props) => {
         }else{
             checked = 0
         }
-       await PublicApi.checkedPrivate(checked,key)
-         dispatch(getPresentation(1))
+       await PublicApi.checkedPrivate(checked,key).then(res=>{
+           dispatch(presentationPrivateStateAC(key,res.data))
+
+       })
     }
 
 

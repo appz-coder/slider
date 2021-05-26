@@ -89,7 +89,7 @@ const Slider = ({ match }) => {
                                                             Array.from(
                                                                 new Array(numPages),
                                                                 (el, index) => (
-                                                                    <div className={pageNumber === index+1 ? "m-4 active_scroll" : "m-4"}
+                                                                    <div className={pageNumber === index ? "m-4 active_scroll" : "m-4"}
                                                                          onClick={(e)=>{indexSelect(index + 1)}}>
                                                                     <Page
                                                                         key={`page_${index + 1}`}

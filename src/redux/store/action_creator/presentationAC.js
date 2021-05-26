@@ -4,10 +4,12 @@ import {presentationApi} from "../../../component/api/api";
 const GET_PRESENTATION = "GET-PRESENTATION";
 const GET_PRESENTATION_SUCCESS = "GET-PRESENTATION-SUCCESS";
 const GET_PRESENTATION_ERROR = "GET-PRESENTATION-ERROR";
+const CHANGE_PRESENTATION_PRIVATE_STATE = "CHANGE_PRESENTATION_PRIVATE_STATE";
 
 const getPresentationAC = ()=>({type: GET_PRESENTATION});
 const getPresentationSuccessAC = (payload)=>({type:GET_PRESENTATION_SUCCESS, payload });
 const getPresentationErrorAC = (payload)=>({type:GET_PRESENTATION_ERROR, payload});
+export const presentationPrivateStateAC = (key,payload) => ({type: CHANGE_PRESENTATION_PRIVATE_STATE, key,payload});
 
 export const getPresentation = (currentPage) =>{
     return async (dispatch)=>{

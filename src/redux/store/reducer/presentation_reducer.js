@@ -1,6 +1,7 @@
 const GET_PRESENTATION = "GET-PRESENTATION";
 const GET_PRESENTATION_SUCCESS = "GET-PRESENTATION-SUCCESS";
 const GET_PRESENTATION_ERROR = "GET-PRESENTATION-ERROR";
+const CHANGE_PRESENTATION_PRIVATE_STATE = "CHANGE_PRESENTATION_PRIVATE_STATE";
 
 const initialState = {
     Presentation:[],
@@ -32,6 +33,18 @@ const presentationReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 loading:false, error:action.payload.statusText, Presentation:[]};
+        case CHANGE_PRESENTATION_PRIVATE_STATE:
+            return {
+                ...state,
+                Presentation: state.Presentation.map(pres => {
+                    if (pres.secret_key === action.key) {
+                        console.log(pres);
+                        let a = {...pres, is_private:action.payload.data.secret};
+                        return a;
+                    }
+                    return pres;
+                })
+            };
         default:return state
     }
 }
