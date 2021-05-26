@@ -38,7 +38,7 @@ const Private = (props) => {
     let history = useHistory();
     const dispatch = useDispatch();
     const [value, setValue] = React.useState()
-    const notify = () => toast.error("presentation does not exist..");
+    const notify = () => toast.error("Presentation does not exist ");
 
     useEffect(()=>{
         if(error){

@@ -72,7 +72,7 @@ const About = (props) => {
                                     return
                                 }
                                 return (
-                                    <tr key={e.id} className={"control_hover"}>
+                                    <tr key={i} className={"control_hover"}>
                                         <th>{
                                             e.presentation_file[0].path.endsWith('.png')
                                                 ? <Image className="mr-2 rounded" width="45px" src={`${process.env.REACT_APP_API_URL}${e.presentation_file[0].path}`}/>
