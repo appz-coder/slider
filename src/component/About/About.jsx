@@ -53,13 +53,14 @@ const About = (props) => {
     if (!isAuth) return <Redirect to={'/'}/>
 
 
-    const PrivateChanged = ({ target: { checked } }, key) =>{
+    const PrivateChanged = async({ target: { checked } }, key) =>{
         if(checked){
-            checked = 0
-        }else{
             checked = 1
+        }else{
+            checked = 0
         }
-        PublicApi.checkedPrivate(checked,key)
+       await PublicApi.checkedPrivate(checked,key)
+         dispatch(getPresentation(1))
     }
 
 
@@ -73,7 +74,7 @@ const About = (props) => {
                         <tr>
                             <th></th>
                             <td>NAME</td>
-                            <td>Private</td>
+                            <td>State</td>
                             <td className={"w-25"}>OPENED</td>
                             <td className={"w-25"}>SIZE</td>
                         </tr>
