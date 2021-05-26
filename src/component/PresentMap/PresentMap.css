@@ -1,7 +1,0 @@
-.control_hover:hover .control_buttons{
-    opacity: 1;
-}
-.control_buttons{
-    opacity: 0;
-    display: flex;
-}
