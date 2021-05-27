@@ -25,7 +25,7 @@ const Presentation = (props) => {
                 {
                     props.presentItem[0].mime.endsWith('pdf') ?
                         <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={props.index}
-                                  onSelect={handleSelect} >
+                                  onSelect={handleSelect} className={"card_pdf"} >
 
                             {
 
@@ -55,11 +55,10 @@ const Presentation = (props) => {
                                 props.presentItem.map((e, i) => {
                                     return (
                                         <Carousel.Item key={e.id}>
-                                            <img
+                                            <div
                                                 className="pres_carousel"
-                                                src={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                                alt="Your presentation"
-                                            />
+                                                style={{backgroundImage:`url(${process.env.REACT_APP_API_URL}${e.path})`}}
+                                            ></div>
                                         </Carousel.Item>
                                     )
                                 })

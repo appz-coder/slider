@@ -7,13 +7,7 @@
     z-index: 100;
     background-color: white;
 }
-.pres_carousel{
-    height: 80vh;
-    margin-left: 5%;
-    display: block;
-    width: 90%;
 
-}
 .PRES{
     display: block;
     background: white;
@@ -23,7 +17,7 @@
     max-width: 100%!important;
 }
 
-.PRES  .modal-content{
+.PRES .modal-content{
     border: none;
 }
 .pdf_load{
@@ -31,4 +25,22 @@
     display: flex;
     align-items:center;
     flex-direction:column;
+}
+
+.pres_carousel{
+   margin: auto;
+    background-size: contain;
+    width: 100%;
+    background-position: center;
+    height: 85vh;
+    background-repeat: no-repeat;
+}
+.card_pdf{
+    padding-left: 19%!important;
+}
+.card_pdf .react-pdf__Page__canvas{
+    width: 55vw !important;
+    height: 90vh !important;
+    margin-left: 5% !important;
+    margin-bottom: 3% !important;
 }

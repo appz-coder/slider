@@ -56,15 +56,10 @@ border: 2px solid slategrey ;
     background: rgba(239,237,227, 0.8);
 }
 
-.react-pdf__Page__canvas{
-    width: 90% !important;
-    height: 75vh !important;
-    margin-left: 5% !important;
-    margin-bottom: 3% !important;
-}
 
-.pdf_sld .react-pdf__Page .react-pdf__Page__canvas{
-    height: 150px!important;
+.pdf_sld .react-pdf__Page__canvas{
+    width: 100% !important;
+    height: 20vh!important;
 }
 
 
@@ -73,4 +68,26 @@ border: 2px solid slategrey ;
     display: flex;
     align-items:center;
     flex-direction:column;
+}
+
+.item_img{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.present_img{
+    background-size: contain;
+    width: 100%;
+    background-position: center;
+    height: 85vh;
+    background-repeat: no-repeat;
+}
+.car_pdf{
+    padding-left: 8%;
+}
+.car_pdf .react-pdf__Page__canvas{
+    width: 55vw !important;
+    height: 80vh !important;
+    margin-left: 5% !important;
+    margin-bottom: 3% !important;
 }

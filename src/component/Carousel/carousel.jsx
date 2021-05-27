@@ -4,12 +4,14 @@ import {useSelector,useDispatch} from 'react-redux'
 import {Carousel, Col, Card, Container, Row, Button} from "react-bootstrap";
 import Presentation from "./Presents/Presents";
 import {NavLink, withRouter} from "react-router-dom";
+import ArrowKeysReact from 'arrow-keys-react';
 import {fetchPresentation, returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
 import {fetchPublicPresentation} from "../../redux/store/action_creator/publicSliderAC";
+import * as url from "url";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
@@ -30,6 +32,11 @@ const Slider = ({ match }) => {
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
       loadPresentation()
     }, [])
+    ArrowKeysReact.config({
+        left: () => {setPageNumber(((pageNumber-1 === 0 ? numPages : pageNumber-1)) )},
+        right: () => {setPageNumber(pageNumber%numPages +1 )},
+        up: () => {setPageNumber(pageNumber%numPages +1 )},
+        down: () => {setPageNumber(((pageNumber-1 === 0 ? numPages : pageNumber-1)) )}});
     const loadPresentation = async () => {
         if(isAuth) {
             await dispatch(fetchPresentation(secretKey))
@@ -60,7 +67,7 @@ const Slider = ({ match }) => {
     if (error) return <Errors error={error}/>
 
     return (
-        <Container fluid>
+        <Container fluid {...ArrowKeysReact.events} tabIndex="1">
             <Row>
                 <Col sm={3} className={"p-0"}>
                     <Card className={"scroll_min "}>
@@ -130,7 +137,7 @@ const Slider = ({ match }) => {
                                 showPresentation.length &&
                                 showPresentation[0].mime.endsWith('pdf')?
                                 <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
-                                      onSelect={handleSelect}>
+                                      onSelect={handleSelect} className={"car_pdf"} >
 
                                 {
 
@@ -141,7 +148,7 @@ const Slider = ({ match }) => {
                                         ),
                                     )
                                 }
-                                                        <Document
+                                                        <Document style={{margin:"auto"}}
                                                                   file={`${process.env.REACT_APP_API_URL}${showPresentation[0].path}`}
                                                                   options={{ cMapUrl: 'cmaps/', cMapPacked: true}}
                                                                   onLoadSuccess={onDocumentLoadSuccess}
@@ -161,12 +168,10 @@ const Slider = ({ match }) => {
                                 showPresentation.map((presSow, i) => {
 
                                 return (
-                                <Carousel.Item key={i}>
-
-                                <img className="car_img"
-                                src={`${process.env.REACT_APP_API_URL}${presSow.path}`}
-                                alt="First slide"/>
-
+                                <Carousel.Item key={i} className={"item_img"}>
+                                    <div className={"present_img"}
+                                         style={{backgroundImage:`url(${process.env.REACT_APP_API_URL}${presSow.path})`}}>
+                                    </div>
                                 </Carousel.Item>
                                 )
                             })
