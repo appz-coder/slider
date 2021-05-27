@@ -8,7 +8,7 @@
     background-color: white;
 }
 .pres_carousel{
-    height: 550px;
+    height: 80vh;
     margin-left: 5%;
     display: block;
     width: 90%;
@@ -26,7 +26,9 @@
 .PRES  .modal-content{
     border: none;
 }
-.large_slider{
-    min-height: 300px;
-    text-align: center;
+.pdf_load{
+    height:90vh;
+    display: flex;
+    align-items:center;
+    flex-direction:column;
 }

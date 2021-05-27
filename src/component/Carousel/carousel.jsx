@@ -49,7 +49,7 @@ const Slider = ({ match }) => {
 
     const indexSelect = (i, e) => {
         setIndex(i);
-        console.log(i)
+        setPageNumber(i%numPages+1)
     };
     const stateReturn = async () => {
         await dispatch(returnFetchPresentationStateAC())
@@ -66,34 +66,28 @@ const Slider = ({ match }) => {
                     <Card className={"scroll_min "}>
                         <div>
                             {
-                                showPresentation.map((e, i) => {
+                                showPresentation.map((pres, i) => {
 
                                     return (
                                         <div>
                                             {
-                                                e.mime.endsWith('pdf')?(<div>
+                                                pres.mime.endsWith('pdf')?(<div>
                                                     <Document className={"pdf_sld"}
-                                                              file={`${process.env.REACT_APP_API_URL}${e.path}`}
-                                                              options={{ workerSrc: `${process.env.REACT_APP_API_URL}${e.path}` }}
+                                                              file={`${process.env.REACT_APP_API_URL}${pres.path}`}
+                                                              options={{ workerSrc: `${process.env.REACT_APP_API_URL}${pres.path}` }}
                                                               onLoadSuccess={onDocumentLoadSuccess}
                                                               onLoadError={(error) => console.log('Error while loading document! ' + error.message, error)}
-                                                              loading={(
-                                                                  <div style={{ height: "90vh", display: "flex", alignItems: "center", flexDirection: "column"}}>
-                                                                      <div>
-                                                                          <Load />
-                                                                      </div>
-                                                                  </div>
-                                                              )}
-                                                    >
+                                                              loading={(<div className={"pdf_load"}><div><Load /></div></div>)}>
                                                         {
                                                             Array.from(
                                                                 new Array(numPages),
-                                                                (el, index) => (
-                                                                    <div className={pageNumber === index ? "m-4 active_scroll" : "m-4"}
-                                                                         onClick={(e)=>{indexSelect(index + 1)}}>
+                                                                (el, i) => (
+                                                                    <div className={pageNumber === i+1 ? "m-4 active_scroll" : "m-4"}
+                                                                          onClick={(e)=>{indexSelect(i)}}
+                                                                    >
                                                                     <Page
-                                                                        key={`page_${index + 1}`}
-                                                                        pageNumber={index + 1}
+                                                                        key={`page_${i + 1}`}
+                                                                        pageNumber={i+1}
                                                                     />
                                                                     </div>
                                                                 ),
@@ -101,10 +95,10 @@ const Slider = ({ match }) => {
                                                         }
                                                     </Document>
                                                     <p>Page {pageNumber} of {numPages}</p>
-                                                </div>):( <div className={index === i ? "m-4 active_scroll" : "m-4"} key={e.id}
+                                                </div>):( <div className={index === i ? "m-4 active_scroll" : "m-4"} key={i}
                                                                onClick={(e) => {indexSelect(i)}}>
 
-                                                    <img width={"100%"} height={"250px"}  src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                                    <img width={"100%"} height={"250px"}  src={`${process.env.REACT_APP_API_URL}${pres.path}`}
                                                     />
                                                 </div>)
                                             }
@@ -147,18 +141,11 @@ const Slider = ({ match }) => {
                                         ),
                                     )
                                 }
-                                                        <Document className={"large_slider"}
+                                                        <Document
                                                                   file={`${process.env.REACT_APP_API_URL}${showPresentation[0].path}`}
                                                                   options={{ cMapUrl: 'cmaps/', cMapPacked: true}}
                                                                   onLoadSuccess={onDocumentLoadSuccess}
-                                                                  loading={(
-                                                                      <div style={{ height: "90vh", display: "flex", alignItems: "center", flexDirection: "column"}}>
-                                                                          <div>
-                                                                              <Load />
-                                                                          </div>
-                                                                      </div>
-                                                                  )}
-                                                        >
+                                                                  loading={(<div className={"pdf_load"}><div><Load /></div></div>)} >
 
                                                             <Page pageNumber={pageNumber} />
                                                         </Document>
@@ -171,13 +158,13 @@ const Slider = ({ match }) => {
                                :<Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={index}
                                 onSelect={handleSelect}>
                             {
-                                showPresentation.map((e, i) => {
+                                showPresentation.map((presSow, i) => {
 
                                 return (
-                                <Carousel.Item key={e.id}>
+                                <Carousel.Item key={i}>
 
                                 <img className="car_img"
-                                src={`${process.env.REACT_APP_API_URL}${e.path}`}
+                                src={`${process.env.REACT_APP_API_URL}${presSow.path}`}
                                 alt="First slide"/>
 
                                 </Carousel.Item>
@@ -204,13 +191,3 @@ const Slider = ({ match }) => {
 }
 
 export default withRouter(Slider);
-
-//
-// let pdfPages = document.getElementsByClassName('react-pdf__Page');
-// for (let i = 0 ; i <pdfPages.length; ++i )
-// {
-//     pdfPages[i].addEventListener('click',(e)=>{
-//         func(e.data-page-number);
-//     })
-//
-// }

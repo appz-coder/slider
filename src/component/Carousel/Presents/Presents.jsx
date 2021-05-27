@@ -20,13 +20,12 @@ const Presentation = (props) => {
             dialogClassName="modal-90w"
             aria-labelledby="example-custom-modal-styling-title"
         >
-            <Modal.Header className="p-0 border-0" closeButton>
-            </Modal.Header>
-            <Modal.Body className={"w-100 "}>
+            <Modal.Header className="p-0 border-0" closeButton></Modal.Header>
+            <Modal.Body className={"w-100"}>
                 {
                     props.presentItem[0].mime.endsWith('pdf') ?
                         <Carousel interval={null} nextIcon={nextIcon} prevIcon={prevIcon} activeIndex={props.index}
-                                  onSelect={handleSelect}>
+                                  onSelect={handleSelect} >
 
                             {
 
@@ -37,18 +36,11 @@ const Presentation = (props) => {
                                     ),
                                 )
                             }
-                            <Document className={"large_slider"}
+                            <Document
                                 file={`${process.env.REACT_APP_API_URL}${props.presentItem[0].path}`}
                                 options={{cMapUrl: 'cmaps/', cMapPacked: true}}
                                 onLoadSuccess={props.onDocumentLoadSuccess}
-                                      loading={(
-                                          <div style={{ height: "90vh", display: "flex", alignItems: "center", flexDirection: "column"}}>
-                                              <div>
-                                                  <Load />
-                                              </div>
-                                          </div>
-                                      )}
-                            >
+                                 loading={(<div className={"pdf_load"}><div><Load /></div></div>)}>
 
                                 <Page pageNumber={props.pageNumber}/>
                             </Document>

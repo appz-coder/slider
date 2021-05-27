@@ -38,7 +38,6 @@ const presentationReducer = (state = initialState, action) =>{
                 ...state,
                 Presentation: state.Presentation.map(pres => {
                     if (pres.secret_key === action.key) {
-                        console.log(pres);
                         let a = {...pres, is_private:action.payload.data.secret};
                         return a;
                     }

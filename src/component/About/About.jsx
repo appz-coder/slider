@@ -53,15 +53,15 @@ const About = (props) => {
     if (!isAuth) return <Redirect to={'/'}/>
 
 
-    const PrivateChanged = async({ target: { checked } }, key) =>{
+    const PrivateChanged = async(checked, key) =>{
         if(checked){
-            checked = 1
-        }else{
             checked = 0
+        }else{
+            checked = 1
         }
+
        await PublicApi.checkedPrivate(checked,key).then(res=>{
            dispatch(presentationPrivateStateAC(key,res.data))
-
        })
     }
 
@@ -76,7 +76,7 @@ const About = (props) => {
                         <tr>
                             <th></th>
                             <td>NAME</td>
-                            <td>State</td>
+                            <td></td>
                             <td className={"w-25"}>OPENED</td>
                             <td className={"w-25"}>SIZE</td>
                         </tr>
@@ -97,17 +97,23 @@ const About = (props) => {
                                         </th>
                                         <td>{pres.title}
                                             {pres.is_private ?
-                                                <Image width={"40px"} src={lock}/> : ""
+                                                <Image className={"lock"}  src={lock}/> : ""
                                             }
                                             <div><small>  {pres.presentation_file[0].mime}</small></div>
                                         </td>
-                                        <td>
-                                            <input
-                                                name={"checked"}
-                                                type="checkbox"
-                                                checked={pres.is_private}
-                                                onChange={(event) => PrivateChanged(event,pres.secret_key)}
-                                            />
+                                        <td >
+                                            <div>
+                                                {pres.is_private? <button
+                                                    className={"click_btn"}
+                                                    onClick={()=>{PrivateChanged(true,pres.secret_key)}}>
+                                                        Private
+                                                    </button>:
+                                                    <button
+                                                        className={"click_btn"}
+                                                        onClick={()=>{PrivateChanged(false,pres.secret_key)}}>
+                                                        Public
+                                                    </button>}
+                                            </div>
                                         </td>
                                         <td>{
                                             new Date(pres.createdAt).toLocaleString('en-us', {
@@ -156,6 +162,6 @@ const About = (props) => {
         <SharePresentation
             show={modalShare} path={path} secretKey={secretKey}
             onHide={() => setModalShare(false)}/>
-    </div>)
+    </div>);
 }
 export default withRouter(About);
