@@ -2,6 +2,7 @@ const GET_PRESENTATION = "GET-PRESENTATION";
 const GET_PRESENTATION_SUCCESS = "GET-PRESENTATION-SUCCESS";
 const GET_PRESENTATION_ERROR = "GET-PRESENTATION-ERROR";
 const CHANGE_PRESENTATION_PRIVATE_STATE = "CHANGE_PRESENTATION_PRIVATE_STATE";
+const ADD_PRESENTATION_SUCCESS = "ADD-PRESENTATION-SUCCESS";
 
 const initialState = {
     Presentation:[],
@@ -33,7 +34,14 @@ const presentationReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 loading:false, error:action.payload.statusText, Presentation:[]};
+        case ADD_PRESENTATION_SUCCESS:
+            let newPresentation = action.payload.data.data
+            return {
+                ...state,
+                Presentation:[newPresentation, ...state.Presentation]
+            };
         case CHANGE_PRESENTATION_PRIVATE_STATE:
+            debugger
             return {
                 ...state,
                 Presentation: state.Presentation.map(pres => {

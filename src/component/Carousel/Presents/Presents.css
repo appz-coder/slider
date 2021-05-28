@@ -12,9 +12,12 @@
     display: block;
     background: white;
 }
-.PRES .modal-lg{
-    height: 100%!important;
-    max-width: 100%!important;
+ .modal-lg{
+    max-height: 100vh!important;
+    max-width: 100vw!important;
+}
+.PRES .modal-dialog{
+    margin: 0;
 }
 
 .PRES .modal-content{

@@ -6,6 +6,7 @@ const ADD_PRESENTATION_SUCCESS = "ADD-PRESENTATION-SUCCESS";
 const ADD_PRESENTATION_ERROR = "ADD-PRESENTATION-ERROR";
 const RETURN_PRESENTATION_STATE = "RETURN_PRESENTATION_STATE";
 
+
 const addPresentationAC = ()=>({type: ADD_PRESENTATION});
 const addPresentationSuccessAC = (payload)=>({type:ADD_PRESENTATION_SUCCESS, payload });
 const addPresentationErrorAC = (payload)=>({type:ADD_PRESENTATION_ERROR, payload});

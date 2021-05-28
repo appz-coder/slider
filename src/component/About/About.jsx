@@ -7,19 +7,20 @@ import lock from "../../icon/lock.png"
 import {Button, Image, Table} from "react-bootstrap";
 import {useSelector, useDispatch} from 'react-redux';
 import SharePresentation from "./Share/SharePresentation";
-import {getPresentation, presentationPrivateStateAC} from "../../redux/store/action_creator/presentationAC";
+import {
+    getPresentation,
+    toModifyPublic
+} from "../../redux/store/action_creator/presentationAC";
 import {NavLink, Redirect, useHistory, withRouter} from "react-router-dom";
 import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
 import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
-import {PublicApi} from "../api/api";
 
 const About = (props) => {
     const history = useHistory();
     const {Presentation, error, loading, totalUsersCount, pageSize} = useSelector((state) => state.presentation);
     const {isAuth} = useSelector((state) => state.auth)
-    const {isProcessed} = useSelector((state) => state.newPresentation);
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
     const [path, setPath] = React.useState('');
@@ -30,9 +31,6 @@ const About = (props) => {
     }, []);
     const onHide = () => {
         setModalShow(false)
-        if(isProcessed) {
-            dispatch(getPresentation(1))
-        }
     }
     const ModalShow = (path,secKey) => {
         setModalShare(true)
@@ -57,12 +55,8 @@ const About = (props) => {
         if(checked){
             checked = 0
         }else{
-            checked = 1
-        }
-
-       await PublicApi.checkedPrivate(checked,key).then(res=>{
-           dispatch(presentationPrivateStateAC(key,res.data))
-       })
+            checked = 1}
+        dispatch(toModifyPublic(checked,key))
     }
 
 

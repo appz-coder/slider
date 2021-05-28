@@ -39,10 +39,7 @@ const addPresentationReducer = (state = initialState, action) => {
                 statusText: action.payload.statusText
             };
         case RETURN_PRESENTATION_STATE:
-            return {
-                ...state,
-                statusText: "", messages: "", loading: false, errors: null, isProcessed: false
-            };
+            return initialState;
         default:
             return state
     }

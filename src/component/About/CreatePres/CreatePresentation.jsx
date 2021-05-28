@@ -6,14 +6,12 @@ import {Input, InputFile} from "../../ Validation/ FormsControl";
 import {maxLength30, required, validate} from "../../ Validation/ValidationForm";
 import {useSelector, useDispatch} from 'react-redux'
 import {presentationCreated, returnPresentationStateAC} from "../../../redux/store/action_creator/createPresentationAC";
-import {getPresentation} from "../../../redux/store/action_creator/presentationAC";
 
 const PresentationForm = (props) => {
     const {loading, isProcessed} = useSelector((state) => state.newPresentation);
     const dispatch = useDispatch();
     const stateReturn = async () => {
         await dispatch(returnPresentationStateAC())
-        dispatch(getPresentation(1))
         props.onHide()
     }
     return (<div>
@@ -48,13 +46,7 @@ const PresentationForm = (props) => {
                     </div> :
                     (<div>
                         {loading ?  <Button className={"popBtn"} variant="primary" disabled>
-                                <Spinner
-                                    as="span"
-                                    animation="grow"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
+                                <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true"/>
                                 Loading...
                             </Button>:
                             <div>
