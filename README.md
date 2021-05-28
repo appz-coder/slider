@@ -8,14 +8,6 @@ Checkout the code from this repository hosted on GitHub.
 
 ### `git@github.com:appz-coder/slider-core.git`
 
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm install`
-### `npm start`
-
 ## Environment variables
 
 Now specify the environment you want to run the application on by editing the
@@ -25,6 +17,12 @@ edit it to match your preference.
 
 ### `cp .env.example .env`
 
+## Available Scripts
+
+In the project directory run:
+
+### `npm install`
+### `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
