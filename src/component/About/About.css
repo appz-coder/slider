@@ -41,18 +41,19 @@
     opacity: 1;
 }
 .click_btn{
+
     opacity: 0;
+    font-size: 13px;
     background-color: #2F4B7B;
     color: white;
     border-radius: 25px;
     border: none;
-    margin-top: 8%;
-    width: 100px;
-    height: 25px;
+    margin-top: 10%;
+    width: 60px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 5px;
 }
 
 .lock{

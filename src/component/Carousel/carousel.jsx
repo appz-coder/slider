@@ -11,7 +11,6 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
 import {fetchPublicPresentation} from "../../redux/store/action_creator/publicSliderAC";
-import * as url from "url";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <div className="custom-chevron-left"></div>;
@@ -25,18 +24,26 @@ const Slider = ({ match }) => {
     const dispatch = useDispatch();
     const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
-
     const secretKey = match.params.secret_key;
-
+    console.log(showPresentation);
     useEffect(() => {
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
       loadPresentation()
     }, [])
     ArrowKeysReact.config({
-        left: () => {setPageNumber(((pageNumber-1 === 0 ? numPages : pageNumber-1)) )},
-        right: () => {setPageNumber(pageNumber%numPages +1 )},
-        up: () => {setPageNumber(pageNumber%numPages +1 )},
-        down: () => {setPageNumber(((pageNumber-1 === 0 ? numPages : pageNumber-1)) )}});
+        left: () => {setPageNumber(((pageNumber-1 === 0 ? numPages : pageNumber-1)) );
+            setIndex(((index-1 === -1 ? showPresentation.length-1  : index-1)));
+        },
+        right: () => {setPageNumber(pageNumber%numPages +1 );
+            setIndex((index +1)%(showPresentation.length))},
+        up: () => {
+            setPageNumber(((pageNumber-1 === 0 ? numPages : pageNumber-1)) );
+                setIndex(((index-1 === -1 ? showPresentation.length-1  : index-1)));
+        },
+        down: () => {
+            setPageNumber(pageNumber%numPages +1 );
+            setIndex((index +1)%(showPresentation.length));
+        }});
     const loadPresentation = async () => {
         if(isAuth) {
             await dispatch(fetchPresentation(secretKey))

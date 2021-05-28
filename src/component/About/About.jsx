@@ -103,15 +103,11 @@ const About = (props) => {
                                         </td>
                                         <td >
                                             <div>
-                                                {pres.is_private? <button
-                                                    className={"click_btn"}
-                                                    onClick={()=>{PrivateChanged(true,pres.secret_key)}}>
-                                                        Private
+                                                {pres.is_private? <button className={"click_btn"}
+                                                    onClick={()=>{PrivateChanged(true,pres.secret_key)}}>Private
                                                     </button>:
-                                                    <button
-                                                        className={"click_btn"}
-                                                        onClick={()=>{PrivateChanged(false,pres.secret_key)}}>
-                                                        Public
+                                                    <button className={"click_btn"}
+                                                        onClick={()=>{PrivateChanged(false,pres.secret_key)}}>Public
                                                     </button>}
                                             </div>
                                         </td>
