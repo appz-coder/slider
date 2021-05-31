@@ -25,6 +25,7 @@ const About = (props) => {
     const [modalShare, setModalShare] = React.useState(false);
     const [path, setPath] = React.useState('');
     const [secretKey, setSecretKey] = React.useState('');
+    const [pag, setPag] = React.useState(1);
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(getPresentation(1))
@@ -137,7 +138,7 @@ const About = (props) => {
                         pages.map((p, i) =>
                             <li className="page-item" key={i} onClick={() => {dispatch(getPresentation(p))}}
                         >
-                                <NavLink activeClassName={'active_li'} to={`/home/${p}`} className="page-link">{p}</NavLink>
+                                <NavLink className={pag === p ? "active_li page-link" : "page-link"}  onClick={()=>setPag(p)} to={`/home/${p}`} >{p}</NavLink>
                         </li>)
                     }
                 </ul>
