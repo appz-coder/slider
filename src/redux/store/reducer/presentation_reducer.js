@@ -9,7 +9,7 @@ const initialState = {
     loading:false,
     error:null,
     pageSize: 10,
-    totalUsersCount:null,
+    totalCount: 0,
     currentPage:0,
 
 
@@ -27,7 +27,7 @@ const presentationReducer = (state = initialState, action) =>{
                 ...state,
                 loading:false,
                 error:action.payload.error,
-                 totalUsersCount:action.payload.data.presentationsCount,
+                 totalCount:action.payload.data.presentationsCount,
                Presentation:action.payload.data.presentations
                };
         case GET_PRESENTATION_ERROR:
@@ -38,10 +38,10 @@ const presentationReducer = (state = initialState, action) =>{
             let newPresentation = action.payload.data.data
             return {
                 ...state,
+                totalCount: state.totalCount + 1,
                 Presentation:[newPresentation, ...state.Presentation]
             };
         case CHANGE_PRESENTATION_PRIVATE_STATE:
-            debugger
             return {
                 ...state,
                 Presentation: state.Presentation.map(pres => {

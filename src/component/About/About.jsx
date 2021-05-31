@@ -19,7 +19,7 @@ import Errors from "../ Validation/Include/Erorrs";
 
 const About = (props) => {
     const history = useHistory();
-    const {Presentation, error, loading, totalUsersCount, pageSize} = useSelector((state) => state.presentation);
+    const {Presentation, error, loading, totalCount, pageSize} = useSelector((state) => state.presentation);
     const {isAuth} = useSelector((state) => state.auth)
     const [modalShow, setModalShow] = React.useState(false);
     const [modalShare, setModalShare] = React.useState(false);
@@ -29,6 +29,7 @@ const About = (props) => {
     React.useEffect(() => {
         dispatch(getPresentation(1))
     }, []);
+
     const onHide = () => {
         setModalShow(false)
     }
@@ -37,7 +38,7 @@ const About = (props) => {
         setPath(path)
         setSecretKey(secKey)
     }
-    let pagesCount = Math.ceil(totalUsersCount / pageSize);
+    let pagesCount = Math.ceil(totalCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -63,7 +64,7 @@ const About = (props) => {
     return (<div>
         <Header/>
         <main role="main" className="container">
-            {totalUsersCount ? <div><h5 className={"mt-5"}>All Presentations</h5>
+            {totalCount ? <div><h5 className={"mt-5"}>All Presentations</h5>
                 <div className="my-3 p-3  pres_table rounded box-shadow">
                     <Table hover responsive="xl">
                         <thead>
@@ -130,7 +131,7 @@ const About = (props) => {
                     </Table>
                 </div>
             </div> : <h5 className={"mt-5"}>You do not have any presentations yet</h5>}
-            {totalUsersCount > 10 && (<nav aria-label="Page navigation example">
+            {totalCount > 10 && (<nav aria-label="Page navigation example">
                 <ul className="pagination">
                     {
                         pages.map((p, i) =>
