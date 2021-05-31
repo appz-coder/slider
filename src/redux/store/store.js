@@ -1,4 +1,3 @@
-
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import { reducer as formReducer } from 'redux-form'
 import presentationReducer from "./reducer/presentation_reducer";
