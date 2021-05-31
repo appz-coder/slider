@@ -25,7 +25,6 @@ const Slider = ({ match }) => {
     const [numPages, setNumPages] = React.useState("");
     const [pageNumber, setPageNumber] = React.useState(1);
     const secretKey = match.params.secret_key;
-    console.log(showPresentation);
     useEffect(() => {
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
       loadPresentation()
@@ -83,7 +82,7 @@ const Slider = ({ match }) => {
                                 showPresentation.map((pres, i) => {
 
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             {
                                                 pres.mime.endsWith('pdf')?(<div>
                                                     <Document className={"pdf_sld"}
@@ -126,7 +125,7 @@ const Slider = ({ match }) => {
                     </Card>
 
                 </Col>
-                <Col sm={9} className={"p-0"} bg>
+                <Col sm={9} className={"p-0"} >
                     <Card className={"slide_card"}>
                         <Card.Body>
                             <Card.Title className={" ml-5"}>
@@ -191,9 +190,9 @@ const Slider = ({ match }) => {
                 </Col>
             </Row>
 
-            <Presentation show={modalShow} presentItem={showPresentation}
-                          index={index} setIndex={setIndex} pageNumber={pageNumber}
-                          numPages={numPages}
+            <Presentation show={modalShow} presentitem={showPresentation}
+                          index={index} setIndex={setIndex} pagenumber={pageNumber}
+                          numpages={numPages}
                           setPageNumber={setPageNumber}
                           onDocumentLoadSuccess={onDocumentLoadSuccess}
                           onHide={() => setModalShow(false)}/>

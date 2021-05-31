@@ -5,15 +5,10 @@ import {Field, reduxForm} from "redux-form";
 import {Input, InputFile} from "../../ Validation/ FormsControl";
 import {maxLength30, required, validate} from "../../ Validation/ValidationForm";
 import {useSelector, useDispatch} from 'react-redux'
-import {presentationCreated, returnPresentationStateAC} from "../../../redux/store/action_creator/createPresentationAC";
+import {presentationCreated} from "../../../redux/store/action_creator/createPresentationAC";
 
 const PresentationForm = (props) => {
     const {loading, isProcessed} = useSelector((state) => state.newPresentation);
-    const dispatch = useDispatch();
-    const stateReturn = async () => {
-        await dispatch(returnPresentationStateAC())
-        props.onHide()
-    }
     return (<div>
             <form className="form-signin" style={{width:'130%',marginLeft:'-13%'}} onSubmit={props.handleSubmit} encType="multipart/form-data">
                 <Field
@@ -35,11 +30,10 @@ const PresentationForm = (props) => {
                     multiple
                     name="slider"
                     type='file'
-                    progress={props.progress}
 
                 />
                 {isProcessed ? <div>
-                        <button onClick={stateReturn} type="button" className="btn btn-primary popBtn">
+                        <button onClick={props.onHide} type="button" className="btn btn-primary popBtn">
                             Close
                             <i className="fas ml-3 fa-times-circle"></i>
                         </button>
@@ -67,14 +61,13 @@ const PresentationForm = (props) => {
 const ReduxPresentationForm = reduxForm({form: 'popup'})(PresentationForm)
 
 const CreatePresentation = (props) => {
-    const [progress, setProgress] = React.useState()
     const dispatch = useDispatch();
     const onSubmit = (data) => {
         let {title, slider, is_private} = data;
         if (!is_private) {
             is_private = false;
         }
-        const formData = new FormData;
+        const formData = new FormData();
         formData.append('title', title)
         formData.append('is_private', is_private)
         for (let i = 0; i < slider.length; i++) {
@@ -94,7 +87,7 @@ const CreatePresentation = (props) => {
                 <Modal.Title id="contained-modal-title-vcenter" className={"pop_title  h4 "}>
                     Create Presentation
                 </Modal.Title>
-                <ReduxPresentationForm onSubmit={onSubmit} progress={progress} onHide={props.onHide}/>
+                <ReduxPresentationForm onSubmit={onSubmit} onHide={props.onHide}/>
             </Modal.Body>
 
         </Modal>

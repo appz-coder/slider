@@ -16,6 +16,7 @@ import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
 import Load from "../ Validation/Include/loading";
 import Errors from "../ Validation/Include/Erorrs";
+import {returnPresentationStateAC} from "../../redux/store/action_creator/createPresentationAC";
 
 const About = (props) => {
     const history = useHistory();
@@ -28,10 +29,11 @@ const About = (props) => {
     const [pag, setPag] = React.useState(1);
     const dispatch = useDispatch();
     React.useEffect(() => {
-        dispatch(getPresentation(1))
+        dispatch(getPresentation(1));
     }, []);
 
-    const onHide = () => {
+    const onHide = async () => {
+        await dispatch(returnPresentationStateAC())
         setModalShow(false)
     }
     const ModalShow = (path,secKey) => {

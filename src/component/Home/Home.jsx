@@ -49,7 +49,7 @@ const Home = () => {
                     cookiePolicy={'single_host_origin'}
 
                 />
-                <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? <a style={{color:'#212529'}} className={"nav-item a_hov"} onClick={()=>setPrivateShow(true)}>Click here to enter code</a></Card.Text>
+                <Card.Text style={{fontSize:'16px'}}>Preview existing presentation? <a  className={"nav-item a_hov"} onClick={()=>setPrivateShow(true)}>Click here to enter code</a></Card.Text>
             </Card.Body>
                 <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
         </Card>
