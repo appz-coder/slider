@@ -1,0 +1,58 @@
+.popbtn{
+    margin-top: 10%;
+    margin-bottom: 5%;
+    position: fixed;
+    bottom:-60px;
+    right:0px;
+    cursor: pointer;
+}
+.spr{
+    background: initial;
+    width: 85px;
+    height: 85px;
+    box-shadow: 3px 2px 3px #f9e06a;
+    border-top: 4px dotted #eea200;
+    border-right: 5px dotted #ff9407;
+    border-left: 1px dotted #ff9407;
+}
+.control_buttons{
+   opacity: 0;
+    display: flex;
+}
+.control_hover:hover .control_buttons{
+    opacity: 1;
+}
+.pres_table{
+    height: 70vh;
+    overflow-y: scroll;
+}
+.pres_table::-webkit-scrollbar{
+    border-radius: 5px;
+    width:4px;
+}
+
+.active_li{
+    color: white;
+    background-color: #427cff;
+    transform: scale(1.1);
+    z-index: 100;
+}
+.control_hover:hover .click_btn{
+    opacity: 1;
+}
+.click_btn{
+    opacity: 0;
+    margin-top: 13px;
+    font-size: 13px;
+    background-color: #2F4B7B;
+    color: white;
+    border-radius: 25px;
+    border: none;
+    padding: 0px 10px 2px 10px;
+    width: 60px;
+}
+
+.lock{
+width: 40px !important;
+height: 18px !important;
+}
