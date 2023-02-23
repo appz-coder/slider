@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>floating button@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="28" cy="28" r="28"></circle>
+        <filter x="-30.4%" y="-26.8%" width="175.0%" height="175.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="4" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.258823529   0 0 0 0 0.48627451   0 0 0 0 1  0 0 0 0.325294384 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.258823529   0 0 0 0 0.48627451   0 0 0 0 1  0 0 0 0.195029438 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="floating-button" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="plusButton">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#427CFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <g id="icons/addDoc" transform="translate(16.000000, 16.000000)" stroke="#FFFFFF">
+            <g id="add_doc">
+                <g transform="translate(4.000000, 1.000000)" stroke-width="2">
+                    <polyline id="Rectangle-4" points="9 19 0 19 0 0 15 0 15 13"></polyline>
+                    <path d="M15,15 L15,23" id="Path-2"></path>
+                    <path d="M11,19 L19,19" id="Path-3"></path>
+                    <path d="M3,4 L12,4" id="Path-4"></path>
+                    <path d="M3,8 L9,8" id="Path-5"></path>
+                    <path d="M3,12 L10,12" id="Path-6"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
