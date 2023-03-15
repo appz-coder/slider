@@ -25,6 +25,7 @@ properties:
     ##site_url: "https://hellonodejs.appzclient.com/"
     BUILD_ON_STARTUP: 0
     REACT_APP_API_URL: http://localhost:4000/
+    REACT_APP_URL: http://localhost:3000/
     REACT_APP_CLIENT_ID:
       vault: REACT_APP_CLIENT_ID
     REACT_APP_CLIENT_SECRET:
