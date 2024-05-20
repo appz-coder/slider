@@ -14,8 +14,8 @@ import {
 import {NavLink, Redirect, useHistory, withRouter} from "react-router-dom";
 import Header from "../NavBar/Navbar";
 import {fetchPresentation} from "../../redux/store/action_creator/sliderAC";
-import Load from "../ Validation/Include/loading";
-import Errors from "../ Validation/Include/Erorrs";
+import Load from "../../component/Validation/Include/loading";
+import Errors from "../../component/Validation/Include/Erorrs";
 import {returnPresentationStateAC} from "../../redux/store/action_creator/createPresentationAC";
 
 const About = (props) => {
