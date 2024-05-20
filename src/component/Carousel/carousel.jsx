@@ -8,8 +8,8 @@ import ArrowKeysReact from 'arrow-keys-react';
 import {fetchPresentation, returnFetchPresentationStateAC} from "../../redux/store/action_creator/sliderAC";
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import Load from "../ Validation/Include/loading";
-import Errors from "../ Validation/Include/Erorrs";
+import Load from "../../component/Validation/Include/loading";
+import Errors from "../../component/Validation/Include/Erorrs";
 import {fetchPublicPresentation} from "../../redux/store/action_creator/publicSliderAC";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
