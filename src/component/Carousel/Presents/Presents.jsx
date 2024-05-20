@@ -2,7 +2,7 @@ import React from "react";
 import "./Presents.css"
 import {Carousel, Modal} from "react-bootstrap";
 import {Document, Page} from "react-pdf/dist/umd/entry.webpack";
-import Load from "../../ Validation/Include/loading";
+import Load from "../../../component/Validation/Include/loading";
 
 const nextIcon = <div className="custom-chevron-right"></div>;
 const prevIcon = <i className="custom-chevron-left"></i>;
