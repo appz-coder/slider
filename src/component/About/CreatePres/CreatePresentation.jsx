@@ -2,8 +2,8 @@ import React from "react";
 import "./CreatePresentation.css"
 import {Button, Modal, Spinner} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
-import {Input, InputFile} from "../../ Validation/ FormsControl";
-import {maxLength30, required, validate} from "../../ Validation/ValidationForm";
+import {Input, InputFile} from "../../../component/Validation/FormsControl";
+import {maxLength30, required, validate} from "../../../component/Validation/ValidationForm";
 import {useSelector, useDispatch} from 'react-redux'
 import {presentationCreated} from "../../../redux/store/action_creator/createPresentationAC";
 
