@@ -5,7 +5,7 @@ import { Card, Image } from "react-bootstrap";
 import Private from "./PrivateKey/Private";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import GoogleLoginButton from "././GoogleLoginButton/GoogleLoginButton"; // Assuming this is the correct path
+import GoogleLoginButton from "../../component/GoogleLoginButton/GoogleLoginButton"; // Assuming this is the correct path
 
 const Home = () => {
     const [privateShow, setPrivateShow] = React.useState(false);
