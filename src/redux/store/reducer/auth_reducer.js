@@ -1,5 +1,6 @@
 
 import { presentationApi, setAuthHeader } from '../../../component/api/api';
+import jwt_decode from 'jwt-decode';
 
 const SET_USERS_GOOGLE_DATA = 'SET_USERS_GOOGLE_DATA';
 const SET_USERS_DATA = 'SET_USERS_DATA';
