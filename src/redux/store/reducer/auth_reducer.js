@@ -19,8 +19,8 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: false,
-                imageUrl: profileObj.picture || "",
-                givenName: profileObj.given_name || "",
+                imageUrl: action.payload.profileObj.picture || "",
+                givenName: action.payload.profileObj.given_name || "",
             }
         }
         case LOG_OUT_USERS_LOGIN_DATA: {
