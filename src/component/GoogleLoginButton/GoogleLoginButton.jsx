@@ -10,7 +10,7 @@ const GoogleLoginButton = () => {
     useEffect(() => {
         const initializeGoogleSignIn = () => {
             window.google.accounts.id.initialize({
-                client_id: 'YOUR_GOOGLE_CLIENT_ID',
+                client_id: 'REACT_APP_CLIENT_ID',
                 callback: handleCredentialResponse,
             });
 
