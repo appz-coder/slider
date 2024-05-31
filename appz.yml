@@ -29,5 +29,5 @@ properties:
       vault: REACT_APP_CLIENT_ID
     REACT_APP_CLIENT_SECRET:
       vault: REACT_APP_CLIENT_SECRET
-    revision: 8
+    revision: 9
     page_color: Blue
