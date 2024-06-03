@@ -1,5 +1,4 @@
 import { presentationApi, setAuthHeader } from '../../../component/api/api';
-import jwt_decode from 'jwt-decode';
 
 const SET_USERS_GOOGLE_DATA = 'SET_USERS_GOOGLE_DATA';
 const SET_USERS_DATA = 'SET_USERS_DATA';
@@ -16,22 +15,12 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS_GOOGLE_DATA: {
-            try {
-                const profileObj = jwt_decode(action.payload.token);
-                return {
-                    ...state,
-                    error: false,
-                    imageUrl: profileObj.picture || "",
-                    givenName: profileObj.given_name || "",
-                };
-            } catch (e) {
-                return {
-                    ...state,
-                    error: true,
-                    imageUrl: "",
-                    givenName: "",
-                };
-            }
+            return {
+                ...state,
+                error: false,
+                imageUrl: action.payload.profileObj.imageUrl || "",
+                givenName: action.payload.profileObj.givenName || "",
+            };
         }
         case LOG_OUT_USERS_LOGIN_DATA: {
             return initialState;
