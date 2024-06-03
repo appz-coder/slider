@@ -1,4 +1,3 @@
-// src/components/GoogleLoginButton/GoogleLoginButton.jsx
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import jwt_decode from 'jwt-decode';
@@ -22,7 +21,7 @@ const GoogleLoginButton = () => {
 
         const handleCredentialResponse = (response) => {
             const userObject = jwt_decode(response.credential);
-            dispatch(loginUserData({ profileObj: userObject }));
+            dispatch(loginUserData({ token: response.credential }));
         };
 
         initializeGoogleSignIn();
