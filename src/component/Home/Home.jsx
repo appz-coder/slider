@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import Hand from "../../icon/Hands.webp";
 import { Card, Image } from "react-bootstrap";
@@ -8,7 +8,6 @@ import { loginUserData, setUsersData, logoutUserData } from "../../redux/store/r
 import { Redirect } from "react-router-dom";
 
 const Home = () => {
-    const [privateShow, setPrivateShow] = useState(false);
     const { isAuth } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
