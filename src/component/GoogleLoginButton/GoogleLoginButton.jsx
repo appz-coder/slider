@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import jwt_decode from 'jwt-decode';
 import { loginUserData } from '../../redux/store/reducer/auth_reducer';
 
 const GoogleLoginButton = () => {
@@ -9,7 +8,7 @@ const GoogleLoginButton = () => {
     useEffect(() => {
         const initializeGoogleSignIn = () => {
             window.google.accounts.id.initialize({
-                client_id: 'REACT_APP_CLIENT_ID',
+                client_id: process.env.REACT_APP_CLIENT_ID,
                 callback: handleCredentialResponse,
             });
 
@@ -20,8 +19,8 @@ const GoogleLoginButton = () => {
         };
 
         const handleCredentialResponse = (response) => {
-            const userObject = jwt_decode(response.credential);
-            dispatch(loginUserData({ token: response.credential }));
+            const userObject = response.profileObj;
+            dispatch(loginUserData({ profileObj: userObject }));
         };
 
         initializeGoogleSignIn();
