@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import Hand from "../../icon/Hands.webp";
 import { Card, Image } from "react-bootstrap";
+import Private from "./PrivateKey/Private";
 import GoogleLogin from 'react-google-login';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginUserData, setUsersData, logoutUserData } from "../../redux/store/reducer/auth_reducer";
+import { loginUserData, setUsersData } from "../../redux/store/reducer/auth_reducer";
 import { Redirect } from "react-router-dom";
 
 const Home = () => {
+    const [privateShow, setPrivateShow] = useState(false);
     const { isAuth } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(logoutUserData()); // Ensure user is logged out on component mount
-    }, [dispatch]);
-
     const responseGoogle = (response) => {
-        const profileObj = response.profileObj || {};
+        console.log('Google response:', response); // Debugging line to check response structure
+        const profileObj = response.profileObj || {}; // Ensure profileObj is an object
+
         dispatch(loginUserData({ profileObj }));
 
         let { email, familyName, givenName, googleId, imageUrl, name } = profileObj;
@@ -57,7 +57,7 @@ const Home = () => {
                 </Card.Body>
                 <Card.Text className={"hom_foot"}>Privacy | Terms of Use</Card.Text>
             </Card>
-            {/* Render Private component based on privateShow state */}
+            <Private show={privateShow} onHide={() => setPrivateShow(false)} />
         </div>
     );
 };
