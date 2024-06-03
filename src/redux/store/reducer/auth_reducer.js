@@ -15,11 +15,12 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS_GOOGLE_DATA: {
+            const profileObj = action.payload.profileObj || {};
             return {
                 ...state,
                 error: false,
-                imageUrl: action.payload.profileObj.imageUrl || "",
-                givenName: action.payload.profileObj.givenName || "",
+                imageUrl: profileObj.imageUrl || "",
+                givenName: profileObj.givenName || "",
             };
         }
         case LOG_OUT_USERS_LOGIN_DATA: {
