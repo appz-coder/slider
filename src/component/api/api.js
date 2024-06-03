@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-const jwt = localStorage.getItem('jwt_token') ? localStorage.getItem('jwt_token') : null;
-
 const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${jwt}`
     },
 });
 
@@ -25,6 +22,7 @@ export const presentationApi = {
         return instance.get(`api/presentations/slug/${secret_key}`);
     },
     authGoogle(data) {
+        console.log('Sending authGoogle request:', data); // Debugging line to check auth request
         return instance.post('api/auth/user', data);
     }
 };
@@ -37,3 +35,5 @@ export const PublicApi = {
         return instance.get(`api/presentations/${key}/update/${checked}`);
     }
 };
+
+console.log('API URL:', process.env.REACT_APP_API_URL); // Debugging line to check API URL
