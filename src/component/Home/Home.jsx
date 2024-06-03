@@ -7,28 +7,6 @@ import GoogleLogin from 'react-google-login';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUserData, setUsersData } from "../../redux/store/reducer/auth_reducer";
 import { Redirect } from "react-router-dom";
-import jwt_decode from 'jwt-decode';
-
-// Function to decode JWT token
-const decodeToken = (token) => {
-    try {
-        const decoded = jwt_decode(token);
-        return decoded;
-    } catch (error) {
-        console.error('Invalid token', error);
-        return null;
-    }
-};
-
-// Function to check if the token is expired
-const isTokenExpired = (token) => {
-    const decoded = decodeToken(token);
-    if (!decoded) {
-        return true;
-    }
-    const currentTime = Date.now() / 1000; // Convert to seconds
-    return decoded.exp < currentTime;
-};
 
 const Home = () => {
     const [privateShow, setPrivateShow] = useState(false);
@@ -36,15 +14,9 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const responseGoogle = (response) => {
-        const token = response.tokenId;
-        if (isTokenExpired(token)) {
-            console.error('Expired or invalid token');
-            return;
-        }
-        const decodedToken = decodeToken(token);
-        const profileObj = response.profileObj || decodedToken;
+        const profileObj = response.profileObj;
 
-        dispatch(loginUserData({ token }));
+        dispatch(loginUserData({ profileObj }));
 
         let { email, familyName, givenName, googleId, imageUrl, name } = profileObj;
         const formData = new FormData();
