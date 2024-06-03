@@ -14,7 +14,8 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const responseGoogle = (response) => {
-        const profileObj = response.profileObj;
+        console.log('Google response:', response); // Debugging line to check response structure
+        const profileObj = response.profileObj || {}; // Ensure profileObj is an object
 
         dispatch(loginUserData({ profileObj }));
 
