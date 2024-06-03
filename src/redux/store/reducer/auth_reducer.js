@@ -16,13 +16,22 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS_GOOGLE_DATA: {
-            const profileObj = jwt_decode(action.payload.token);
-            return {
-                ...state,
-                error: false,
-                imageUrl: profileObj.picture || "",
-                givenName: profileObj.given_name || "",
-            };
+            try {
+                const profileObj = jwt_decode(action.payload.token);
+                return {
+                    ...state,
+                    error: false,
+                    imageUrl: profileObj.picture || "",
+                    givenName: profileObj.given_name || "",
+                };
+            } catch (e) {
+                return {
+                    ...state,
+                    error: true,
+                    imageUrl: "",
+                    givenName: "",
+                };
+            }
         }
         case LOG_OUT_USERS_LOGIN_DATA: {
             return initialState;
