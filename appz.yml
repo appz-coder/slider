@@ -23,7 +23,8 @@ properties:
     page_title: "React-bootstrap + nodejs-express App"
     #redirectUri="https://appz-coder-dev-slider-web-0-1.0314f142.lowtouch.cloud"
     BUILD_ON_STARTUP: 0
-    REACT_APP_URL: https://slider-core-0-1:3000/
+    REACT_APP_URL: https://slider-web-0-1:3000/
+    REACT_APP_API_URL: https://slider-core-0-1:3000/
     REACT_APP_CLIENT_ID:
       vault: REACT_APP_CLIENT_ID
     REACT_APP_CLIENT_SECRET:
