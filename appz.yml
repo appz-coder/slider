@@ -1,7 +1,7 @@
 app:
     name: slider-web
     code: slider-web
-    notify: mmushraf@ecloudcontrol.com
+    notify: mushraf@ecloudcontrol.com
 
 build:
     version: 0.1
