@@ -14,8 +14,10 @@ import jwt_decode from 'jwt-decode';
 
 // Function to decode JWT token
 const decodeToken = (token) => {
+    console.log('token', token);
     try {
         const decoded = jwt_decode(token);
+        console.log('Decoded token:', decoded); 
         return decoded;
     } catch (error) {
         console.error('Invalid token', error);
