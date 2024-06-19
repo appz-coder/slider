@@ -1,3 +1,4 @@
+
 import { presentationApi, setAuthHeader } from '../../../component/api/api';
 import jwt_decode from 'jwt-decode';
 
@@ -16,8 +17,7 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS_GOOGLE_DATA: {
-            console.log("Token received in SET_USERS_GOOGLE_DATA:", token);
-            const profileObj = jwt_decode(action.payload.token);
+            const profileObj = action.payload.profileObj || {};
             return {
                 ...state,
                 error: false,
@@ -29,7 +29,6 @@ const authReducer = (state = initialState, action) => {
             return initialState;
         }
         case SET_USERS_DATA: {
-            console.log("Token received in SET_USERS_DATA:", token);
             return {
                 ...state,
                 accessToken: action.payload.data.token,
