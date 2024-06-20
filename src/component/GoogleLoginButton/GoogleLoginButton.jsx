@@ -16,7 +16,7 @@ const GoogleLoginButton = () => {
 
                 window.google.accounts.id.renderButton(
                     document.getElementById('googleSignInButton'),
-                    { theme: 'outline', size: 'large' }
+                    { theme: 'outline', size: 'small', text: 'signin_with', shape: 'rectangular', width: '240', color: 'blue' }
                 );
             } else {
                 console.error('Google API not loaded properly');
