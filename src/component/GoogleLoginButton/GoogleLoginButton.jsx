@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import jwt_decode from 'jwt-decode';
 import { loginUserData } from '../../redux/store/reducer/auth_reducer';
+import '../../GoogleLoginButton.css'; // Import CSS for styling
 
 const GoogleLoginButton = () => {
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const GoogleLoginButton = () => {
 
                 window.google.accounts.id.renderButton(
                     document.getElementById('googleSignInButton'),
-                    { theme: 'outline', size: 'small', text: 'signin_with', shape: 'rectangular', width: '240', color: 'blue' }
+                    { theme: 'outline', size: 'large', text: 'signin_with', shape: 'rectangular', width: 300 }
                 );
             } else {
                 console.error('Google API not loaded properly');
@@ -44,7 +45,7 @@ const GoogleLoginButton = () => {
         return () => clearInterval(interval);
     }, [dispatch]);
 
-    return <div id="googleSignInButton"></div>;
+    return <div id="googleSignInButton" className="centered-button"></div>;
 };
 
 export default GoogleLoginButton;
