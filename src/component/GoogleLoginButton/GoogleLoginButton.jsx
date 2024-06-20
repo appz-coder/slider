@@ -1,4 +1,3 @@
-// src/components/GoogleLoginButton/GoogleLoginButton.jsx
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import jwt_decode from 'jwt-decode';
@@ -9,23 +8,40 @@ const GoogleLoginButton = () => {
 
     useEffect(() => {
         const initializeGoogleSignIn = () => {
-            window.google.accounts.id.initialize({
-                client_id: '866786936272-j6js683j1iqtukf0buvo03shbjlgrfgo.apps.googleusercontent.com',
-                callback: handleCredentialResponse,
-            });
+            if (window.google && window.google.accounts && window.google.accounts.id) {
+                window.google.accounts.id.initialize({
+                    client_id: '876278877745-ulqtn1eqh3lt3l2faqpg6p17p76qpme1.apps.googleusercontent.com',
+                    callback: handleCredentialResponse,
+                });
 
-            window.google.accounts.id.renderButton(
-                document.getElementById('googleSignInButton'),
-                { theme: 'outline', size: 'large' }
-            );
+                window.google.accounts.id.renderButton(
+                    document.getElementById('googleSignInButton'),
+                    { theme: 'outline', size: 'large' }
+                );
+            } else {
+                console.error('Google API not loaded properly');
+            }
         };
 
         const handleCredentialResponse = (response) => {
-            const userObject = jwt_decode(response.credential);
-            dispatch(loginUserData({ profileObj: userObject }));
+            try {
+                const userObject = jwt_decode(response.credential);
+                dispatch(loginUserData({ profileObj: userObject }));
+            } catch (error) {
+                console.error('Error decoding token', error);
+            }
         };
 
-        initializeGoogleSignIn();
+        const interval = setInterval(() => {
+            if (window.google && window.google.accounts && window.google.accounts.id) {
+                initializeGoogleSignIn();
+                clearInterval(interval);
+            } else {
+                console.log('Waiting for Google API to load');
+            }
+        }, 100);
+
+        return () => clearInterval(interval);
     }, [dispatch]);
 
     return <div id="googleSignInButton"></div>;
