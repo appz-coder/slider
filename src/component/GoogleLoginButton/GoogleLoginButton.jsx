@@ -11,7 +11,7 @@ const GoogleLoginButton = () => {
         const initializeGoogleSignIn = () => {
             if (window.google && window.google.accounts && window.google.accounts.id) {
                 window.google.accounts.id.initialize({
-                    client_id: '876278877745-ulqtn1eqh3lt3l2faqpg6p17p76qpme1.apps.googleusercontent.com',
+                    client_id: '468634370912-0oh2k0gjc50cokd54hrp6tncq9qelh5j.apps.googleusercontent.com',
                     callback: handleCredentialResponse,
                 });
 
