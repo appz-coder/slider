@@ -1,7 +1,4 @@
-
 import React, { useState } from "react";
-
-
 import "./Home.css";
 import Hand from "../../icon/Hands.webp";
 import { Card, Image } from "react-bootstrap";
@@ -66,7 +63,6 @@ const Home = () => {
             <Card className="text-center border-0 hom_card ">
                 <Card.Body>
                     <Card.Title style={{ fontSize: "40px", paddingTop: "12%", fontWeight: '700' }}>
-
                         <Image style={{ width: "55px", marginRight: "2%" }} src={Hand} />
                         Slider Club
                     </Card.Title>
