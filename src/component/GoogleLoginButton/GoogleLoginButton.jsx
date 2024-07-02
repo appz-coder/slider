@@ -1,35 +1,48 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUserData } from '../../redux/actions/authActions';
-import jwtDecode from 'jwt-decode';
-import '../GoogleLoginButton.css'; // Import CSS file for styling
+import jwt_decode from 'jwt-decode';
+import { loginUserData } from '../../redux/store/reducer/auth_reducer';
+import '../../GoogleLoginButton.css'; // Import CSS for styling
 
 const GoogleLoginButton = () => {
     const dispatch = useDispatch();
-
-    const handleCredentialResponse = (response) => {
-        // Decode the response.credential here and dispatch loginUserData action
-        const userObject = jwtDecode(response.credential);
-        dispatch(loginUserData({ profileObj: userObject }));
-    };
 
     useEffect(() => {
         const initializeGoogleSignIn = () => {
             if (window.google && window.google.accounts && window.google.accounts.id) {
                 window.google.accounts.id.initialize({
-                    client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+                    client_id: '468634370912-0oh2k0gjc50cokd54hrp6tncq9qelh5j.apps.googleusercontent.com',
                     callback: handleCredentialResponse,
                 });
+
                 window.google.accounts.id.renderButton(
                     document.getElementById('googleSignInButton'),
-                    { theme: 'outline', size: 'large', text: 'signin_with', shape: 'rectangular', width: '300', locale: 'en' }
+                    { theme: 'outline', size: 'large', text: 'signin_with', shape: 'rectangular', width: 300 }
                 );
             } else {
-                console.error('Google Sign-In API not initialized.');
+                console.error('Google API not loaded properly');
             }
         };
 
-        initializeGoogleSignIn();
+        const handleCredentialResponse = (response) => {
+            try {
+                const userObject = jwt_decode(response.credential);
+                dispatch(loginUserData({ profileObj: userObject }));
+            } catch (error) {
+                console.error('Error decoding token', error);
+            }
+        };
+
+        const interval = setInterval(() => {
+            if (window.google && window.google.accounts && window.google.accounts.id) {
+                initializeGoogleSignIn();
+                clearInterval(interval);
+            } else {
+                console.log('Waiting for Google API to load');
+            }
+        }, 100);
+
+        return () => clearInterval(interval);
     }, [dispatch]);
 
     return <div id="googleSignInButton" className="centered-button"></div>;
