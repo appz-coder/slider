@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUserData } from '../../redux/actions/authActions';
 import jwtDecode from 'jwt-decode';
-import './GoogleLoginButton.css'; // Import CSS file for styling
+import '../GoogleLoginButton.css'; // Import CSS file for styling
 
 const GoogleLoginButton = () => {
     const dispatch = useDispatch();
